@@ -1,61 +1,18 @@
 $spacerSizes: (xxs: 0.2em, xs: 0.5em, sm: 0.7em, md: 1em, lg: 1.5em, xl: 2em, xxl: 2.5em, xxxl: 3em, 5md: 5em);
 $borderSizes: (xs: 1px, sm: 2px, md: 3px, lg: 4px, xl: 5px, xxl: 10px);
 
-$dirs: (
-    t: (top),
-    r: (right),
-    e: (right),
-    b: (bottom),
-    l: (left),
-    s: (left),
-    x: (left, right),
-    y: (top, bottom),
-    box: (top, right, bottom, left)
-);
-
 $typographySizes: (
-    l: 56px,
-    k: 54px,
-    j: 52px,
-    i: 50px,
-    t: 40px,
-    u: 38px,
-    v: 36px,
-    w: 34px,
-    x: 32px,
-    y: 30px,
-    z: 28px,
-    giga    : 26px,
-    mega    : 24px,
-    alpha   : 22px,
-    beta    : 20px,
-    gamma   : 18px,
-    delta   : 16px,
-    epsilon : 14px,
-    zeta    : 12px,
-    eta     : 10px
+    18: 18px
 );
 
-$colors: (
-    a: #ef4a8d, // Pink
+$baseColors: (
+    a: #33ADD6, // mediumturquoise
     b: #000000, // Black
-    b09: rgba(0,0,0,0.9),
-    c: #111111, // Almost black
-    c2: #222222, // Black-ish
-    d: gainsboro, // #dddddd
-    e: #999999, // Another grey
-    f: #666666, // Evil grey
-    g: #333333, // Just grey
-    h: #e6e6e6, // Yeat another grey
-    i: whitesmoke, // White smoke #f2f2f2
-    j: #dddddd, // Silver grey
-    k: #ffa3c8, // light pink
-    m: #ee498d, // logo-pink
-    n: #dcdcdc, // Yet another grey
+    c: #1B93BD, //
+    d: #0278A3, //
+    e: #191919, // LiVi black
     t: transparent,
-    w: #ffffff,  // White
-    w05: rgba(255,255,255,0.5),
-    w09: rgba(255,255,255,0.9)
+    w: #ffffff  // White
 );
 
 $breakpoints: (xs: 320px, sm: 640px, md: 960px, lg: 1280px);

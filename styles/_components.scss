@@ -1,0 +1,9 @@
+h1 {
+  font-size: 20px;
+  @media screen and (min-width: map-get($breakpoints, sm)) {
+    font-size: 24px;
+  }
+  @media screen and (min-width: map-get($breakpoints, md)) {
+    font-size: 28px;
+  }
+}
