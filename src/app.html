@@ -4,12 +4,13 @@
 <link rel="import" href="/bower_components/paper-menu/paper-submenu.html">
 <link rel="import" href="/bower_components/paper-item/paper-item.html">
 <link rel="import" href="/bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
 <link rel="import" href="/bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html">
 <link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="/bower_components/iron-icons/iron-icons.html">
 
 <template>
-  <paper-drawer-panel force-narrow>
+  <paper-drawer-panel force-narrow right-drawer>
     <div drawer>
       <paper-toolbar class="paper-header">
         <span>Valikko</span>
@@ -54,11 +55,17 @@
     </div>
     <div main>
       <paper-toolbar class="paper-header">
-        <paper-icon-button icon="menu" tabindex="1" paper-drawer-toggle></paper-icon-button>
-        <div class="title">${router.title}</div>
+        <div class="title Ms-0">
+          <img src="../images/juku_logo_white.svg" class="block" />
+        </div>
         <span if.bind="router.isNavigating"><iron-icon icon="autorenew"/></span>
+        <paper-button paper-drawer-toggle class="f-12 M-0 Px-0 Py-md">
+          Valikko
+        </paper-button>
+        <iron-icon icon="menu" paper-drawer-toggle></iron-icon>
+        <!-- <paper-icon-button icon="menu" tabindex="1" paper-drawer-toggle></paper-icon-button> -->
       </paper-toolbar>
-      <div>
+      <div class="w-max-1200 h-center">
         <router-view></router-view>
       </div>
     </div>
