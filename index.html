@@ -10,20 +10,25 @@
     <link rel="import" href="bower_components/polymer/polymer.html">
     <!-- Override globally -->
     <style is="custom-style">
-      :root{
-        --paper-toolbar-background: #007aa3;
+      :root {
+        --paper-toolbar-background: #33ADD6;
+        --paper-toolbar-height: 40px;
+        --paper-toolbar-sm-height: 40px;
         --paper-menu-outline: none;
       }
       .paper-item-link {
         color: inherit;
         text-decoration: none;
       }
+      .paper-toolbar-0 .toolbar-tools.paper-toolbar > .title {
+        margin-left: 0;
+      }
     </style>
   </head>
 
   <body aurelia-app="main">
-    <div class="splash">
-      <div class="message">JUKU</div>
+    <div class="h-100vh w-100vh bg-c-b">
+      <div class="bg-c-a">JUKU</div>
       <i class="fa fa-spinner fa-spin"></i>
     </div>
 
