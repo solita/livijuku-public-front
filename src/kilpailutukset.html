@@ -3,10 +3,14 @@
   <require from="components/timeline/timeline"></require>
 
   <section class="P-lg">
-    
+
     <h2>Kilpailutukset</h2>
 
-    <timeline></timeline>
+    <timeline
+      kilpailutukset.bind="kilpailutukset"
+      options.bind="timelineOptions"
+      organisaatiot.bind="organisaatiot"
+      events.bind="timelineEvents"></timeline>
 
   </section>
 </template>
