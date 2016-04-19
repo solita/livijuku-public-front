@@ -13,3 +13,20 @@
 .w-max-1200 {
   max-width: 1200px;
 }
+
+@media screen and (min-width: map-get($breakpoints, sm)) {
+  .r-sm-block {
+    display: block;
+  }
+  .r-sm-hidden {
+    display: none;
+  }
+}
+
+.f-w-600 {
+  font-weight: 600;
+}
+
+.h-70 {
+  height: 70px;
+}
