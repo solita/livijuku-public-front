@@ -1,5 +1,44 @@
 <template>
+
   <section class="P-lg">
+
     <h2>Valtionavustukset</h2>
+
+    <div class="flex flex-d-c">
+      <div>
+        <ul class="list-no-style left h-center P-0 full-width">
+          <li class="left Be-xs Be-solid B-c-a ${ childRoute === 'ALL' ? 'bg-c-a c-w' : 'bg-c-w c-a' }">
+            <a class="paper-item-link" href="#/tilastot/valtionavustukset/ALL" tabindex="-1">
+              <paper-item>Kaikki</paper-item>
+            </a>
+          </li>
+          <li class="left Be-xs Be-solid B-c-a ${ childRoute === 'KS1' ? 'bg-c-a c-w' : 'bg-c-w c-a' }">
+            <a class="paper-item-link" href="#/tilastot/valtionavustukset/KS1" tabindex="-1">
+              <paper-item>Suuret kaupunkiseudut</paper-item>
+            </a>
+          </li>
+          <li class="left Be-xs Be-solid B-c-a ${ childRoute === 'KS2' ? 'bg-c-a c-w' : 'bg-c-w c-a' }">
+            <a class="paper-item-link" href="#/tilastot/valtionavustukset/KS2" tabindex="-1">
+              <paper-item>Keskisuuret kaupunkiseudut</paper-item>
+            </a>
+          </li>
+          <li class="left Be-xs Be-solid B-c-a ${ childRoute === 'KS3' ? 'bg-c-a c-w' : 'bg-c-w c-a' }">
+            <a class="paper-item-link" href="#/tilastot/valtionavustukset/KS3" tabindex="-1">
+              <paper-item>Pienet kaupunkiseudut</paper-item>
+            </a>
+          </li>
+          <li class="left ${ childRoute === 'ELY' ? 'bg-c-a c-w' : 'bg-c-w c-a' }">
+            <a class="paper-item-link" href="#/tilastot/valtionavustukset/ELY" tabindex="-1">
+              <paper-item>ELY-keskukset</paper-item>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="Py-xl">
+        <compose if.bind="childRoute" view="tilastot/valtionavustukset/${childRoute}.html"></compose>
+      </div>
+    </div>
+
   </section>
+
 </template>
