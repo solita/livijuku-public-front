@@ -11,6 +11,8 @@ var notify = require('gulp-notify');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var browserSync = require('browser-sync').create();
+var mainBowerFiles = require('gulp-main-bower-files');
+var vulcanize = require('gulp-vulcanize');
 
 // transpiles changed es6 files to SystemJS format
 // the plumber() call prevents 'pipe breaking' caused
@@ -24,6 +26,23 @@ gulp.task('build-system', function() {
     .pipe(to5(assign({}, compilerOptions.system())))
     .pipe(sourcemaps.write({includeContent: false, sourceRoot: '/src'}))
     .pipe(gulp.dest(paths.output));
+});
+
+// This is for concatenating Polymer components
+gulp.task('vulcanize', function() {
+  return gulp.src(paths.root + '/app.html')
+    .pipe(vulcanize({
+      excludes: ['bower_components/polymer/polymer.html']
+    }))
+    .pipe(gulp.dest(paths.output));
+});
+
+// Use the bower.json file as the source and it will create a vinyl stream
+// for each of the files main-bower-files return when parsing the bower.json.
+gulp.task('main-bower-files', function() {
+    return gulp.src('./bower.json')
+        .pipe(mainBowerFiles())
+        .pipe(gulp.dest(paths.output + '/bower_components'));
 });
 
 // copies changed html files to the output directory
@@ -73,7 +92,7 @@ gulp.task('build-css', function() {
 gulp.task('build', function(callback) {
   return runSequence(
     'clean',
-    ['build-system', 'build-html', 'build-css', 'build-scss'],
+    ['build-system', 'build-html', 'main-bower-files', 'build-css', 'build-scss', 'vulcanize'],
     callback
   );
 });
