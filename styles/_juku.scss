@@ -21,12 +21,68 @@
   .r-sm-hidden {
     display: none;
   }
+  .r-sm-flex-d-r {
+    flex-direction: row;
+  }
+  .r-sm-f-left {
+    text-align: left;
+  }
+  .r-sm-Ps-xl {
+    padding-left: map-get($spacerSizes, xl);
+  }
+  .r-sm-f-16 {
+    font-size: map-get($typographySizes, 16);
+  }
+}
+
+@media screen and (min-width: map-get($breakpoints, lg)) {
+  .r-lg-w-1200 {
+    width: 1200px;
+  }
+  .r-lg-Px-0 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.f-w-300 {
+  font-weight: 300;
 }
 
 .f-w-600 {
   font-weight: 600;
 }
 
+.h-35 {
+  height: 35px;
+}
+
 .h-70 {
   height: 70px;
+}
+
+#middleBar {
+  padding-top: 2em;
+}
+
+.juku-info-short {
+  margin: 0;
+  color: map-get($baseColors, w);
+  font-weight: 300;
+  text-align: center;
+  font-size: 14px;
+  @media screen and (min-width: 480px) {
+    font-size: 16px;
+  }
+  @media screen and (min-width: map-get($breakpoints, sm)) {
+    text-align: left;
+  }
+}
+
+.w-min-100vw {
+  min-width: 100vw;
+}
+
+.h-min-100vh {
+  min-height: 100vh;
 }
