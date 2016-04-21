@@ -45,7 +45,6 @@ export class Kilpailutukset {
 
     this.timelineEvents = {
       select: (properties) => {
-        console.info(properties);
         // let $target = jQuery(properties.event.target);
         // if (!$target.hasClass('link-to-hilma')) {
         //   $state.go('app.kilpailutus', {
@@ -54,7 +53,5 @@ export class Kilpailutukset {
         // }
       }
     };
-
-    console.info(this.kilpailutukset);
   }
 }
