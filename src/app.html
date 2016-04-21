@@ -9,6 +9,7 @@
 <link rel="import" href="../bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 
 <template>
   <paper-drawer-panel force-narrow right-drawer>
@@ -58,29 +59,14 @@
       <paper-scroll-header-panel condenses="true">
         <paper-toolbar class="flex flex-d-c tall">
           <ul class="hidden r-sm-block list-no-style left h-center P-0">
-            <li class="left">
-              <a class="paper-item-link" href="#/tilastot/valtionavustukset" tabindex="-1">
-                <paper-item class="f-uppercase f-12 f-w-600 sans-serif">Valtionavustukset</paper-item>
-              </a>
-            </li>
-            <li class="left">
-              <a class="paper-item-link" href="#/tilastot/perustunnusluvut" tabindex="-1">
-                <paper-item class="f-uppercase f-12 f-w-600 sans-serif">Perustunnusluvut</paper-item>
-              </a>
-            </li>
-            <li class="left">
-              <a class="paper-item-link" href="#/tilastot/kaikkiTunnusluvut" tabindex="-1">
-                <paper-item class="f-uppercase f-12 f-w-600 sans-serif">Kaikki tunnusluvut</paper-item>
-              </a>
-            </li>
-            <li class="left">
-              <a class="paper-item-link" href="#kilpailutukset" tabindex="-1">
-                <paper-item class="f-uppercase f-12 f-w-600 sans-serif">Kilpailutukset</paper-item>
+            <li repeat.for="row of router.navigation" class="left ${row.isActive ? 'f-underline' : ''}">
+              <a class="paper-item-link" href.bind="row.href" tabindex="-1">
+                <paper-item class="f-uppercase f-12 f-w-600 sans-serif">${row.title}</paper-item>
               </a>
             </li>
           </ul>
           <div class="r-sm-hidden">
-            <a class="paper-item-link app block Pt-xs" href="#/" tabindex="-1">
+            <a class="paper-item-link app block" href="#/" tabindex="-1">
               <img src="../images/juku_logo_white.svg" class="block h-35" />
             </a>
           </div>
@@ -101,7 +87,7 @@
           </div>
           <div class="bottom title c-w f-w-300"></div>
         </paper-toolbar>
-        <div class="w-max-1200 h-center" style="height: 2000px;">
+        <div class="w-max-1200 h-center">
           <router-view></router-view>
         </div>
       </paper-scroll-header-panel>
