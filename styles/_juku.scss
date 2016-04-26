@@ -35,6 +35,18 @@
   }
 }
 
+@media screen and (min-width: map-get($breakpoints, md)) {
+  .r-md-hidden {
+    display: none;
+  }
+  .r-md-block {
+    display: block;
+  }
+  .r-md-flex {
+    display: flex;
+  }
+}
+
 @media screen and (min-width: map-get($breakpoints, lg)) {
   .r-lg-w-1200 {
     width: 1200px;
