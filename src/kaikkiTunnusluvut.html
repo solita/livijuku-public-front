@@ -1,5 +1,17 @@
 <template>
+
+  <require from='components/tilastonavigointi/tilastonavigointi'></require>
+
   <section class="P-lg">
-    <h2>Kaikki tunnusluvut</h2>
+
+    <h1>Kaikki tunnusluvut</h1>
+
+    <tilastonavigointi page="kaikkitunnusluvut"></tilastonavigointi>
+
+    <div class="Py-xl">
+      <compose if.bind="childRoute" view="tilastot/kaikkitunnusluvut/${childRoute}.html"></compose>
+    </div>
+
   </section>
+
 </template>

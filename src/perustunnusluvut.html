@@ -1,11 +1,17 @@
 <template>
 
-  <require from='components/graph/graph'></require>
+  <require from='components/tilastonavigointi/tilastonavigointi'></require>
 
   <section class="P-lg">
-    <h2>Perustunnusluvut</h2>
 
-    <graph></graph>
+    <h1>Perustunnusluvut</h1>
+
+    <tilastonavigointi page="perustunnusluvut"></tilastonavigointi>
+
+    <div class="Py-xl">
+      <compose if.bind="childRoute" view="tilastot/perustunnusluvut/${childRoute}.html"></compose>
+    </div>
 
   </section>
+
 </template>
