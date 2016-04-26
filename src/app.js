@@ -6,7 +6,7 @@ export class App {
       { route: 'tilastot',        name: 'tilastot', moduleId: 'tilastot', nav: false,  title: 'Tilastot' },
       { route: 'tilastot/valtionavustukset',  name: 'valtionavustukset',  moduleId: 'valtionavustukset', nav: true, title: 'Valtionavustukset' },
       { route: 'tilastot/perustunnusluvut',   name: 'perustunnusluvut',   moduleId: 'perustunnusluvut',  nav: true, title: 'Perustunnusluvut' },
-      { route: 'tilastot/kaikkiTunnusluvut',  name: 'kaikkiTunnusluvut',  moduleId: 'kaikkiTunnusluvut', nav: true, title: 'Kaikki tunnusluvut' },
+      { route: 'tilastot/kaikkitunnusluvut',  name: 'kaikkitunnusluvut',  moduleId: 'kaikkitunnusluvut', nav: true, title: 'Kaikki tunnusluvut' },
       { route: 'kilpailutukset',  name: 'kilpailutukset', moduleId: 'kilpailutukset', nav: true, title: 'Kilpailutukset' }
     ]);
     this.router = router;
