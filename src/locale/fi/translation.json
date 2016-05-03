@@ -1,0 +1,75 @@
+{
+
+  "front-page-chapter-1": "Liikenneviraston JUKU-palvelu tarjoaa monipuolista tietoa joukkoliikenteen rahoituksesta kustannuksista ja tunnusluvuista. Kilpailutukset-osiosta löytyy tietoa joukkoliikenteen tulevista kilpailutuksista ja olemassa olevista liikennöintisopimuksista.",
+  "front-page-chapter-2": "Palvelu on kaikille avoin, mutta sen suunnittelussa on otettu huomioon erityisesti joukkoliikenteen parissa työskentelevät henkilöt.",
+  "front-page-chapter-3": "JUKU-palvelussa toimivaltaiset viranomaiset voivat tehdä avustus- ja maksatushakemuksia sekä täyttää tunnuslukutietoja oman toimivalta-alueensa osalta. Nämä toiminnot vaativat kirjautumisen.",
+
+  "juku-info-short": "Tietoa joukkoliikenteen rahoituksesta, kustannuksista ja tunnusluvuista sekä joukkoliikenteen kilpailutuksista.",
+
+  "tarkasteltava-tunnusluku": "Tarkasteltava tunnusluku",
+  "tunnusluku": "Tunnusluku",
+
+  "nousujen-lukumaara-vuosittain-tarkasteltuna": "Nousujen lukumäärä vuosittain tarkasteltuna",
+
+  "avustukset-organisaatioittain": "avustukset organisaatioittain",
+  "joukkoliikenteen-haetut-ja-myonnetut-avustukset": "Joukkoliikenteen haetut ja myönnetyt avustukset",
+  "myonnetyt-avustukset-organisaatioittain": "Myonnetyt avustukset organisaatioittain",
+  "myonnetty-avustus-per-asukas": "Myönnetty avustus / asukas",
+  "tyytyvaisyys-joukkoliikenteeseen": "Tyytyväisyys joukkoliikenteeseen",
+  "matkustajamaarat": "Matkustajamäärät",
+  "lahtojen-maara": "Lähtöjen määrä",
+  "linjakilometrit": "Linjakilometrit",
+  "valtion-rahoitus-asukasta-kohden": "Valtion rahoitus asukasta kohden",
+  "toimivaltaisen-viranomaisen-omarahoitus-asukasta-kohden": "Toimivaltaisen viranomaisen omarahoitus asukasta kohden",
+
+  "haetut": "Haetut",
+  "myonnetyt": "Myönnetyt",
+
+  "nousut": "Nousut",
+  "lahdot": "Lähdöt",
+  "nousut-paiva": "Nousut (päivä)",
+  "lahdot-paiva": "Lähdöt (päivä)",
+  "linjakilometrit-paiva": "Linjakilometrit (päivä)",
+  "liikennointikorvaus": "Liikennöintikorvaus",
+  "lipputulo": "Lipputulo",
+  "kalusto": "Kalusto",
+  "kustannukset": "Kustannukset",
+  "lippuhinnat": "Lippuhinnat",
+  "alue-kuntamaara": "Alue - Kuntamäärä",
+  "alue-vyohykemaara": "Alue - Vyöhykemäärä",
+  "alue-pysakkimaara": "Alue - Pysäkkimäärä",
+  "alue-maapintaala": "Alue - Maapinta-ala",
+  "alue-asukasmaara": "Alue - Asukasmäärä",
+  "alue-tyopaikkamaara": "Alue - Työpaikkamäärä",
+  "alue-henkilosto": "Alue - Henkilöstö",
+  "alue-pendeloivienosuus": "Alue - Pendelöivien osuus",
+  "alue-henkiloautoliikennesuorite": "Alue - Henkilöautoliikennesuorite",
+  "alue-autoistumisaste": "Alue - autoistumisaste",
+  "alue-asiakastyytyvaisyys": "Alue - Asiakastyytyväisyys",
+
+  "kuntien-lukumaara": "kuntien lukumäärä",
+  "vyohykkeiden-lukumaara": "vyöhykkeiden lukumäärä",
+
+  "haetut-avustukset-organisaatioittain": "Haetut avustukset organisaatioittain",
+  "myonnetyt-avustukset-organisaatioittain": "Myönnetyt avustukset organisaatioittain",
+
+  "valtionavustukset": "Valtionavustukset",
+  "perustunnusluvut": "Perustunnusluvut",
+  "kaikki-tunnusluvut": "Kaikki tunnusluvut",
+  "kilpailutukset": "Kilpailutukset",
+
+  "valikko": "Valikko",
+
+  "matkustajamaarat": "Matkustajamäärät",
+
+  "psa-liikenteen-nettokustannukset": "PSA-liikenteen nettokustannukset (kunnan ja valtion maksama subventio)",
+
+  "ALL": "Kaikki organisaatiot",
+  "KS1": "Suuret kaupunkiseudut",
+  "KS2": "Keskisuuret kaupunkiseudut",
+  "KS3": "Pienet kaupunkiseudut",
+  "ELY": "ELY-keskukset",
+
+  "valitse-tunnusluku": "Valitse tunnusluku",
+  "valitse-rajoite": "Valitse rajoite"
+}
