@@ -1,0 +1,22 @@
+$spacerSizes: (xxs: 0.2em, xs: 0.5em, sm: 0.7em, sm2: 0.875em, md: 1em, lg: 1.5em, xl: 2em, xxl: 2.5em, xxxl: 3em, 4md: 4em, 5md: 5em);
+$borderSizes: (xs: 1px, sm: 2px, md: 3px, lg: 4px, xl: 5px, xxl: 10px);
+
+$typographySizes: (
+    12: 12px,
+    13: 13px,
+    14: 14px,
+    16: 16px,
+    18: 18px
+);
+
+$baseColors: (
+  a: #33ADD6, // mediumturquoise (vaaleansininen)
+  b: #000000, // black
+  c: #1B93BD, // keskisininen
+  d: #0278A3, // tummansininen
+  e: #191919, // LiVi black
+  w: #ffffff  // white
+);
+
+$breakpoints: (xs: 320px, sm: 768px, md: 1024px, lg: 1280px);
+$gridColumnCount: 12;

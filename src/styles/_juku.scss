@@ -1,0 +1,140 @@
+.bg-img-bus {
+  background-image: url('../dist/images/linja-autobg2.jpg');
+}
+
+.bg-size-contain {
+  background-size: contain;
+}
+
+.bg-repeat-0 {
+  background-repeat: no-repeat;
+}
+
+.w-max-1200 {
+  max-width: 1200px;
+}
+
+@media screen and (min-width: map-get($breakpoints, sm)) {
+  .r-sm-block {
+    display: block;
+  }
+  .r-sm-hidden {
+    display: none;
+  }
+  .r-sm-flex-d-r {
+    flex-direction: row;
+  }
+  .r-sm-f-left {
+    text-align: left;
+  }
+  .r-sm-Ps-xl {
+    padding-left: map-get($spacerSizes, xl);
+  }
+  .r-sm-f-14 {
+    font-size: map-get($typographySizes, 14);
+  }
+  .r-sm-f-16 {
+    font-size: map-get($typographySizes, 16);
+  }
+  .r-sm-h-min-40 {
+    min-height: 40px;
+  }
+}
+
+@media screen and (min-width: map-get($breakpoints, md)) {
+  .r-md-hidden {
+    display: none;
+  }
+  .r-md-block {
+    display: block;
+  }
+  .r-md-flex {
+    display: flex;
+  }
+  .r-md-f-16 {
+    font-size: map-get($typographySizes, 16);
+  }
+  .r-md-h-min-48 {
+    min-height: 48px;
+  }
+  .r-md-Px-md {
+    padding-left: map-get($spacerSizes, md);
+    padding-right: map-get($spacerSizes, md);
+  }
+}
+
+@media screen and (min-width: map-get($breakpoints, lg)) {
+  .r-lg-w-1200 {
+    width: 1200px;
+  }
+  .r-lg-Px-0 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.f-w-300 {
+  font-weight: 300;
+}
+
+.f-w-600 {
+  font-weight: 600;
+}
+
+.f-w-800 {
+  font-weight: 800;
+}
+
+.h-35 {
+  height: 35px;
+}
+
+.h-70 {
+  height: 70px;
+}
+
+#topBar {
+  z-index: 10;
+}
+
+#middleBar {
+  padding-top: 2em;
+}
+
+#drawer {
+  z-index: 100;
+}
+
+.juku-info-short {
+  margin: 0;
+  color: map-get($baseColors, w);
+  font-weight: 300;
+  text-align: center;
+  font-size: 14px;
+  @media screen and (min-width: 480px) {
+    font-size: 18px;
+  }
+  @media screen and (min-width: map-get($breakpoints, sm)) {
+    text-align: left;
+  }
+}
+
+.w-100 {
+  width: 100px;
+}
+
+.w-315 {
+  width: 315px;
+}
+
+.w-min-100vw {
+  min-width: 100vw;
+}
+
+.h-min-100vh {
+  min-height: 100vh;
+}
+
+.cursor-pointer:hover {
+  cursor: pointer;
+}
