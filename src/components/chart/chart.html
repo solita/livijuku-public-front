@@ -1,0 +1,8 @@
+<template>
+  <require from="../../../jspm_packages/npm/nvd3@1.8.2/build/nv.d3.css"></require>
+  <div if.bind="rawData && options" class="chart left full-width bg-c-w Mb-md">
+    <h4 class="f-center">${ title }</h4>
+    <p class="f-center">${ subtitle }</p>
+    <svg height="600" class="Mx-md"></svg>
+  </div>
+</template>
