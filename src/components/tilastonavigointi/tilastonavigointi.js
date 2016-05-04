@@ -10,9 +10,9 @@ export class TilastonavigointiCustomElement {
 
   @bindable page;
 
-  constructor(EventAggregator, HttpClient, router) {
-    this.ea = EventAggregator;
-    this.http = HttpClient;
+  constructor(eventAggregator, http, router) {
+    this.ea = eventAggregator;
+    this.http = http;
     this.router = router;
     this.md = new MobileDetect(window.navigator.userAgent);
     this.viranomaiset = [{
@@ -40,9 +40,9 @@ export class TilastonavigointiCustomElement {
         this.childRouteIndex = this.getChildRouteIndex();
         if (this.childRouteIndex === -1) {
           if (this.md.mobile()) {
-            this.router.navigate('tilastot/' + this.page + '/KS1');
+            this.router.navigate(this.page + '/KS1');
           } else {
-            this.router.navigate('tilastot/' + this.page + '/ALL');
+            this.router.navigate(this.page + '/ALL');
           }
         }
       }
