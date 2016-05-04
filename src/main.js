@@ -1,7 +1,25 @@
+import XHR from 'i18next-xhr-backend';
+
 export function configure(aurelia) {
   aurelia.use
     .standardConfiguration();
     // .developmentLogging();
+
+  aurelia.use.plugin('aurelia-i18n', (instance) => {
+    // register backend plugin
+    instance.i18next.use(XHR);
+
+    // adapt options to your needs (see http://i18next.com/docs/options/)
+    instance.setup({
+      backend: {
+        loadPath: 'dist/locale/{{lng}}/{{ns}}.json'
+      },
+      lng: 'fi',
+      attributes: ['t', 'i18n'],
+      fallbackLng: 'en',
+      debug: false
+    });
+  });
 
   //Uncomment the line below to enable animation.
   aurelia.use.plugin('aurelia-animator-css');
