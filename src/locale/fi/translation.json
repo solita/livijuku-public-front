@@ -10,6 +10,7 @@
   "tunnusluku": "Tunnusluku",
 
   "nousujen-lukumaara-vuosittain-tarkasteltuna": "Nousujen lukumäärä vuosittain tarkasteltuna",
+  "nousujen-lukumaara-kuukausitasolla": "Nousujen lukumäärä kuukausitasolla",
 
   "avustukset-organisaatioittain": "avustukset organisaatioittain",
   "joukkoliikenteen-haetut-ja-myonnetut-avustukset": "Joukkoliikenteen haetut ja myönnetyt avustukset",
@@ -51,6 +52,9 @@
   "vyohykkeiden-lukumaara": "vyöhykkeiden lukumäärä",
 
   "haetut-avustukset-organisaatioittain": "Haetut avustukset organisaatioittain",
+
+  "kuukausi": "kuukausi",
+
   "myonnetyt-avustukset-organisaatioittain": "Myönnetyt avustukset organisaatioittain",
 
   "valtionavustukset": "Valtionavustukset",
@@ -59,6 +63,7 @@
   "kilpailutukset": "Kilpailutukset",
 
   "valikko": "Valikko",
+  "vuosi": "Vuosi",
 
   "matkustajamaarat": "Matkustajamäärät",
 
@@ -70,6 +75,7 @@
   "KS3": "Pienet kaupunkiseudut",
   "ELY": "ELY-keskukset",
 
+  "valitse-rajoite": "Valitse rajoite",
   "valitse-tunnusluku": "Valitse tunnusluku",
-  "valitse-rajoite": "Valitse rajoite"
+  "valitse-tarkasteluvali": "Valitse tarkasteluväli"
 }
