@@ -1,15 +1,46 @@
 <template>
 
+  <require from="components/chart/chart"></require>
   <require from='components/tilastonavigointi/tilastonavigointi'></require>
 
   <section class="P-lg">
 
-    <h1>Valtionavustukset</h1>
+    <h1>${ 'valtionavustukset' | t }</h1>
 
     <tilastonavigointi page="valtionavustukset"></tilastonavigointi>
 
     <div class="Py-xl">
-      <compose if.bind="childRoute" view="tilastot/valtionavustukset/${childRoute}.html"></compose>
+
+      <chart options.bind="haetutJaMyonnetytAvustukset.options" raw-data.bind="haetutJaMyonnetytAvustukset.data"></chart>
+
+      <chart options.bind="haetutAvustuksetOrganisaatioittain.options" raw-data.bind="haetutAvustuksetOrganisaatioittain.data"></chart>
+
+      <chart options.bind="myonnetytAvustuksetOrganisaatioittain.options" raw-data.bind="myonnetytAvustuksetOrganisaatioittain.data"></chart>
+
+      <chart options.bind="avustusPerAsukas.options" raw-data.bind="avustusPerAsukas.data"></chart>
+
+      <!-- <div id="chart" class="left full-width bg-c-w Mb-md">
+        <div class="flex flex-jc-c flex-ai-c">
+          <div>
+            <iron-icon icon="icons:chevron-left" class="cursor-pointer Me-xs bg-c-a B-xs B-solid B-c-c c-w" click.delegate="toggleHaetutMyonnetytKey()"></iron-icon>
+          </div>
+          <div class="w-100">
+            <h4 class="f-center" show.bind="haetutMyonnetytKey === 'H'">${ 'haetut' | t }</h4>
+            <h4 class="f-center" show.bind="haetutMyonnetytKey === 'M'">${ 'myonnetyt' | t }</h4>
+          </div>
+          <div>
+            <iron-icon icon="icons:chevron-right" class="cursor-pointer Mx-xs bg-c-a B-xs B-solid B-c-c c-w" click.delegate="toggleHaetutMyonnetytKey()"></iron-icon>
+          </div>
+          <div>
+            ${ 'avustukset-organisaatioittain' | t }
+          </div>
+        </div>
+        <p class="f-center">${ childRoute | t }</p>
+        <valtionavustukset-organisaatioittain height="600" raw-data.bind="avustusPerOrganisaatioJaVuosi" category-key.bind="haetutMyonnetytKey"></valtionavustukset-organisaatioittain>
+      </div> -->
+
+      <!-- <nvd3 options.bind="chartOptions" data.bind="avustusPerAsukas"></nvd3> -->
+
     </div>
 
   </section>

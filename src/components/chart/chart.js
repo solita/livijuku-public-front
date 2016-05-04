@@ -15,13 +15,13 @@ export class ChartCustomElement {
     this.i18n = i18n;
     this.d3 = d3;
     this.nv = nv;
-    console.info('chart element loading...');
+    this.height = 600;
   }
 
   bind() {}
 
   rawDataChanged(rawData) {
-    console.info(rawData);
+    // console.info(rawData);
     if (this.element.getElementsByTagName('svg')[0]) {
       d3.selectAll(this.element.getElementsByTagName('svg')[0].childNodes).remove();
     }
@@ -30,12 +30,12 @@ export class ChartCustomElement {
 
   optionsChanged(options) {
     this.title = this.i18n.tr(options.title);
-    this.subtitle = this.i18n.tr(options.subtitle);
-    console.info(this.rawData, this.options);
+    // this.subtitle = this.i18n.tr(options.subtitle);
+    console.info(this.options);
   }
 
   draw(data, options) {
-    console.info(data, options);
+    // console.info(data, options);
     let parseData = () => {
       let graphData = [];
       options.groupKeys.forEach((key, index) => {
@@ -68,37 +68,93 @@ export class ChartCustomElement {
       return graphData;
     };
 
-    nv.addGraph(() => {
-      let chart = nv.models.multiBarChart()
-        .options({
-          duration: 200
-        })
-        .reduceXTicks(true)   //If 'false', every single x-axis tick label will be rendered.
-        .rotateLabels(0)      //Angle to rotate x-axis labels.
-        .showControls(true)   //Allow user to switch between 'Grouped' and 'Stacked' mode.
-        .groupSpacing(0.1)    //Distance between each group of bars.
-      ;
+    this.subtitle = options.subtitle.text;
 
-      chart.xAxis.tickFormat();
-      chart.yAxis.tickFormat(d3.format('2s'));
+    if (options.chart.type === "lineWithFocusChart") {
+      nv.addGraph(() => {
+        let chart = nv.models.lineWithFocusChart();
 
-      chart.margin({left: 80, bottom: 80 });
+        chart.useVoronoi(false);
 
-      chart.xAxis
-        .axisLabel('Vuosi')
-        .axisLabelDistance(10);
+        chart.xAxis
+          .axisLabel(options.chart.xAxis.axisLabel)
+          .tickFormat(options.chart.xAxis.tickFormat);
 
-      chart.yAxis
-        .axisLabel(options.yTitle)
-        .axisLabelDistance(10);
+        chart.x2Axis
+          .axisLabel(options.chart.x2Axis.axisLabel)
+          .tickFormat(options.chart.x2Axis.tickFormat);
 
-      d3.select(this.element.getElementsByTagName('svg')[0])
-        .datum(parseData())
-        .call(chart);
+        chart.yAxis
+          .axisLabel(options.yAxis.axisLabel)
+          .tickFormat(options.chart.yAxis.tickFormat);
 
-      nv.utils.windowResize(chart.update);
+        console.info(options);
 
-      return chart;
-    });
+        let chartOptions =  R.merge({}, options.chart);
+
+        console.info(chartOptions);
+
+        delete chartOptions.tooltip;
+        delete chartOptions.xAxis;
+        delete chartOptions.x2Axis;
+        delete chartOptions.yAxis;
+        delete chartOptions.x;
+        delete chartOptions.y;
+
+        chart.options(chartOptions);
+
+        if (chartOptions.height) {
+          this.height = chartOptions.height;
+          chart.height(chartOptions.height);
+        }
+
+        d3.select(this.element.getElementsByTagName('svg')[0])
+          .datum(parseData())
+          .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        return chart;
+      });
+    } else {
+      nv.addGraph(() => {
+        let chart = nv.models.multiBarChart();
+
+        chart.xAxis
+          .axisLabel(options.chart.xAxis.axisLabel)
+          .tickFormat(options.chart.xAxis.tickFormat);
+
+        chart.yAxis
+          .axisLabel(options.chart.yAxis.axisLabel)
+          .tickFormat(options.chart.yAxis.tickFormat);
+
+        console.info(options);
+
+        let chartOptions =  R.merge({}, options.chart);
+
+        delete chartOptions.tooltip;
+        delete chartOptions.xAxis;
+        delete chartOptions.yAxis;
+        delete chartOptions.x;
+        delete chartOptions.y;
+
+        console.info(chartOptions);
+
+        chart.options(chartOptions);
+
+        if (chartOptions.height) {
+          this.height = chartOptions.height;
+          chart.height(chartOptions.height);
+        }
+
+        d3.select(this.element.getElementsByTagName('svg')[0])
+          .datum(parseData())
+          .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        return chart;
+      });
+    }
   }
 }

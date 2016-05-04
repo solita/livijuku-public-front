@@ -3,6 +3,6 @@
   <div if.bind="rawData && options" class="chart left full-width bg-c-w Mb-md">
     <h4 class="f-center">${ title }</h4>
     <p class="f-center">${ subtitle }</p>
-    <svg height="600" class="Mx-md"></svg>
+    <svg height.bind="height" class="Mx-md"></svg>
   </div>
 </template>
