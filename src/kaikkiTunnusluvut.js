@@ -40,7 +40,6 @@ export class KaikkiTunnusluvut {
     this.ea.subscribe('router:navigation:success', router => {
       this.childRoute = router.instruction.params.childRoute;
       if (this.tunnuslukuIndex) {
-        console.info(this.tunnuslukuIndex);
         this.selectTunnusluku();
       }
     });
@@ -71,7 +70,7 @@ export class KaikkiTunnusluvut {
     let groupLabels = this.getOrganisaatioNames(groupKeys);
     var defaultFilter = _.map(_.filter(chart.filters, f => c.isDefinedNotNull(f.defaultValue)), f => [f.id, f.defaultValue]);
     let yTitle = chart.yTitle(c.coalesce(_.fromPairs(defaultFilter), {}));
-    console.info(yTitle, defaultFilter);
+
     let options = R.merge(chart.options, {
       groupKeys: groupKeys,
       groupLabels: groupLabels,
@@ -80,11 +79,10 @@ export class KaikkiTunnusluvut {
       title: chart.options.title ? chart.options.title.text : '[otsikko tähän]',
       subtitle: {
         text: yTitle
-      },
-      yAxis: {
-        axisLabel: yTitle
       }
     });
+    options.chart.yAxis.axisLabel = yTitle;
+
     this.chartConfigs[chartIndex] = {
       data: data,
       options: options
@@ -134,7 +132,6 @@ export class KaikkiTunnusluvut {
 
   selectTunnusluku() {
     this.selectedTunnusluku = this.tunnusluvut.tunnusluvut[this.tunnuslukuIndex - 1];
-    // console.info(this.tunnuslukuIndex, this.selectedTunnusluku);
     if (this.selectedTunnusluku) {
       this.selectedTunnusluku.charts.forEach((chart, index) => {
         this.fetchDataForChart('tilastot/'+ this.selectedTunnusluku.id + '/' + this.childRoute + this.generateDataUrl(chart), data => {
