@@ -12,7 +12,12 @@ var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var browserSync = require('browser-sync').create();
 var mainBowerFiles = require('gulp-main-bower-files');
+var imagemin = require('gulp-imagemin');
 var vulcanize = require('gulp-vulcanize');
+
+var onError = function(err) {
+    console.log(err);
+}
 
 // transpiles changed es6 files to SystemJS format
 // the plumber() call prevents 'pipe breaking' caused
@@ -43,6 +48,22 @@ gulp.task('main-bower-files', function() {
     return gulp.src('./bower.json')
         .pipe(mainBowerFiles())
         .pipe(gulp.dest(paths.output + '/bower_components'));
+});
+
+gulp.task('images', function() {
+    return gulp.src(paths.images + '/**/*')
+        .pipe(plumber({
+            errorHandler: onError
+        }))
+        .pipe(changed(paths.output + '/images'))
+        .pipe(imagemin())
+        .pipe(gulp.dest(paths.output + '/images'))
+        .pipe(notify({ message: 'Images task complete' }));
+});
+
+gulp.task('locale', function () {
+  return gulp.src(paths.locale + '/**/*')
+    .pipe(gulp.dest(paths.output + '/locale'));
 });
 
 // copies changed html files to the output directory
@@ -92,7 +113,7 @@ gulp.task('build-css', function() {
 gulp.task('build', function(callback) {
   return runSequence(
     'clean',
-    ['build-system', 'build-html', 'main-bower-files', 'build-css', 'build-scss', 'vulcanize'],
+    ['build-system', 'build-html', 'main-bower-files', 'build-css', 'build-scss', 'images', 'locale', 'vulcanize'],
     callback
   );
 });

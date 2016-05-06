@@ -4,7 +4,7 @@ module.exports = {
       includes: [
         '[*.js]',
         '*.html!text',
-        '*.css!text'
+        '**/*.css!text'
       ],
       excludes: [
         'npm:core-js',
@@ -40,13 +40,27 @@ module.exports = {
         "aurelia-templating",
         "aurelia-templating-binding",
         "aurelia-templating-resources",
-        "aurelia-templating-router"
+        "aurelia-templating-router",
+        "i18next",
+        "i18next-xhr-backend",
+        "aurelia-i18n",
+        "aurelia-cookie"
       ],
       "options": {
         inject: true,
         minify: true,
         depCache: false,
         rev: true
+      }
+    },
+    "dist/view-bundle": {
+      htmlimport: true,
+      includes: 'dist/*.html',
+      options: {
+        inject: {
+          indexFile : 'index.html',
+          destFile : 'dest_index.html'
+        }
       }
     }
   }

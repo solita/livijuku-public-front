@@ -6,6 +6,8 @@ module.exports = {
   root: appRoot,
   source: appRoot + '**/*.js',
   html: appRoot + '**/*.html',
+  images: appRoot + 'images/',
+  locale: appRoot + 'locale/',
   output: outputRoot,
   exportSrv: exportSrvRoot,
   doc: './doc',
