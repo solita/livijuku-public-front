@@ -31,7 +31,6 @@ export class ChartCustomElement {
   optionsChanged(options) {
     this.title = this.i18n.tr(options.title);
     // this.subtitle = this.i18n.tr(options.subtitle);
-    console.info(this.options);
   }
 
   draw(data, options) {
@@ -70,7 +69,7 @@ export class ChartCustomElement {
 
     this.subtitle = options.subtitle.text;
 
-    if (options.chart.type === "lineWithFocusChart") {
+    if (options.chart && options.chart.type === "lineWithFocusChart") {
       nv.addGraph(() => {
         let chart = nv.models.lineWithFocusChart();
 
@@ -85,14 +84,10 @@ export class ChartCustomElement {
           .tickFormat(options.chart.x2Axis.tickFormat);
 
         chart.yAxis
-          .axisLabel(options.yAxis.axisLabel)
+          .axisLabel(options.chart.yAxis.axisLabel)
           .tickFormat(options.chart.yAxis.tickFormat);
 
-        console.info(options);
-
         let chartOptions =  R.merge({}, options.chart);
-
-        console.info(chartOptions);
 
         delete chartOptions.tooltip;
         delete chartOptions.xAxis;
@@ -104,7 +99,7 @@ export class ChartCustomElement {
         chart.options(chartOptions);
 
         if (chartOptions.height) {
-          this.height = chartOptions.height;
+          this.height = chartOptions.height + 50;
           chart.height(chartOptions.height);
         }
 
@@ -119,16 +114,22 @@ export class ChartCustomElement {
     } else {
       nv.addGraph(() => {
         let chart = nv.models.multiBarChart();
-
-        chart.xAxis
-          .axisLabel(options.chart.xAxis.axisLabel)
-          .tickFormat(options.chart.xAxis.tickFormat);
-
-        chart.yAxis
-          .axisLabel(options.chart.yAxis.axisLabel)
-          .tickFormat(options.chart.yAxis.tickFormat);
-
         console.info(options);
+        if (options.chart.xAxis.axisLabel) {
+          chart.xAxis.axisLabel(options.chart.xAxis.axisLabel);
+        }
+
+        if (options.chart.xAxis.tickFormat) {
+          chart.xAxis.tickFormat(options.chart.xAxis.tickFormat);
+        }
+
+        if (options.chart.yAxis.axisLabel) {
+          chart.yAxis.axisLabel(options.chart.yAxis.axisLabel)
+        }
+
+        if (options.chart.yAxis.tickFormat) {
+          chart.yAxis.tickFormat(options.chart.yAxis.tickFormat);
+        }
 
         let chartOptions =  R.merge({}, options.chart);
 
