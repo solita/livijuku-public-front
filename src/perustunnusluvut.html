@@ -1,15 +1,30 @@
 <template>
 
+  <require from="components/chart/chart"></require>
   <require from='components/tilastonavigointi/tilastonavigointi'></require>
 
   <section class="P-lg">
 
-    <h1>Perustunnusluvut</h1>
+    <h1>${ 'perustunnusluvut' | t }</h1>
 
     <tilastonavigointi page="perustunnusluvut"></tilastonavigointi>
 
     <div class="Py-xl">
-      <compose if.bind="childRoute" view="tilastot/perustunnusluvut/${childRoute}.html"></compose>
+
+      <chart options.bind="tyytyvaisyysJoukkoliikenteeseen.options" raw-data.bind="tyytyvaisyysJoukkoliikenteeseen.data"></chart>
+
+      <chart options.bind="nousut.options" raw-data.bind="nousut.data"></chart>
+
+      <chart options.bind="lahdot.options" raw-data.bind="lahdot.data"></chart>
+
+      <chart options.bind="linjakilometrit.options" raw-data.bind="linjakilometrit.data"></chart>
+
+      <chart options.bind="valtionAvustusPerAsukas.options" raw-data.bind="valtionAvustusPerAsukas.data"></chart>
+
+      <chart options.bind="omarahoitusPerAsukas.options" raw-data.bind="omarahoitusPerAsukas.data"></chart>
+
+      <chart options.bind="psaNettokustannukset.options" raw-data.bind="psaNettokustannukset.data"></chart>
+
     </div>
 
   </section>
