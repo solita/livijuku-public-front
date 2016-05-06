@@ -5,7 +5,32 @@ import {EventAggregator} from 'aurelia-event-aggregator';
 import {HttpClient} from 'aurelia-fetch-client';
 import {Router} from 'aurelia-router';
 import R from 'ramda';
+import _ from 'lodash';
+import * as t from 'utils/tunnusluvut';
 import 'fetch';
+
+const chartOptions = {
+  chart: {
+    color: ['#aec7e8', '#1f77b4', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5',
+      '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5',
+      '#6b6ecf', '#b5cf6b', '#bd9e39', '#d6616b', '#a55194', '#9c9ede', '#cedb9c', '#e7ba52', '#ce6dbd', '#de9ed6',
+      '#3182bd', '#e6550d', '#fdae6b', '#31a354', '#969696'],
+    type: 'multiBarChart',
+    height: 500,
+    stacked: false,
+    showControls: false,
+    tooltip: {valueFormatter: t.numberFormatTooltip},
+    x: d => d[1],
+    y: d => d[2],
+    yAxis: {
+      axisLabel: '€',
+      tickFormat: t.numberFormat
+    },
+    xAxis: {
+      axisLabel: 'Vuosi'
+    }
+  }
+};
 
 @inject(EventAggregator, HttpClient, I18N, Router)
 export class Valtionavustukset {
@@ -42,84 +67,86 @@ export class Valtionavustukset {
       if (router.instruction.fragment.indexOf('valtionavustukset') !== -1 && !this.childRoute) {
         // return this.router.navigate('valtionavustukset/ALL');
       }
+
       this.http.fetch('avustus/' + this.childRoute)
         .then(response => response.json())
         .then(data => {
-          console.info(data);
           let xLabelIndex = R.indexOf('vuosi', R.head(data));
           let groupKeys = this.getGroupKeys(R.indexOf('avustustyyppi', R.head(data)), data);
           let groupLabels = [this.i18n.tr('haetut'), this.i18n.tr('myonnetyt')];
-          this.haetutJaMyonnetytAvustukset = R.merge(this.chartOptions, {
-            data: data,
-            options: {
-              groupKeys: groupKeys,
-              groupLabels: groupLabels,
-              xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
-              valueIndex: R.indexOf('sum(rahamaara)', R.head(data)),
-              title: 'joukkoliikenteen-haetut-ja-myonnetut-avustukset',
-              subtitle: this.childRoute,
-              height: 600,
-              chart: {
-                xAxis: {
-                  axisLabel: this.i18n.tr('vuosi')
-                },
-                yAxis: {
-                  axisLabel: '€'
-                }
-              }
-            }
+          let o = R.merge(chartOptions, {
+            groupKeys: groupKeys,
+            groupLabels: groupLabels,
+            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
+            valueIndex: R.indexOf('sum(rahamaara)', R.head(data)),
+            title: 'joukkoliikenteen-haetut-ja-myonnetut-avustukset',
+            subtitle: {
+              text: this.i18n.tr(this.childRoute)
+            },
+            height: 600
           });
+          this.haetutJaMyonnetytAvustukset = {
+            data: data,
+            options: o
+          }
         });
-      // this.http.fetch('avustus-details/' + this.childRoute)
-      //   .then(response => response.json())
-      //   .then(data => {
-      //     let xLabelIndex = R.indexOf('vuosi', R.head(data));
-      //     let groupKeys = this.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
-      //     let groupLabels = this.getOrganisaatioNames(groupKeys);
-      //     this.haetutAvustuksetOrganisaatioittain = R.merge(this.chartOptions, {
-      //       data: data,
-      //       options: {
-      //         groupKeys: groupKeys,
-      //         groupLabels: groupLabels,
-      //         xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
-      //         valueIndex: R.indexOf('haettavaavustus', R.head(data)),
-      //         title: 'haetut-avustukset-organisaatioittain',
-      //         subtitle: this.childRoute,
-      //         height: 600
-      //       }
-      //     });
-      //     this.myonnetytAvustuksetOrganisaatioittain = R.merge(this.chartOptions, {
-      //       data: data,
-      //       options: {
-      //         groupKeys: groupKeys,
-      //         groupLabels: groupLabels,
-      //         xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
-      //         valueIndex: R.indexOf('myonnettyavustus', R.head(data)),
-      //         title: 'myonnetyt-avustukset-organisaatioittain',
-      //         subtitle: this.childRoute,
-      //         height: 600
-      //       }
-      //     });
-      //   });
-      // this.http.fetch('avustus-asukas/' + this.childRoute)
-      //   .then(response => response.json())
-      //   .then(data => {
-      //     let xLabelIndex = R.indexOf('vuosi', R.head(data));
-      //     let groupKeys = this.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
-      //     let groupLabels = this.getOrganisaatioNames(groupKeys);
-      //     this.avustusPerAsukas = R.merge(this.chartOptions, {
-      //       data: data,
-      //       options: {
-      //         groupKeys: groupKeys,
-      //         groupLabels: groupLabels,
-      //         xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
-      //         valueIndex: R.indexOf('myonnettyavustus_asukastakohti', R.head(data)),
-      //         title: 'myonnetty-avustus-per-asukas',
-      //         subtitle: this.childRoute,
-      //         height: 600
-      //       }
-      //     });
-      //   });
+      this.http.fetch('avustus-details/' + this.childRoute)
+        .then(response => response.json())
+        .then(data => {
+          let xLabelIndex = R.indexOf('vuosi', R.head(data));
+          let groupKeys = this.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
+          let groupLabels = this.getOrganisaatioNames(groupKeys);
+          let o = R.merge(chartOptions, {
+            groupKeys: groupKeys,
+            groupLabels: groupLabels,
+            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
+            valueIndex: R.indexOf('haettavaavustus', R.head(data)),
+            title: 'haetut-avustukset-organisaatioittain',
+            subtitle: {
+              text: this.i18n.tr(this.childRoute)
+            },
+            height: 600
+          });
+          this.haetutAvustuksetOrganisaatioittain = {
+            data: data,
+            options: o
+          }
+          let o2 = R.merge(chartOptions, {
+            groupKeys: groupKeys,
+            groupLabels: groupLabels,
+            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
+            valueIndex: R.indexOf('myonnettyavustus', R.head(data)),
+            title: 'myonnetyt-avustukset-organisaatioittain',
+            subtitle: {
+              text: this.i18n.tr(this.childRoute)
+            },
+            height: 600
+          });
+          this.myonnetytAvustuksetOrganisaatioittain = {
+            data: data,
+            options: o2
+          }
+        });
+      this.http.fetch('avustus-asukas/' + this.childRoute)
+        .then(response => response.json())
+        .then(data => {
+          let xLabelIndex = R.indexOf('vuosi', R.head(data));
+          let groupKeys = this.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
+          let groupLabels = this.getOrganisaatioNames(groupKeys);
+          let o = R.merge(chartOptions, {
+            groupKeys: groupKeys,
+            groupLabels: groupLabels,
+            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
+            valueIndex: R.indexOf('myonnettyavustus_asukastakohti', R.head(data)),
+            title: 'myonnetty-avustus-per-asukas',
+            subtitle: this.childRoute,
+            height: 600
+          });
+          this.avustusPerAsukas = {
+            data: data,
+            options: o
+          }
+        });
     });
   }
 
