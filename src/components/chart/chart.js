@@ -114,7 +114,6 @@ export class ChartCustomElement {
     } else {
       nv.addGraph(() => {
         let chart = nv.models.multiBarChart();
-        console.info(options);
         if (options.chart.xAxis.axisLabel) {
           chart.xAxis.axisLabel(options.chart.xAxis.axisLabel);
         }
@@ -138,8 +137,6 @@ export class ChartCustomElement {
         delete chartOptions.yAxis;
         delete chartOptions.x;
         delete chartOptions.y;
-
-        console.info(chartOptions);
 
         chart.options(chartOptions);
 
