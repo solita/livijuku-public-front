@@ -18,10 +18,12 @@ export class TimelineCustomElement {
     let groups = [];
     let items = [];
     let colors = [
-        { 0: '#2479B2', 1: '#ffffff' },
-        { 0: '#35ACFF', 1: '#ffffff' },
-        { 0: '#B27215', 1: '#ffffff' },
-        { 0: '#FFA829', 1: '#ffffff' }
+        { 0: '#3385D6', 1: '#ffffff' },
+        { 0: '#C266EB', 1: '#ffffff' },
+        { 0: '#FFA033', 1: '#ffffff' },
+        { 0: '#33BB33', 1: '#ffffff' },
+        { 0: '#66CCD6', 1: '#ffffff' },
+        { 0: '#cfeff2', 1: '#ffffff' }
     ];
     let i = 0;
     let ii = 0;
