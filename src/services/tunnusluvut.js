@@ -6,45 +6,6 @@ import * as t from '../utils/tunnusluvut';
 import d3 from 'd3';
 import R from 'ramda';
 
-var subtitle = {
-  enable: true,
-  text: 'Suuret kaupunkiseudut'
-};
-
-const colors = ['#aec7e8', '#1f77b4', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5',
-                '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5',
-                '#6b6ecf', '#b5cf6b', '#bd9e39', '#d6616b', '#a55194', '#9c9ede', '#cedb9c', '#e7ba52', '#ce6dbd', '#de9ed6',
-                '#3182bd', '#e6550d', '#fdae6b', '#31a354', '#969696'];
-
-const chartOptions = ytitle => ({
-  color: colors,
-  type: 'multiBarChart',
-  height: 500,
-  stacked: false,
-  showControls: false,
-  tooltip: {valueFormatter: t.numberFormatTooltip},
-  x: d => d[1],
-  y: d => d[2],
-  yAxis: {
-    axisLabel: ytitle,
-    tickFormat: t.numberFormat
-  },
-  xAxis: {
-    axisLabel: 'Vuosi'
-  }
-});
-
-const createGraph = (title, ytitle) => ({
-  options: {
-    chart: chartOptions(ytitle),
-    title: {
-      enable: true,
-      text: title
-    },
-    subtitle: subtitle
-  }
-});
-
 @inject(I18N)
 export class Tunnusluvut {
 
@@ -134,7 +95,6 @@ export class Tunnusluvut {
     };
 
     let createLineChartKK = (title, xLabel) => {
-      console.info(title, xLabel);
       return _.merge(
         createChart(title, 'Kuukausi'), {
           chart: {
@@ -509,27 +469,5 @@ export class Tunnusluvut {
       createAlueTunnusluku('autoistumisaste', 'autoistumisaste', 'Autoa (kpl) / 1000 asukasta'),
       createAlueTunnusluku('asiakastyytyvaisyys', 'tyytyväisten joukkoliikenteen käyttäjien osuus', 'Prosenttia (%)')
     ];
-  }
-
-  asiakastyytyvaisyys = () => {
-    return createGraph('Tyytyväisyys joukkoliikenteeseen', '%');
-  };
-  nousut = () => {
-    return createGraph('Matkustajamäärät', 'henkilöä');
-  }
-  lahdot = () => {
-    return createGraph('Lähtöjen määrä', 'kpl');
-  }
-  linjakilometrit = () => {
-    return createGraph('Linjakilometrit', 'km');
-  }
-  avustusperasukas = () => {
-    return createGraph('Valtion rahoitus asukasta kohden', '€');
-  }
-  omarahoitusperasukas = () => {
-    return createGraph('Toimivaltaisen viranomaisen omarahoitus asukasta kohden', '€');
-  }
-  psanettokustannus = () => {
-    return createGraph('PSA-liikenteen nettokustannukset (kunnan ja valtion maksama subventio)', '€');
   }
 }
