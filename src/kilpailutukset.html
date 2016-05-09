@@ -1,10 +1,64 @@
 <template>
+  <require from="custom-attributes/select2"></require>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
 
+  <require from="components/noUiSlider/noUiSlider"></require>
   <require from="components/timeline/timeline"></require>
 
   <section class="P-lg">
 
-    <h2>Kilpailutukset</h2>
+    <h2>${ 'kilpailutukset' | t }</h2>
+
+    <form class="clearfix Mb-xl">
+    	<div class="row">
+        <div class="xs-12 sm-6 Ps-0 Pe-0 r-sm-Pe-1rem">
+          <label class="f-14">${ 'toimivaltainen-viranomainen' | t }
+            <br/>
+            <select select2 value.bind="selectedState" multiple="multiple" class="full-width My-md">
+              <option repeat.for="organisaatio of organisaatiot" value.bind="organisaatio.id">${organisaatio.nimi}</option>
+            </select>
+          </label>
+        </div>
+        <div class="xs-12 sm-6 Pe-0 Ps-0 r-sm-Ps-1rem Mt-md r-sm-Mt-0">
+          <label class="f-14">${ 'toimivaltaryhma' | t }
+            <br/>
+            <select select2 value.bind="selectedState" multiple="multiple" class="full-width My-md">
+              <option repeat.for="organisaatiolaji of organisaatiolajit" value.bind="organisaatiolaji.id">${organisaatiolaji.nimi}</option>
+            </select>
+          </label>
+        </div>
+        <div class="xs-12 sm-6 md-4 Ps-0 Mt-md Pe-0 r-sm-Pe-1rem">
+          <label for="kohdearvo" class="f-14">${ 'kohteen-arvioitu-arvo' | t }</label>
+          <div class="clearfix">
+            <no-ui-slider options.bind="kohdearvo" class="left full-width My-md"></no-ui-slider>
+          </div>
+        </div>
+        <div class="xs-12 sm-6 md-4 Ps-0 r-sm-Ps-1rem Mt-md Pe-0 r-sm-Pe-1rem">
+          <label for="kalustokoko" class="f-14">${ 'kaluston-maara' | t }</label>
+          <div class="clearfix">
+            <no-ui-slider options.bind="kalustokoko" class="left full-width My-md"></no-ui-slider>
+          </div>
+        </div>
+        <div class="xs-12 sm-6 md-4 Mt-md Ps-0 r-md-Ps-1-rem">
+          <label class="f-14">${ 'aikajanalla-naytettava-ajanjakso' | t }</label>
+          <div class="My-md f-14">
+            <paper-checkbox class="Me-md">${ 'kilpailutuskausi' | t }</paper-checkbox>
+            <paper-checkbox>${ 'liikennointikausi' | t }</paper-checkbox>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="clearfix Mb-md">
+      <div repeat.for="label of labels" class="left Mb-xs" style="width: 300px;">
+        <div class="flex flex-ai-c f-12">
+          <div style="background-color: ${label.color}; width: 20px; height: 20px; border: ${ label.border ? label.border : '' }">
+            &nbsp;
+          </div>
+          <div class="Ms-xs Me-xl">${ label.text }</div>
+        </div>
+      </div>
+    </div>
 
     <timeline
       kilpailutukset.bind="kilpailutukset"
@@ -13,4 +67,5 @@
       events.bind="timelineEvents"></timeline>
 
   </section>
+
 </template>
