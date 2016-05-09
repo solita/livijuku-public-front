@@ -1,3 +1,11 @@
+.Ps-0 {
+  padding-left: 0;
+}
+
+.Pe-0 {
+  padding-right: 0;
+}
+
 .bg-img-bus {
   background-image: url('../dist/images/linja-autobg2.jpg');
 }
@@ -15,6 +23,15 @@
 }
 
 @media screen and (min-width: map-get($breakpoints, sm)) {
+  .r-sm-Mt-0 {
+    margin-top: 0;
+  }
+  .r-sm-Ps-1rem {
+    padding-left: 1rem;
+  }
+  .r-sm-Pe-1rem {
+    padding-right: 1rem;
+  }
   .r-sm-block {
     display: block;
   }
@@ -42,6 +59,9 @@
 }
 
 @media screen and (min-width: map-get($breakpoints, md)) {
+  .r-md-Ps-1-rem {
+    padding-left: 1rem;
+  }
   .r-md-hidden {
     display: none;
   }
