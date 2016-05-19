@@ -1,18 +1,16 @@
 import {bindable, inject} from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
-import {HttpClient} from 'aurelia-http-client';
 import {Router} from 'aurelia-router';
 import R from 'ramda';
 import MobileDetect from 'mobile-detect';
 
-@inject(EventAggregator, HttpClient, Router)
+@inject(EventAggregator, Router)
 export class TilastonavigointiCustomElement {
 
   @bindable page;
 
-  constructor(eventAggregator, http, router) {
+  constructor(eventAggregator, router) {
     this.ea = eventAggregator;
-    this.http = http;
     this.router = router;
     this.md = new MobileDetect(window.navigator.userAgent);
     this.viranomaiset = [{

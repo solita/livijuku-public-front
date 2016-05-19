@@ -1,14 +1,17 @@
+import {EventAggregator} from 'aurelia-event-aggregator';
 import {bindable, inject} from 'aurelia-framework';
 import noUiSlider from 'leongersen/noUiSlider';
 import $ from 'jquery';
 
-@inject(Element)
+@inject(Element, EventAggregator)
 export class NoUiSliderCustomElement {
 
+  @bindable id;
   @bindable options;
 
-  constructor(element) {
+  constructor(element, eventAggregator) {
     this.element = element;
+    this.ea = eventAggregator;
   }
 
   attached() {
@@ -20,6 +23,10 @@ export class NoUiSliderCustomElement {
 
     slider.on('update', (values, handle) => {
       snapValues[handle].innerHTML = values[handle];
+      this.ea.publish(this.id + '-slider-update', {
+        start: values,
+        handle: handle
+      });
     });
   }
 
