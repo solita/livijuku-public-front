@@ -5,8 +5,48 @@ import {EventAggregator} from 'aurelia-event-aggregator';
 import {HttpClient} from 'aurelia-fetch-client';
 import {Router} from 'aurelia-router';
 import {Tunnusluvut} from 'services/tunnusluvut';
+import * as t from 'utils/tunnusluvut';
 import R from 'ramda';
 import 'fetch';
+
+const subtitle = {
+  enable: true,
+  text: 'Suuret kaupunkiseudut'
+};
+
+const colors = ['#aec7e8', '#1f77b4', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5',
+                '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5',
+                '#6b6ecf', '#b5cf6b', '#bd9e39', '#d6616b', '#a55194', '#9c9ede', '#cedb9c', '#e7ba52', '#ce6dbd', '#de9ed6',
+                '#3182bd', '#e6550d', '#fdae6b', '#31a354', '#969696'];
+
+const chartOptions = ytitle => ({
+  color: colors,
+  type: 'multiBarChart',
+  height: 500,
+  stacked: false,
+  showControls: false,
+  tooltip: {valueFormatter: t.numberFormatTooltip},
+  x: d => d[1],
+  y: d => d[2],
+  yAxis: {
+    axisLabel: ytitle,
+    tickFormat: t.numberFormat
+  },
+  xAxis: {
+    axisLabel: 'Vuosi'
+  }
+});
+
+const createGraph = (title, ytitle) => ({
+  options: {
+    chart: chartOptions(ytitle),
+    title: {
+      enable: true,
+      text: title
+    },
+    subtitle: subtitle
+  }
+});
 
 @inject(EventAggregator, HttpClient, I18N, Router, Tunnusluvut)
 export class Perustunnusluvut {
@@ -39,17 +79,14 @@ export class Perustunnusluvut {
     Cookie.set('XSRF-TOKEN', 'juku');
     this.ea.subscribe('router:navigation:success', router => {
       this.childRoute = router.instruction.params.childRoute;
-      if (router.instruction.fragment.indexOf('perustunnusluvut') !== -1 && !this.childRoute) {
-        // this.router.navigate('perustunnusluvut/ALL');
-      }
       this.http.fetch('tilastot/alue-asiakastyytyvaisyys/' + this.childRoute + '?group-by=organisaatioid&group-by=vuosi')
         .then(response => response.json())
         .then(data => {
-          let chartOptions = this.tunnusluvut.asiakastyytyvaisyys();
+          let chartOpts = createGraph('Tyytyväisyys joukkoliikenteeseen', '%');
           let xLabelIndex = R.indexOf('vuosi', R.head(data));
           let groupKeys = this.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
           let groupLabels = this.getOrganisaatioNames(groupKeys);
-          let o = R.merge(chartOptions.options, {
+          let o = R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
@@ -63,16 +100,16 @@ export class Perustunnusluvut {
           this.tyytyvaisyysJoukkoliikenteeseen = {
             data: data,
             options: o
-          }
+          };
         });
       this.http.fetch('tilastot/nousut/' + this.childRoute + '?group-by=organisaatioid&group-by=vuosi')
         .then(response => response.json())
         .then(data => {
-          let chartOptions = this.tunnusluvut.nousut();
+          let chartOpts = createGraph('Matkustajamäärät', 'henkilöä');
           let xLabelIndex = R.indexOf('vuosi', R.head(data));
           let groupKeys = this.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
           let groupLabels = this.getOrganisaatioNames(groupKeys);
-          let o = R.merge(chartOptions.options, {
+          let o = R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
@@ -86,16 +123,16 @@ export class Perustunnusluvut {
           this.nousut = {
             data: data,
             options: o
-          }
+          };
         });
       this.http.fetch('tilastot/lahdot/' + this.childRoute + '?group-by=organisaatioid&group-by=vuosi')
         .then(response => response.json())
         .then(data => {
-          let chartOptions = this.tunnusluvut.lahdot();
+          let chartOpts = createGraph('Lähtöjen määrä', 'kpl');
           let xLabelIndex = R.indexOf('vuosi', R.head(data));
           let groupKeys = this.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
           let groupLabels = this.getOrganisaatioNames(groupKeys);
-          let o = R.merge(chartOptions.options, {
+          let o = R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
@@ -109,16 +146,16 @@ export class Perustunnusluvut {
           this.lahdot = {
             data: data,
             options: o
-          }
+          };
         });
       this.http.fetch('tilastot/linjakilometrit/' + this.childRoute + '?group-by=organisaatioid&group-by=vuosi')
         .then(response => response.json())
         .then(data => {
-          let chartOptions = this.tunnusluvut.linjakilometrit();
+          let chartOpts = createGraph('Linjakilometrit', 'km');
           let xLabelIndex = R.indexOf('vuosi', R.head(data));
           let groupKeys = this.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
           let groupLabels = this.getOrganisaatioNames(groupKeys);
-          let o = R.merge(chartOptions.options, {
+          let o = R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
@@ -132,16 +169,16 @@ export class Perustunnusluvut {
           this.linjakilometrit = {
             data: data,
             options: o
-          }
+          };
         });
       this.http.fetch('avustus-asukas/' + this.childRoute)
         .then(response => response.json())
         .then(data => {
-          let chartOptions = this.tunnusluvut.avustusperasukas();
+          let chartOpts = createGraph('Valtion rahoitus asukasta kohden', '€');
           let xLabelIndex = R.indexOf('vuosi', R.head(data));
           let groupKeys = this.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
           let groupLabels = this.getOrganisaatioNames(groupKeys);
-          let o = R.merge(chartOptions.options, {
+          let o = R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
@@ -155,16 +192,16 @@ export class Perustunnusluvut {
           this.valtionAvustusPerAsukas = {
             data: data,
             options: o
-          }
+          };
         });
       this.http.fetch('omarahoitus-asukas/' + this.childRoute)
         .then(response => response.json())
         .then(data => {
-          let chartOptions = this.tunnusluvut.omarahoitusperasukas();
+          let chartOpts = createGraph('Toimivaltaisen viranomaisen omarahoitus asukasta kohden', '€');
           let xLabelIndex = R.indexOf('vuosi', R.head(data));
           let groupKeys = this.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
           let groupLabels = this.getOrganisaatioNames(groupKeys);
-          let o = R.merge(chartOptions.options, {
+          let o = R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
@@ -178,16 +215,16 @@ export class Perustunnusluvut {
           this.omarahoitusPerAsukas = {
             data: data,
             options: o
-          }
+          };
         });
       this.http.fetch('psa-nettokustannus/' + this.childRoute)
         .then(response => response.json())
         .then(data => {
-          let chartOptions = this.tunnusluvut.psanettokustannus();
+          let chartOpts = createGraph('PSA-liikenteen nettokustannukset (kunnan ja valtion maksama subventio)', '€');
           let xLabelIndex = R.indexOf('vuosi', R.head(data));
           let groupKeys = this.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
           let groupLabels = this.getOrganisaatioNames(groupKeys);
-          let o = R.merge(chartOptions.options, {
+          let o = R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
@@ -201,7 +238,7 @@ export class Perustunnusluvut {
           this.psaNettokustannukset = {
             data: data,
             options: o
-          }
+          };
         });
     });
   }
