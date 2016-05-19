@@ -1,7 +1,8 @@
 <template>
-  <require from="../../../jspm_packages/npm/nvd3@1.8.2/build/nv.d3.css"></require>
+  <require from="../../../jspm_packages/npm/nvd3@1.8.3/build/nv.d3.css"></require>
+  <require from="../../utils/d3-locale.js"></require>
   <div if.bind="rawData && options" class="chart left full-width bg-c-w Mb-md">
-    <h4 class="f-center">${ title }</h4>
+    <h4 class="f-center f-uppercase">${ title }</h4>
     <p class="f-center">${ subtitle }</p>
     <svg height.bind="height" class="Mx-md"></svg>
   </div>

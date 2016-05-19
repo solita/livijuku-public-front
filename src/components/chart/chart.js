@@ -69,7 +69,7 @@ export class ChartCustomElement {
 
     this.subtitle = options.subtitle.text;
 
-    if (options.chart && options.chart.type === "lineWithFocusChart") {
+    if (options.chart && options.chart.type === 'lineWithFocusChart') {
       nv.addGraph(() => {
         let chart = nv.models.lineWithFocusChart();
 
@@ -123,12 +123,14 @@ export class ChartCustomElement {
         }
 
         if (options.chart.yAxis.axisLabel) {
-          chart.yAxis.axisLabel(options.chart.yAxis.axisLabel)
+          chart.yAxis.axisLabel(options.chart.yAxis.axisLabel);
         }
 
         if (options.chart.yAxis.tickFormat) {
           chart.yAxis.tickFormat(options.chart.yAxis.tickFormat);
         }
+
+        chart.tooltip.valueFormatter(options.chart.tooltip.valueFormatter);
 
         let chartOptions =  R.merge({}, options.chart);
 
