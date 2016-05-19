@@ -5,7 +5,6 @@ import {EventAggregator} from 'aurelia-event-aggregator';
 import {HttpClient} from 'aurelia-fetch-client';
 import {Router} from 'aurelia-router';
 import R from 'ramda';
-import _ from 'lodash';
 import * as t from 'utils/tunnusluvut';
 import 'fetch';
 
@@ -88,7 +87,9 @@ export class Valtionavustukset {
           this.haetutJaMyonnetytAvustukset = {
             data: data,
             options: o
-          }
+          };
+        }, error => {
+          throw new Error('virhe');
         });
       this.http.fetch('avustus-details/' + this.childRoute)
         .then(response => response.json())
@@ -110,7 +111,7 @@ export class Valtionavustukset {
           this.haetutAvustuksetOrganisaatioittain = {
             data: data,
             options: o
-          }
+          };
           let o2 = R.merge(chartOptions, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
@@ -125,7 +126,7 @@ export class Valtionavustukset {
           this.myonnetytAvustuksetOrganisaatioittain = {
             data: data,
             options: o2
-          }
+          };
         });
       this.http.fetch('avustus-asukas/' + this.childRoute)
         .then(response => response.json())
@@ -145,7 +146,7 @@ export class Valtionavustukset {
           this.avustusPerAsukas = {
             data: data,
             options: o
-          }
+          };
         });
     });
   }
@@ -160,7 +161,7 @@ export class Valtionavustukset {
 
   getOrganisaatioNames = (groupKeys) => {
     return R.map(key => {
-      return R.filter(R.propEq('id', key))(this.organisaatiot)[0].nimi;
+      return R.find(R.propEq('id', key))(this.organisaatiot).nimi;
     }, groupKeys);
   }
 
