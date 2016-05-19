@@ -36,11 +36,11 @@ export function roundTwoDecimals(number) {
  * - http://stackoverflow.com/questions/27509/detecting-an-undefined-object-property
  */
 export function isDefinedNotNull(value) {
-  return (value !== null);
+  return !_.isNil(value);
 }
 
 export function isNullOrUndefined(value) {
-  return (value === null);
+  return _.isNil(value);
 }
 
 let findFirstDefinedValue = _.partialRight(_.find, isDefinedNotNull);
