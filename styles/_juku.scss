@@ -1,0 +1,209 @@
+.paper-toolbar-0 .toolbar-tools.paper-toolbar .title {
+  pointer-events: auto;
+}
+
+paper-scroll-header-panel > #headerContainer {
+  z-index: 100;
+}
+
+.f-underline__hover:hover {
+  text-decoration: underline;
+}
+
+.B-r-xs {
+  border-radius: map-get($spacerSizes, xs);
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background-color: #0db9f0 !important;
+  border-color: #0db9f0 !important;
+  color: #ffffff !important;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background-color: #0db9f0 !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+  color: #ffffff !important
+}
+
+.Ps-0 {
+  padding-left: 0;
+}
+
+.Pe-0 {
+  padding-right: 0;
+}
+
+.bg-img-bus {
+  background-image: url('../images/linja-autobg2.jpg');
+}
+
+.bg-size-contain {
+  background-size: contain;
+}
+
+.bg-repeat-0 {
+  background-repeat: no-repeat;
+}
+
+.w-max-1200 {
+  max-width: 1200px;
+}
+
+@media screen and (min-width: map-get($breakpoints, sm)) {
+  .r-sm-Mt-0 {
+    margin-top: 0;
+  }
+  .r-sm-Ps-1rem {
+    padding-left: 1rem;
+  }
+  .r-sm-Pe-1rem {
+    padding-right: 1rem;
+  }
+  .r-sm-block {
+    display: block;
+  }
+  .r-sm-hidden {
+    display: none;
+  }
+  .r-sm-flex-d-r {
+    flex-direction: row;
+  }
+  .r-sm-f-left {
+    text-align: left;
+  }
+  .r-sm-Ps-xl {
+    padding-left: map-get($spacerSizes, xl);
+  }
+  .r-sm-f-14 {
+    font-size: map-get($typographySizes, 14);
+  }
+  .r-sm-f-16 {
+    font-size: map-get($typographySizes, 16);
+  }
+  .r-sm-h-min-40 {
+    min-height: 40px;
+  }
+}
+
+@media screen and (min-width: map-get($breakpoints, md)) {
+  .r-md-h-300 {
+    height: 300px;
+  }
+  .r-md-Ps-1-rem {
+    padding-left: 1rem;
+  }
+  .r-md-hidden {
+    display: none;
+  }
+  .r-md-block {
+    display: block;
+  }
+  .r-md-flex {
+    display: flex;
+  }
+  .r-md-f-16 {
+    font-size: map-get($typographySizes, 16);
+  }
+  .r-md-h-min-48 {
+    min-height: 48px;
+  }
+  .r-md-Px-md {
+    padding-left: map-get($spacerSizes, md);
+    padding-right: map-get($spacerSizes, md);
+  }
+}
+
+@media screen and (min-width: map-get($breakpoints, lg)) {
+  .r-lg-w-1200 {
+    width: 1200px;
+  }
+  .r-lg-Px-0 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .r-lg-Px-md {
+    padding-left: map-get($spacerSizes, md);
+    padding-right: map-get($spacerSizes, md);
+  }
+}
+
+.f-w-300 {
+  font-weight: 300;
+}
+
+.f-w-600 {
+  font-weight: 600;
+}
+
+.f-w-700 {
+  font-weight: 700;
+}
+
+.f-w-800 {
+  font-weight: 800;
+}
+
+.h-35 {
+  height: 35px;
+}
+
+.h-70 {
+  height: 70px;
+}
+
+.h-200 {
+  height: 200px;
+}
+
+#topBar {
+  z-index: 10;
+}
+
+#middleBar {
+  padding-top: 2em;
+}
+
+#drawer {
+  z-index: 100;
+}
+
+.z-100 {
+  z-index: 100;
+}
+
+.juku-info-short {
+  margin: 0;
+  color: map-get($baseColors, w);
+  font-weight: 300;
+  text-align: center;
+  font-size: 14px;
+  @media screen and (min-width: 480px) {
+    font-size: 18px;
+  }
+  @media screen and (min-width: map-get($breakpoints, sm)) {
+    text-align: left;
+  }
+}
+
+.w-100 {
+  width: 100px;
+}
+
+.w-315 {
+  width: 315px;
+}
+
+.w-min-100vw {
+  min-width: 100vw;
+}
+
+.h-min-100vh {
+  min-height: 100vh;
+}
+
+.cursor-pointer:hover {
+  cursor: pointer;
+}

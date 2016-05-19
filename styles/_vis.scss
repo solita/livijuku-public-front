@@ -1,0 +1,23 @@
+.vis-labelset .vis-label .vis-inner {
+  font-size: 12px;
+}
+
+.vis-item-content {
+  display: flex !important;
+  height: 100%;
+  align-items: center;
+  font-size: 12px;
+}
+
+.vis-item.vis-range {
+  border-radius: 0 !important;
+}
+
+.vis-panel.vis-center, .vis-panel.vis-top, .vis-panel.vis-bottom {
+  font-size: 12px !important;
+}
+
+.vis-item-content:hover {
+  background-color: rgba(0,0,0,0.1);
+  cursor: pointer;
+}
