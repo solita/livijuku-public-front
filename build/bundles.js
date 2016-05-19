@@ -4,7 +4,10 @@ module.exports = {
       includes: [
         '[*.js]',
         '*.html!text',
-        '**/*.css!text'
+        '**/*.css!text',
+        '[*/**/*.js]',
+        '*/**/*.html!text',
+        '*/**/*.css!text'
       ],
       excludes: [
         'npm:core-js',
@@ -22,6 +25,7 @@ module.exports = {
         "aurelia-animator-css",
         "aurelia-framework",
         "aurelia-bootstrapper",
+        "aurelia-cookie",
         "aurelia-fetch-client",
         "aurelia-history-browser",
         "aurelia-html-import-template-loader",
@@ -44,7 +48,8 @@ module.exports = {
         "i18next",
         "i18next-xhr-backend",
         "aurelia-i18n",
-        "aurelia-cookie"
+        "text",
+        "fetch"
       ],
       "options": {
         inject: true,
@@ -53,14 +58,21 @@ module.exports = {
         rev: true
       }
     },
-    "dist/view-bundle": {
-      htmlimport: true,
-      includes: 'dist/*.html',
-      options: {
-        inject: {
-          indexFile : 'index.html',
-          destFile : 'dest_index.html'
-        }
+    "dist/vendor": {
+      includes: [
+        "jquery",
+        "lodash",
+        "ramda",
+        "mobile-detect",
+        "wnumb",
+        "leongersen/noUiSlider",
+        "select2",
+      ],
+      "options": {
+        inject: true,
+        minify: true,
+        depCache: false,
+        rev: true
       }
     }
   }

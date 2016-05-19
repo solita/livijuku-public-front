@@ -35,10 +35,13 @@ gulp.task('build-system', function() {
 
 // This is for concatenating Polymer components
 gulp.task('vulcanize', function() {
-  return gulp.src(paths.root + '/app.html')
-    .pipe(vulcanize({
-      excludes: ['bower_components/polymer/polymer.html']
-    }))
+  return gulp.src(paths.root + '/elements.html')
+    .pipe(vulcanize(
+      {
+        inlineScripts: true,
+        stripComments: true
+      }
+    ))
     .pipe(gulp.dest(paths.output));
 });
 
@@ -50,21 +53,21 @@ gulp.task('main-bower-files', function() {
         .pipe(gulp.dest(paths.output + '/bower_components'));
 });
 
-gulp.task('images', function() {
-    return gulp.src(paths.images + '/**/*')
-        .pipe(plumber({
-            errorHandler: onError
-        }))
-        .pipe(changed(paths.output + '/images'))
-        .pipe(imagemin())
-        .pipe(gulp.dest(paths.output + '/images'))
-        .pipe(notify({ message: 'Images task complete' }));
-});
+// gulp.task('images', function() {
+//     return gulp.src(paths.images + '/**/*')
+//         .pipe(plumber({
+//             errorHandler: onError
+//         }))
+//         .pipe(changed(paths.output + '/images'))
+//         .pipe(imagemin())
+//         .pipe(gulp.dest(paths.output + '/images'))
+//         .pipe(notify({ message: 'Images task complete' }));
+// });
 
-gulp.task('locale', function () {
-  return gulp.src(paths.locale + '/**/*')
-    .pipe(gulp.dest(paths.output + '/locale'));
-});
+// gulp.task('locale', function () {
+//   return gulp.src(paths.locale + '/**/*')
+//     .pipe(gulp.dest(paths.output + '/locale'));
+// });
 
 // copies changed html files to the output directory
 gulp.task('build-html', function() {
@@ -77,7 +80,9 @@ gulp.task('build-scss', function() {
     return gulp.src(paths.scss)
     .pipe(plumber())
         .pipe(sourcemaps.init())
-            .pipe(sass())
+            .pipe(sass({
+              outputStyle: 'compressed'
+            }))
             .pipe(autoprefixer({
                 browsers: [
                     'Android >= 2.3',
@@ -113,7 +118,7 @@ gulp.task('build-css', function() {
 gulp.task('build', function(callback) {
   return runSequence(
     'clean',
-    ['build-system', 'build-html', 'main-bower-files', 'build-css', 'build-scss', 'images', 'locale', 'vulcanize'],
+    ['build-system', 'build-html', 'main-bower-files', 'build-css', 'build-scss', 'vulcanize'],
     callback
   );
 });
