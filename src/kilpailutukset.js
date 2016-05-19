@@ -1,33 +1,54 @@
+import {EventAggregator} from 'aurelia-event-aggregator';
 import {I18N} from 'aurelia-i18n';
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
-import $ from 'jquery';
+import {Router} from 'aurelia-router';
+import moment from 'moment';
+import 'moment/locale/fi';
 import 'fetch';
-import * as tl from 'utils/tunnusluvut';
 import _ from 'lodash';
-import wnumb from 'wnumb';
+import * as c from 'utils/core';
+import * as t from 'utils/time';
+import * as tl from 'utils/tunnusluvut';
+import R from 'ramda';
+import 'wnumb';
 
-@inject(HttpClient, I18N)
+@inject(EventAggregator, HttpClient, I18N, Router)
 export class Kilpailutukset {
 
-  constructor(http, i18n) {
+  constructor(eventAggregator, http, i18n, router) {
+    this.ea = eventAggregator;
     this.i18n = i18n;
+    this.router = router;
+
+    this.timeline = {};
+
+    this.filter = {
+      organisaatiot: [],
+      organisaatiolajit: []
+    };
+
+    this.kilpailutukset = [];
 
     this.organisaatiolajit = _.map(_.filter(tl.organisaatiolajit.$order, id => id !== 'ALL'), id => ({id: id, nimi: tl.organisaatiolajit.$nimi(id)}));
 
+    this.organisaatioSelectOptions = {
+      placeholder: this.i18n.tr('suodata-aikajanaa-valitsemalla-viranomaisia')
+    };
+
+    this.organisaatiolajiSelectOptions = {
+      placeholder: this.i18n.tr('suodata-aikajanaa-valitsemalla-toimivaltaryhmia')
+    };
+
     this.kohdearvo = {
-      start: [0, 10],
+      start: [0, 5],
       connect: true,
       margin: 1,
       range: {
         min: 0,
         max: 10
       },
-      step: 1,
-      format: wNumb({
-    		decimals: 2,
-    		thousand: '.'
-    	})
+      step: 0.1
     };
 
     this.kalustokoko = {
@@ -38,11 +59,16 @@ export class Kilpailutukset {
         min: 0,
         max: 100
       },
-      step: 5,
+      step: 1,
       format: wNumb({
-    		decimals: 0
-    	})
+        decimals: 0
+      })
     };
+
+    this.isKilpailutuskausiChecked = false;
+    this.isLiikennointikausiChecked = false;
+    this.currentKohdearvo = null;
+    this.currentKalustokoko = null;
 
     this.labels = [{
       text: this.i18n.tr('tarjousaika'),
@@ -65,27 +91,10 @@ export class Kilpailutukset {
       border: '1px dashed #66CCD6'
     }];
 
-    this.kilpailutukset = [{
-      id: 'kohde-1',
-      organisaatioId: 1,
-      name: 'Kohde 1',
-      dates: [new Date('2016-04-20'), new Date('2016-06-20'), new Date('2016-09-20'), new Date('2016-12-20'), new Date('2017-12-20')],
-      linkToHilma: 'http://www.hankintailmoitukset.fi/fi/'
-    }, {
-      id: 'kohde-2',
-      organisaatioId: 1,
-      name: 'Kohde 2',
-      dates: [new Date('2016-03-01'), new Date('2016-06-30'), new Date('2016-10-01'), new Date('2017-01-01'), new Date('2018-10-20')],
-      linkToHilma: false
-    }, {
-      id: 'kohde-1',
-      organisaatioId: 2,
-      name: 'Kohde 1',
-      dates: [new Date('2016-04-20'), new Date('2016-06-20'), new Date('2016-09-20'), new Date('2017-02-20'), new Date('2019-12-20')],
-      linkToHilma: 'http://www.hankintailmoitukset.fi/fi/'
-    }];
+    window.moment = moment;
 
-    this.timelineOptions = {
+
+    this.timeline.options = {
       locale: 'fi',
       groupOrder: 'id',
       margin: {
@@ -96,14 +105,13 @@ export class Kilpailutukset {
       orientation: 'both'
     };
 
-    this.timelineEvents = {
+    this.timeline.events = {
       select: (properties) => {
-        // let $target = jQuery(properties.event.target);
-        // if (!$target.hasClass('link-to-hilma')) {
-        //   $state.go('app.kilpailutus', {
-        //     id: properties.items[0]
-        //   });
-        // }
+        let $target = jQuery(properties.event.target);
+        if (!$target.hasClass('link-to-hilma')) {
+          let url = `/kilpailutukset/${ _.split(properties.items[0], '-')[1] }`;
+          this.router.navigate(url);
+        }
       }
     };
 
@@ -123,13 +131,100 @@ export class Kilpailutukset {
       .then(response => response.json())
       .then(data => {
         this.organisaatiot = data;
-        console.info(this.organisaatiot);
+        this.timeline.organisaatiot = data;
+        this.valitutOrganisaatiot = R.map(R.prop('id'), this.organisaatiot);
       });
-    // this.http.fetch('kilpailutukset')
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     this.kilpailutukset = data;
-    //     console.info(this.kilpailutukset);
-    //   });
+
+    this.ea.subscribe('kalustokoko-slider-update', params => {
+      this.currentKalustokoko = R.clone(this.kalustokoko);
+      this.currentKalustokoko.start = R.map(value => { return parseInt(value, 10); }, params.start);
+      this.filterTimelineKilpailutukset();
+    });
+
+    this.ea.subscribe('kohdearvo-slider-update', params => {
+      this.currentKohdearvo = R.clone(this.kohdearvo);
+      this.currentKohdearvo.start = R.map(value => { return parseFloat(value); }, params.start);
+      this.filterTimelineKilpailutukset();
+    });
+
+    this.loadKilpailutukset();
   }
+
+  findOrganisaatioById = (id) => {
+    let intId = parseInt(id, 10);
+    return R.filter(R.propEq('id', intId), this.organisaatiot)[0];
+  }
+
+  filterTimelineOrganisaatiot = () => {
+    let findOrganisaatiotInLajit = lajitunnukset => {
+      return _.isEmpty(lajitunnukset) ? [] :
+        _.filter(this.organisaatiot, org => _.includes(lajitunnukset, org.lajitunnus));
+    };
+    let organisaatiolajitunnukset = this.filter.organisaatiolajit;
+    let organisaatiot = _.unionBy(
+      R.map(this.findOrganisaatioById, this.filter.organisaatiot), findOrganisaatiotInLajit(organisaatiolajitunnukset),
+      org => org.id);
+    if (_.isEmpty(organisaatiot)) {
+      this.timeline.organisaatiot = this.organisaatiot;
+    } else {
+      this.timeline.organisaatiot = organisaatiot;
+    }
+  }
+
+  filterTimelineKilpailutukset = () => {
+    let kalustokoko = this.currentKalustokoko || this.kalustokoko;
+    let kohdearvo = this.currentKohdearvo || this.kohdearvo;
+    const between = (arvo, interval, multiplier) => {
+      let bool = arvo >= interval.start[0] * multiplier && arvo <= interval.start[1] * multiplier;
+      return bool;
+    };
+    const isMaxInterval = (interval) => interval.start[0] === interval.range.min && interval.start[1] === interval.range.max;
+    if (! (isMaxInterval(kalustokoko) && isMaxInterval(kohdearvo))) {
+      this.timeline.kilpailutukset = _.filter(this.kilpailutukset,
+        kilpailutus => between(kilpailutus.kalusto, kalustokoko, 1) &&
+                       between(kilpailutus.kohdearvo, kohdearvo, 1000000) );
+    } else {
+      this.timeline.kilpailutukset = this.kilpailutukset;
+    }
+  };
+
+  loadKilpailutukset = () => {
+    const showKausi = (show, value) => show || (!this.isKilpailutuskausiChecked && !this.isLiikennointikausiChecked) ? value : null;
+    const showKilpailutuskausi = (date) => showKausi(this.isKilpailutuskausiChecked, date);
+    const showLiikennointikausi = (date) => showKausi(this.isLiikennointikausiChecked, date);
+
+    this.http.fetch('kilpailutukset')
+      .then(response => response.json())
+      .then(data => {
+        this.kilpailutukset = _.map(data, kilpailutus => {
+          const dates = [
+            showKilpailutuskausi(kilpailutus.julkaisupvm),
+            showKilpailutuskausi(kilpailutus.tarjouspaattymispvm),
+            showKilpailutuskausi(kilpailutus.hankintapaatospvm),
+            kilpailutus.liikennointialoituspvm,
+            showLiikennointikausi(kilpailutus.liikennointipaattymispvm),
+            showLiikennointikausi(c.coalesce(kilpailutus.hankittuoptiopaattymispvm, kilpailutus.liikennointipaattymispvm)),
+            showLiikennointikausi(kilpailutus.optiopaattymispvm)];
+
+          const maxdate = _.max(dates);
+
+          if (c.isBlank(maxdate)) {
+            throw new Error('Kilpailutuksella ' + kilpailutus.id + ' ei ole yhtään päivämäärää.');
+          }
+
+          kilpailutus.dates = _.map(dates, (date, index) => t.toLocalMidnight(c.isNotBlank(date) ?
+            date :
+            c.coalesce(_.find(_.slice(dates, index), c.isNotBlank), maxdate)));
+
+          return kilpailutus;
+        });
+        this.filterTimelineKilpailutukset();
+      });
+  }
+
+  onOrganisaatioListChange() { return this.filterTimelineOrganisaatiot(); }
+  onOrganisaatiolajiListChange() { return this.filterTimelineOrganisaatiot(); }
+  toggleKilpailukausi() { return this.loadKilpailutukset(); }
+  toggleLiikennointikausi() { return this.loadKilpailutukset(); }
+
 }
