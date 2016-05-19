@@ -1,3 +1,4 @@
+import {Cookie} from 'aurelia-cookie';
 import {inject} from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {HttpClient} from 'aurelia-fetch-client';
@@ -37,6 +38,7 @@ export class KaikkiTunnusluvut {
   }
 
   attached() {
+    Cookie.set('XSRF-TOKEN', 'juku');
     this.ea.subscribe('router:navigation:success', router => {
       this.childRoute = router.instruction.params.childRoute;
       if (this.tunnuslukuIndex) {
@@ -47,15 +49,15 @@ export class KaikkiTunnusluvut {
 
   chartSelectTouched(chartIndex, filterId) {
     let chart = this.selectedTunnusluku.charts[chartIndex];
-    this.fetchDataForChart('tilastot/'+ this.selectedTunnusluku.id + '/' + this.childRoute + this.generateDataUrl(chart), data => {
+    this.fetchDataForChart('tilastot/' + this.selectedTunnusluku.id + '/' + this.childRoute + this.generateDataUrl(chart), data => {
       this.chartConfig = this.createChartConfig(chartIndex, data);
     });
   }
 
   createChartConfig(chartIndex, data) {
     function kuukausiToUTC(vuosikk) {
-      var year = parseInt(vuosikk.substring(0, 4));
-      var kuukausi = parseInt(vuosikk.substring(4));
+      let year = parseInt(vuosikk.substring(0, 4), 10);
+      let kuukausi = parseInt(vuosikk.substring(4), 10);
       return Date.UTC(year, (kuukausi - 1));
     }
     let chart = this.selectedTunnusluku.charts[chartIndex];
@@ -68,7 +70,7 @@ export class KaikkiTunnusluvut {
     let xLabelIndex = R.indexOf('vuosi', R.head(data));
     let groupKeys = this.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
     let groupLabels = this.getOrganisaatioNames(groupKeys);
-    var defaultFilter = _.map(_.filter(chart.filters, f => c.isDefinedNotNull(f.defaultValue)), f => [f.id, f.defaultValue]);
+    let defaultFilter = _.map(_.filter(chart.filters, f => c.isDefinedNotNull(f.defaultValue)), f => [f.id, f.defaultValue]);
     let yTitle = chart.yTitle(c.coalesce(_.fromPairs(defaultFilter), {}));
 
     let options = R.merge(chart.options, {
@@ -86,7 +88,7 @@ export class KaikkiTunnusluvut {
     this.chartConfigs[chartIndex] = {
       data: data,
       options: options
-    }
+    };
   }
 
   fetchDataForChart(url, cb) {
@@ -134,7 +136,7 @@ export class KaikkiTunnusluvut {
     this.selectedTunnusluku = this.tunnusluvut.tunnusluvut[this.tunnuslukuIndex - 1];
     if (this.selectedTunnusluku) {
       this.selectedTunnusluku.charts.forEach((chart, index) => {
-        this.fetchDataForChart('tilastot/'+ this.selectedTunnusluku.id + '/' + this.childRoute + this.generateDataUrl(chart), data => {
+        this.fetchDataForChart('tilastot/' + this.selectedTunnusluku.id + '/' + this.childRoute + this.generateDataUrl(chart), data => {
           this.chartConfig = this.createChartConfig(index, data);
         });
       });

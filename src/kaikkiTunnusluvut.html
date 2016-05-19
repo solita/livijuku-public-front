@@ -15,7 +15,7 @@
       </paper-listbox>
     </paper-dropdown-menu>
 
-    <tilastonavigointi page="kaikkitunnusluvut"></tilastonavigointi>
+    <tilastonavigointi page="kaikkiTunnusluvut"></tilastonavigointi>
 
     <div if.bind="selectedTunnusluku" class="Py-xl" repeat.for="chart of selectedTunnusluku.charts">
       <h2>${ chart.title }</h2>
@@ -23,9 +23,9 @@
       <form
         id="tunnusluku-filter-form-${tunnuslukuIndex}-${$index}"
         name="tunnusluku-filter-form"
-        class="form-inline tunnusluku-filter-form">
+        class="form-inline tunnusluku-filter-form left Mb-md">
         <div repeat.for="filter of chart.filters" class="left Me-md">
-          <h4>${filter.nimi}</h4>
+          <h4 class="Mb-xs">${filter.nimi}</h4>
           <select id="tunnusluku-filter-form-${filter.id}" name.bind="filter.id" value.bind="filter.defaultValue" change.delegate="chartSelectTouched($parent.$index, filter.id)">
             <option value="" selected disabled>${ 'valitse-rajoite' | t }</option>
             <option value.bind="id" repeat.for="id of filter.values.$order">${filter.values[id]}</option>
