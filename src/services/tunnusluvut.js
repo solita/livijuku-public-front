@@ -1,7 +1,6 @@
 import {I18N} from 'aurelia-i18n';
 import {inject} from 'aurelia-framework';
 import _ from 'lodash';
-import * as c from '../utils/core';
 import * as t from '../utils/tunnusluvut';
 import d3 from 'd3';
 import R from 'ramda';
@@ -58,17 +57,6 @@ export class Tunnusluvut {
       $order: ['ALL', 'AP', 'KP', 'LP', 'TM', 'MP'],
       $nimi: nimi,
       $id: 'kustannuslajitunnus'
-    };
-
-    let organisaatiolajit = {
-      ALL: 'Kaikki organisaatiot',
-      KS1: 'Suuret kaupunkiseudut',
-      KS2: 'Keskisuuret kaupunkiseudut',
-      KS3: 'Pienet kaupunkiseudut',
-      ELY: 'ELY-keskukset',
-      $order: ['ALL', 'KS1', 'KS2', 'KS3', 'ELY'],
-      $nimi: nimi,
-      $id: 'organisaatiolajitunnus'
     };
 
     let sopimustyypit = {
@@ -134,7 +122,7 @@ export class Tunnusluvut {
     };
 
     function convertToTree(name, names, alldata, organisaatiot) {
-      var data = _.filter(_.tail(alldata), r => R.not(R.isNil(r[r.length - 1])));
+      let data = _.filter(_.tail(alldata), r => R.not(R.isNil(r[r.length - 1])));
       return data.length > 1 ? [{
         name: name,
         children: group(_.tail(data), 0, [id => _.find(organisaatiot, {id: id}).nimi].concat(names))
@@ -236,11 +224,10 @@ export class Tunnusluvut {
           createFilter('Sopimustyyppi', sopimustyypit),
           createFilter('Tarkastelujakso', kuukaudet)],
         options: createMultiBarChart('Kysyntä', 'Vuosi')
-      }
-      , {
+      }, {
         title: this.i18n.tr('nousujen-lukumaara-kuukausitasolla'),
         yTitle: filter => {
-          return this.i18n.tr('nousut') + filterInfoText(filter) + ' / ' + this.i18n.tr('kuukausi')
+          return this.i18n.tr('nousut') + filterInfoText(filter) + ' / ' + this.i18n.tr('kuukausi');
         },
         groupBy: ['organisaatioid', 'kuukausi'],
         filters: [
