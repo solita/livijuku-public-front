@@ -1,6 +1,15 @@
+import {EventManager} from 'aurelia-framework';
 import XHR from 'i18next-xhr-backend';
 
 export function configure(aurelia) {
+  let eventManager = aurelia.container.get(EventManager);
+  eventManager.registerElementConfig({
+    tagName: 'paper-toggle-button',
+    properties: {
+      checked: ['change']
+    }
+  });
+
   aurelia.use
     .standardConfiguration();
     // .developmentLogging();
@@ -12,7 +21,7 @@ export function configure(aurelia) {
     // adapt options to your needs (see http://i18next.com/docs/options/)
     instance.setup({
       backend: {
-        loadPath: 'dist/locale/{{lng}}/{{ns}}.json'
+        loadPath: 'locale/{{lng}}/{{ns}}.json'
       },
       lng: 'fi',
       attributes: ['t', 'i18n'],
