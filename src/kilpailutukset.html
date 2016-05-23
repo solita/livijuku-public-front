@@ -7,7 +7,7 @@
 
   <section class="P-lg">
 
-    <h2>${ 'kilpailutukset' | t }</h2>
+    <h1>${ 'kilpailutukset' | t }</h1>
 
     <form is="iron-form" class="clearfix Mb-xl">
     	<div class="row">
@@ -27,21 +27,21 @@
             </select>
           </label>
         </div>
-        <div class="xs-12 sm-6 md-4 Ps-0 Mt-md Pe-0 r-sm-Pe-1rem">
+        <div class="xs-12 sm-6 md-4 Ps-0 Mt-lg Pe-0 r-sm-Pe-1rem">
           <label for="kohdearvo" class="f-14">${ 'kohteen-arvioitu-arvo' | t }</label>
           <div class="clearfix">
-            <no-ui-slider id="kohdearvo" options.bind="kohdearvo" class="left full-width My-md"></no-ui-slider>
+            <no-ui-slider id="kohdearvo" options.bind="kohdearvo" class="left Ms-md My-xs w-095"></no-ui-slider>
           </div>
         </div>
-        <div class="xs-12 sm-6 md-4 Ps-0 r-sm-Ps-1rem Mt-md Pe-0 r-sm-Pe-1rem">
+        <div class="xs-12 sm-6 md-4 Ps-0 r-sm-Ps-1rem Mt-lg Pe-0 r-sm-Pe-1rem">
           <label for="kalustokoko" class="f-14">${ 'kaluston-maara' | t }</label>
           <div class="clearfix">
-            <no-ui-slider id="kalustokoko" options.bind="kalustokoko" class="left full-width My-md"></no-ui-slider>
+            <no-ui-slider id="kalustokoko" options.bind="kalustokoko" class="left full-width Ms-md My-xs w-095"></no-ui-slider>
           </div>
         </div>
-        <div class="xs-12 sm-6 md-4 Mt-md Ps-0 r-md-Ps-1-rem">
+        <div class="xs-12 sm-6 md-4 Mt-lg Ps-0 r-md-Ps-1-rem">
           <label class="f-14">${ 'aikajanalla-naytettava-ajanjakso' | t }</label>
-          <div class="My-md f-14">
+          <div class="My-xs f-14">
             <paper-toggle-button class="left Me-md" change.delegate="toggleKilpailukausi()" checked.two-way="isKilpailutuskausiChecked">${ 'kilpailutuskausi' | t }</paper-toggle-button>
             <paper-toggle-button change.delegate="toggleLiikennointikausi()" checked.two-way="isLiikennointikausiChecked">${ 'liikennointikausi' | t }</paper-toggle-button>
           </div>
@@ -60,6 +60,7 @@
       </div>
     </div>
 
+    <p class="f-10 M-0">Voit zoomata aikajanaa hiiren rullalla. Aikajanan vieritys onnistuu liikuttamalla hiirtä vasen nappi pohjassa.</p>
     <timeline
       events.bind="timeline.events"
       kilpailutukset.bind="timeline.kilpailutukset"
