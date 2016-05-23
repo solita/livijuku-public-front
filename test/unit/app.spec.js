@@ -25,18 +25,31 @@ describe('the App module', () => {
   });
 
   it('configures the router title', () => {
-    expect(sut.router.title).toEqual('Aurelia');
+    expect(sut.router.title).toEqual('JUKU');
   });
 
   it('should have a welcome route', () => {
-    expect(sut.router.routes).toContain({ route: ['', 'welcome'], name: 'welcome',  moduleId: 'welcome', nav: true, title: 'Welcome' });
+    expect(sut.router.routes).toContain({ route: ['', 'etusivu'],   name: 'etusivu',  moduleId: 'etusivu',  nav: false, title: 'Etusivu' });
   });
 
-  it('should have a users route', () => {
-    expect(sut.router.routes).toContain({ route: 'users', name: 'users', moduleId: 'users', nav: true, title: 'Github Users' });
+  it('should have valtionavustukset route', () => {
+    expect(sut.router.routes).toContain({ route: 'valtionavustukset',  name: 'valtionavustukset',  moduleId: 'valtionavustukset', nav: true, title: 'Valtionavustukset' });
   });
 
-  it('should have a child router route', () => {
-    expect(sut.router.routes).toContain({ route: 'child-router', name: 'child-router', moduleId: 'child-router', nav: true, title: 'Child Router' });
+  it('should have perustunnusluvut route', () => {
+    expect(sut.router.routes).toContain({ route: 'perustunnusluvut',  name: 'perustunnusluvut',  moduleId: 'perustunnusluvut', nav: true, title: 'Perustunnusluvut' });
   });
+
+  it('should have kaikkiTunnusluvut route', () => {
+    expect(sut.router.routes).toContain({ route: 'kaikkiTunnusluvut',  name: 'kaikkiTunnusluvut',  moduleId: 'kaikkiTunnusluvut', nav: true, title: 'Kaikki tunnusluvut' });
+  });
+
+  it('should have kilpailutukset route', () => {
+    expect(sut.router.routes).toContain({ route: 'kilpailutukset',  name: 'kilpailutukset',  moduleId: 'kilpailutukset', nav: true, title: 'Kilpailutukset' });
+  });
+
+  it('should have kilpailutukset/:id route', () => {
+    expect(sut.router.routes).toContain({ route: 'kilpailutukset/:id',  name: 'kilpailutus',  moduleId: 'kilpailutus', nav: false, title: 'Kilpailutus' });
+  });
+
 });
