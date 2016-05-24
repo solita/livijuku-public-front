@@ -67,7 +67,7 @@ export class ChartCustomElement {
       return graphData;
     };
 
-    this.subtitle = options.subtitle.text;
+    this.subtitle = options.subtitle ? options.subtitle.text : '';
 
     if (options.chart && options.chart.type === 'lineWithFocusChart') {
       nv.addGraph(() => {
