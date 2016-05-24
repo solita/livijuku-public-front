@@ -1,19 +1,19 @@
 <template>
   <paper-dropdown-menu label="Toimivalta-alue" class="r-sm-hidden">
     <paper-listbox class="dropdown-content" selected.bind="childRouteIndex">
-      <a class="paper-item-link" href="#/${page}/${viranomaiset[0].id}" tabindex="-1">
+      <a class="paper-item-link" href="#/tilastot/${page}/${viranomaiset[0].id}" tabindex="-1">
         <paper-item>${ viranomaiset[0].nimi }</paper-item>
       </a>
-      <a class="paper-item-link" href="#/${page}/${viranomaiset[1].id}" tabindex="-1">
+      <a class="paper-item-link" href="#/tilastot/${page}/${viranomaiset[1].id}" tabindex="-1">
         <paper-item>${ viranomaiset[1].nimi }</paper-item>
       </a>
-      <a class="paper-item-link" href="#/${page}/${viranomaiset[2].id}" tabindex="-1">
+      <a class="paper-item-link" href="#/tilastot/${page}/${viranomaiset[2].id}" tabindex="-1">
         <paper-item>${ viranomaiset[2].nimi }</paper-item>
       </a>
-      <a class="paper-item-link" href="#/${page}/${viranomaiset[3].id}" tabindex="-1">
+      <a class="paper-item-link" href="#/tilastot/${page}/${viranomaiset[3].id}" tabindex="-1">
         <paper-item>${ viranomaiset[3].nimi }</paper-item>
       </a>
-      <a class="paper-item-link" href="#/${page}/${viranomaiset[4].id}" tabindex="-1">
+      <a class="paper-item-link" href="#/tilastot/${page}/${viranomaiset[4].id}" tabindex="-1">
         <paper-item>${ viranomaiset[4].nimi }</paper-item>
       </a>
     </paper-listbox>
@@ -23,27 +23,27 @@
     <div class="hidden r-sm-block">
       <ul class="list-no-style left h-center P-0 full-width">
         <li class="left Be-xs Be-solid B-c-a ${ childRoute === 'ALL' ? 'bg-c-a c-w' : 'bg-c-w c-a' }">
-          <a class="paper-item-link" href="#/${page}/ALL" tabindex="-1">
+          <a class="paper-item-link" href="#/tilastot/${page}/ALL" tabindex="-1">
             <paper-item class="r-sm-f-14 r-md-f-16 r-sm-h-min-40 r-md-h-min-48 Px-sm2 r-md-Px-md">Kaikki</paper-item>
           </a>
         </li>
         <li class="left Be-xs Be-solid B-c-a ${ childRoute === 'KS1' ? 'bg-c-a c-w' : 'bg-c-w c-a' }">
-          <a class="paper-item-link" href="#/${page}/KS1" tabindex="-1">
+          <a class="paper-item-link" href="#/tilastot/${page}/KS1" tabindex="-1">
             <paper-item class="f-14 r-md-f-16 r-sm-h-min-40 r-md-h-min-48 Px-sm2 r-md-Px-md">Suuret kaupunkiseudut</paper-item>
           </a>
         </li>
         <li class="left Be-xs Be-solid B-c-a ${ childRoute === 'KS2' ? 'bg-c-a c-w' : 'bg-c-w c-a' }">
-          <a class="paper-item-link" href="#/${page}/KS2" tabindex="-1">
+          <a class="paper-item-link" href="#/tilastot/${page}/KS2" tabindex="-1">
             <paper-item class="f-14 r-md-f-16 r-sm-h-min-40 r-md-h-min-48 Px-sm2 r-md-Px-md">Keskisuuret kaupunkiseudut</paper-item>
           </a>
         </li>
         <li class="left Be-xs Be-solid B-c-a ${ childRoute === 'KS3' ? 'bg-c-a c-w' : 'bg-c-w c-a' }">
-          <a class="paper-item-link" href="#/${page}/KS3" tabindex="-1">
+          <a class="paper-item-link" href="#/tilastot/${page}/KS3" tabindex="-1">
             <paper-item class="f-14 r-md-f-16 r-sm-h-min-40 r-md-h-min-48 Px-sm2 r-md-Px-md">Pienet kaupunkiseudut</paper-item>
           </a>
         </li>
         <li class="left ${ childRoute === 'ELY' ? 'bg-c-a c-w' : 'bg-c-w c-a' }">
-          <a class="paper-item-link" href="#/${page}/ELY" tabindex="-1">
+          <a class="paper-item-link" href="#/tilastot/${page}/ELY" tabindex="-1">
             <paper-item class="f-14 r-md-f-16 r-sm-h-min-40 r-md-h-min-48 Px-sm2 r-md-Px-md">ELY-keskukset</paper-item>
           </a>
         </li>
