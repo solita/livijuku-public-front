@@ -2,12 +2,12 @@ export class App {
   configureRouter(config, router) {
     config.title = 'JUKU';
     config.map([
-      { route: ['', 'etusivu'],   name: 'etusivu',  moduleId: 'etusivu',  nav: false, title: 'Etusivu' },
-      { route: 'valtionavustukset',  name: 'valtionavustukset',  moduleId: 'valtionavustukset', nav: true, title: 'Valtionavustukset' },
-      { route: 'perustunnusluvut',   name: 'perustunnusluvut',   moduleId: 'perustunnusluvut',  nav: true, title: 'Perustunnusluvut' },
-      { route: 'kaikkiTunnusluvut',  name: 'kaikkiTunnusluvut',  moduleId: 'kaikkiTunnusluvut', nav: true, title: 'Kaikki tunnusluvut' },
-      { route: 'kilpailutukset',  name: 'kilpailutukset', moduleId: 'kilpailutukset', nav: true, title: 'Kilpailutukset' },
-      { route: 'kilpailutukset/:id',  name: 'kilpailutus', moduleId: 'kilpailutus', nav: false, title: 'Kilpailutus' }
+      { route: ['', 'etusivu'], moduleId: 'modules/etusivu/etusivu', name: 'etusivu', nav: false, title: 'Etusivu' },
+      { route: 'tilastot/valtionavustukset', moduleId: 'modules/tilastot/valtionavustukset/valtionavustukset', name: 'valtionavustukset', nav: true, title: 'Valtionavustukset' },
+      { route: 'tilastot/perus', moduleId: 'modules/tilastot/perustunnusluvut/perustunnusluvut', name: 'perustunnusluvut', nav: true, title: 'Perustunnusluvut' },
+      { route: 'tilastot/kaikki', moduleId: 'modules/tilastot/kaikki-tunnusluvut/kaikki-tunnusluvut', name: 'kaikkiTunnusluvut', nav: true, title: 'Kaikki tunnusluvut' },
+      { route: 'kilpailutukset', moduleId: 'modules/kilpailutukset/kilpailutukset', name: 'kilpailutukset', nav: true, title: 'Kilpailutukset' },
+      { route: 'kilpailutukset/:id', moduleId: 'modules/kilpailutus/kilpailutus', name: 'kilpailutus', nav: false, title: 'Kilpailutus' }
     ]);
     this.router = router;
   }
