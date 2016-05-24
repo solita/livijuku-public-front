@@ -1,0 +1,80 @@
+<template>
+
+  <require from="components/chart/chart"></require>
+  <require from='components/tilastonavigointi/tilastonavigointi'></require>
+
+  <section class="P-lg">
+    <h1>${ 'kaikki-tunnusluvut' | t }</h1>
+
+    <paper-dropdown-menu label="${ 'tarkasteltava-tunnusluku' | t }" class="Pb-lg w-315">
+      <paper-listbox class="dropdown-content" selected.two-way="tunnuslukuIndex" iron-select.delegate="selectTunnusluku()">
+        <paper-item value="" selected disabled>${ 'valitse-tunnusluku' | t }</paper-item>
+        <template is="dom-repeat" items.two-way="tunnusluvut.tunnusluvut">
+          <paper-item model="{{item}}">{{ item.nimi }}</paper-item>
+        </template>
+      </paper-listbox>
+    </paper-dropdown-menu>
+
+    <tilastonavigointi page="kaikki"></tilastonavigointi>
+
+    <div if.bind="selectedTunnusluku" class="Py-xl" repeat.for="chart of selectedTunnusluku.charts">
+      <h2>${ chart.title }</h2>
+
+      <form
+        id="tunnusluku-filter-form-${tunnuslukuIndex}-${$index}"
+        name="tunnusluku-filter-form"
+        class="form-inline tunnusluku-filter-form left Mb-md">
+        <div repeat.for="filter of chart.filters" class="left Me-md">
+          <h4 class="Mb-xs">${filter.nimi}</h4>
+          <select id="tunnusluku-filter-form-${filter.id}" name.bind="filter.id" value.bind="filter.defaultValue" change.delegate="chartSelectTouched($parent.$index, filter.id)">
+            <option value="" selected disabled>${ 'valitse-rajoite' | t }</option>
+            <option value.bind="id" repeat.for="id of filter.values.$order">${filter.values[id]}</option>
+          </select>
+        </div>
+        <!-- <form-group label="{{filter.nimi}}" ng-repeat="filter in chart.filters">
+          <select id="tunnusluku-filter-form-{{filter.id}}" ng-model="params.charts[chartid].filter[filter.id]"
+                  placeholder="Valitse tunnusluku" name="tunnuslukuValinta">
+            <option value="" selected disabled>Valitse rajoite</option>
+            <option ng-repeat="id in filter.values.$order" value="{{id}}">{{filter.values.$nimi(id)}}</option>
+          </select>
+        </form-group> -->
+        <!-- <template is="dom-repeat" items.two-way="chart.filters" as="filter">
+          <paper-dropdown-menu label="{{filter.nimi}}" class="Pb-lg w-315">
+            <paper-listbox class="dropdown-content" selected.two-way="tunnuslukuIndex" iron-select.delegate="chartSelectTouched()">
+              <paper-item disabled>${ 'valitse-rajoite' | t }</paper-item>
+                <template is="dom-repeat" items="{{filter.values.$order}}" index-as="filter_no">
+                <paper-item model="{{item}}">{{index}} {{filter.values.$nimi(item)}}</paper-item>
+              </template>
+            </paper-listbox>
+          </paper-dropdown-menu>
+        </template> -->
+
+        <!-- <div repeat.for="filter of chart.filters" class="left">
+          <paper-dropdown-menu label="${filter.nimi}" class="Pb-lg w-315">
+            <paper-listbox class="dropdown-content" selected.two-way="tunnuslukuIndex" iron-select.delegate="chartSelectTouched()">
+              <paper-item disabled>${ 'valitse-rajoite' | t }</paper-item>
+              <template is="dom-repeat" items="{{filter.values.$order}}" index-as="filter_no">
+                <paper-item model="{{item}}">ihan</paper-item>
+              </template>
+            </paper-listbox>
+          </paper-dropdown-menu>
+        </div> -->
+
+        <!-- </div> -->
+      </form>
+
+      <chart options.bind="chartConfigs[$index].options" raw-data.bind="chartConfigs[$index].data"></chart>
+
+      <!-- <chart options='chart.options' data='data[chartid]' api="params.charts[chartid].api"></chart>
+
+      <a ng-csv="csv[chartid]" class="pull-right lataacsv"
+         filename="tunnuslukudata.csv" decimal-separator=","
+         field-separator=";" add-bom="true"><span class="glyphicon glyphicon-save"></span> Lataa CSV
+      </a>
+
+      <p class="text-info" ng-if="missing[chartid]"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Tiedot puuttuvat kokonaan organisaatioilta: {{missing[chartid]}}</p> -->
+    </div>
+
+  </section>
+
+</template>
