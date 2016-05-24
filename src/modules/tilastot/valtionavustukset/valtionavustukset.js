@@ -54,7 +54,6 @@ export class Valtionavustukset {
       .then(response => response.json())
       .then(data => {
         this.organisaatiot = data;
-        console.info(this.organisaatiot);
       });
     this.router = router;
     this.chartOptions = {};
