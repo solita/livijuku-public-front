@@ -38,9 +38,9 @@ export class TilastonavigointiCustomElement {
         this.childRouteIndex = this.getChildRouteIndex();
         if (this.childRouteIndex === -1) {
           if (this.md.mobile()) {
-            this.router.navigate(this.page + '/KS1');
+            this.router.navigate('tilastot/' + this.page + '/KS1');
           } else {
-            this.router.navigate(this.page + '/ALL');
+            this.router.navigate('tilastot/' + this.page + '/ALL');
           }
         }
       }
