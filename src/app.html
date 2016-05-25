@@ -1,25 +1,27 @@
 <template>
-  <paper-drawer-panel force-narrow right-drawer>
+  <paper-drawer-panel id="panel" force-narrow right-drawer>
     <paper-header-panel drawer>
-      <paper-toolbar>Valikko</paper-toolbar>
+      <paper-toolbar>
+        <div class="f-left c-a">Valikko</div>
+      </paper-toolbar>
       <paper-menu role="listbox">
-        <a class="paper-item-link block" href="#/" tabindex="-1">
-          <paper-item>Etusivu</paper-item>
+        <a class="paper-item-link block" href="#/" tabindex="-1" click.delegate="onPanelItemClick()">
+          <paper-item click.delegate="onPanelItemClick()">Etusivu</paper-item>
         </a>
         <hr/>
         <p class="f-12 f-w-700 Mb-xs" style="padding-left: 16px;">Tilastot</p>
-        <a class="paper-item-link block" href="#/tilastot/valtionavustukset/ALL" tabindex="-1">
+        <a class="paper-item-link block" href="#/tilastot/valtionavustukset/ALL" tabindex="-1" click.delegate="onPanelItemClick()">
           <paper-item>${ 'valtionavustukset' | t }</paper-item>
         </a>
-        <a class="paper-item-link block" href="#/tilastot/perus/ALL" tabindex="-1">
-          <paper-item>${ 'perustunnusluvut' | t }</paper-item>
+        <a class="paper-item-link block" href="#/tilastot/perus/ALL" tabindex="-1" click.delegate="onPanelItemClick()">
+          <paper-item click.delegate="onPanelItemClick()">${ 'perustunnusluvut' | t }</paper-item>
         </a>
-        <a class="paper-item-link block" href="#/tilastot/kaikki" tabindex="-1">
-          <paper-item>${ 'kaikki-tunnusluvut' | t }</paper-item>
+        <a class="paper-item-link block" href="#/tilastot/kaikki" tabindex="-1" click.delegate="onPanelItemClick()">
+          <paper-item click.delegate="onPanelItemClick()">${ 'kaikki-tunnusluvut' | t }</paper-item>
         </a>
         <hr/>
-        <a class="paper-item-link block" href="#/kilpailutukset" tabindex="-1">
-          <paper-item>${ 'kilpailutukset' | t }</paper-item>
+        <a class="paper-item-link block" href="#/kilpailutukset" tabindex="-1" click.delegate="onPanelItemClick()">
+          <paper-item click.delegate="onPanelItemClick()">${ 'kilpailutukset' | t }</paper-item>
         </a>
       </paper-menu>
     </paper-header-panel>

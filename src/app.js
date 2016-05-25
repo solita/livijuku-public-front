@@ -11,4 +11,9 @@ export class App {
     ]);
     this.router = router;
   }
+
+  onPanelItemClick() {
+    document.querySelector('#panel').togglePanel();
+    return true;
+  }
 }
