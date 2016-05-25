@@ -102,7 +102,9 @@ export class Kilpailutukset {
       },
       stack: false,
       clickToUse: false,
-      orientation: 'both'
+      orientation: 'both',
+      zoomMin: 604800000,
+      zoomMax: 1262400000000
     };
 
     this.timeline.events = {
