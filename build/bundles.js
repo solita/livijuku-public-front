@@ -9,14 +9,10 @@ module.exports = {
         '*/**/*.html!text',
         '*/**/*.css!text'
       ],
-      excludes: [
-        'npm:core-js',
-        'github:jspm/nodelibs-process'
-      ],
       options: {
         inject: true,
         minify: true,
-        depCache: true,
+        depCache: false,
         rev: true
       }
     },
@@ -55,7 +51,7 @@ module.exports = {
         inject: true,
         minify: true,
         depCache: false,
-        rev: true
+        rev: false
       }
     },
     "dist/vendor": {

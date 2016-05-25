@@ -110,7 +110,7 @@ gulp.task('build-scss', function() {
 gulp.task('build', function(callback) {
   return runSequence(
     'clean',
-    ['build-system', 'build-html', 'main-bower-files', 'build-scss', 'vulcanize'],
+    ['build-system', 'build-html', 'build-scss', 'vulcanize'],
     callback
   );
 });
