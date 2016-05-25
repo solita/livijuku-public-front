@@ -33,7 +33,14 @@
             <img src="images/juku_logo_white.svg" class="block h-35" />
           </a>
         </div>
-        <paper-button paper-drawer-toggle class="flex flex-ai-c f-13 right">${ 'valikko' | t } <iron-icon paper-drawer-toggle icon="menu"></iron-icon></paper-button>
+        <nav class="hidden r-sm-block">
+          <ul class="list-inline list-no-style left">
+           <li repeat.for="route of router.navigation" class="left">
+             <a href.bind="route.href" class="Px-md Py-xs f-no-decoration c-w f-14 r-md-f-16 ${ route.isActive ? 'bg-c-c' : '' } ${ !$last ? 'Be-xs Be-solid B-c-c' : '' }">${ route.title }</a>
+           </li>
+          </ul>
+        </nav>
+        <paper-button paper-drawer-toggle class="r-sm-hidden flex flex-ai-c f-13 right">${ 'valikko' | t } <iron-icon paper-drawer-toggle icon="menu"></iron-icon></paper-button>
       </paper-toolbar>
       <div class="content w-max-1200 h-center">
         <router-view></router-view>
