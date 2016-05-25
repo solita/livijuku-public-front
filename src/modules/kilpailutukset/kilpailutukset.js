@@ -7,6 +7,7 @@ import moment from 'moment';
 import 'moment/locale/fi';
 import 'fetch';
 import _ from 'lodash';
+import $ from 'jquery';
 import * as c from 'utils/core';
 import * as t from 'utils/time';
 import * as tl from 'utils/tunnusluvut';
@@ -109,7 +110,7 @@ export class Kilpailutukset {
 
     this.timeline.events = {
       select: (properties) => {
-        let $target = jQuery(properties.event.target);
+        let $target = $(properties.event.target);
         if (!$target.hasClass('link-to-hilma')) {
           let url = `/kilpailutukset/${ _.split(properties.items[0], '-')[1] }`;
           this.router.navigate(url);
