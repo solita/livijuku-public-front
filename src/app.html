@@ -17,7 +17,9 @@
           <paper-item click.delegate="onPanelItemClick()">${ 'perustunnusluvut' | t }</paper-item>
         </a>
         <a class="paper-item-link block" href="#/tilastot/kaikki" tabindex="-1" click.delegate="onPanelItemClick()">
-          <paper-item click.delegate="onPanelItemClick()">${ 'kaikki-tunnusluvut' | t }</paper-item>
+          <paper-item click.delegate="onPanelItemClick()">
+            <span>${ 'kaikki-tunnusluvut' | t }</span>
+          </paper-item>
         </a>
         <hr/>
         <a class="paper-item-link block" href="#/kilpailutukset" tabindex="-1" click.delegate="onPanelItemClick()">
@@ -36,7 +38,7 @@
         <nav class="hidden r-sm-block">
           <ul class="list-inline list-no-style left">
            <li repeat.for="route of router.navigation" class="left">
-             <a href.bind="route.href" class="Px-md Py-xs f-no-decoration c-w f-14 r-md-f-16 ${ route.isActive ? 'bg-c-c' : '' } ${ !$last ? 'Be-xs Be-solid B-c-c' : '' }">${ route.title }</a>
+             <a href.bind="route.href" class="Px-md Py-xs f-no-decoration c-w f-14 r-md-f-16 ${ route.isActive ? 'bg-c-c' : '' } ${ !$last ? 'Be-xs Be-solid B-c-c' : '' }">${ route.title | t }</a>
            </li>
           </ul>
         </nav>

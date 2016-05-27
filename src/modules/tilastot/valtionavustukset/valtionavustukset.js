@@ -1,3 +1,4 @@
+import {Api} from 'services/api';
 import {I18N} from 'aurelia-i18n';
 import {inject} from 'aurelia-framework';
 import {Cookie} from 'aurelia-cookie';
@@ -31,141 +32,94 @@ const chartOptions = {
   }
 };
 
-@inject(EventAggregator, HttpClient, I18N, Router)
+@inject(Api, EventAggregator, HttpClient, I18N, Router)
 export class Valtionavustukset {
 
-  constructor(eventAggregator, http, i18n, router) {
-    this.ea = eventAggregator;
-    this.haetutMyonnetytKey = 'M';
-    this.i18n = i18n;
-    http.configure(config => {
-      config
-        .useStandardConfiguration()
-        .withBaseUrl('api/')
-        .withInterceptor({
-          request: function(request) {
-            request.headers.set('x-xsrf-token', 'guest');
-            return request;
-          }
-        });
-    });
-    this.http = http;
-    this.http.fetch('organisaatiot')
-      .then(response => response.json())
-      .then(data => {
-        this.organisaatiot = data;
-      });
-    this.router = router;
+  constructor(api, eventAggregator, http, i18n, router) {
+    this.api = api;
     this.chartOptions = {};
+    this.ea = eventAggregator;
+    this.http = http;
+    this.i18n = i18n;
+    this.viranomainen = null;
+    this.router = router;
   }
 
-  attached() {
-    Cookie.set('XSRF-TOKEN', 'guest');
-    this.ea.subscribe('router:navigation:success', router => {
-      this.childRoute = router.instruction.params.childRoute;
-      if (router.instruction.fragment.indexOf('valtionavustukset') !== -1 && !this.childRoute) {
-        // return this.router.navigate('valtionavustukset/ALL');
-      }
-
-      this.http.fetch('avustus/' + this.childRoute)
-        .then(response => response.json())
-        .then(data => {
-          let xLabelIndex = R.indexOf('vuosi', R.head(data));
-          let groupKeys = this.getGroupKeys(R.indexOf('avustustyyppi', R.head(data)), data);
-          let groupLabels = [this.i18n.tr('haetut'), this.i18n.tr('myonnetyt')];
-          let o = R.merge(chartOptions, {
+  activate(model) {
+    this.api.organisaatiot.then(data => {
+      this.organisaatiot = data;
+      this.viranomainen = model;
+      this.api.getAvustukset(this.viranomainen).then(data => {
+        let xLabelIndex = R.indexOf('vuosi', R.head(data));
+        let groupKeys = t.getGroupKeys(R.indexOf('avustustyyppi', R.head(data)), data);
+        let groupLabels = [this.i18n.tr('haetut'), this.i18n.tr('myonnetyt')];
+        this.haetutJaMyonnetytAvustukset = {
+          data: data,
+          options: R.merge(chartOptions, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('sum(rahamaara)', R.head(data)),
             title: 'joukkoliikenteen-haetut-ja-myonnetut-avustukset',
             subtitle: {
-              text: this.i18n.tr(this.childRoute)
+              text: this.i18n.tr(this.viranomainen)
             },
             height: 600
-          });
-          this.haetutJaMyonnetytAvustukset = {
-            data: data,
-            options: o
-          };
-        }, error => {
-          throw new Error('virhe');
+          })
+        };
+      });
+      this.api.getAvustuksetOrganisaatioittain(this.viranomainen).then(data => {
+        let xLabelIndex = R.indexOf('vuosi', R.head(data));
+        let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
+        let groupLabels = t.getOrganisaatioNames(groupKeys, this.organisaatiot);
+        let o = R.merge(chartOptions, {
+          groupKeys: groupKeys,
+          groupLabels: groupLabels,
+          xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
+          valueIndex: R.indexOf('haettavaavustus', R.head(data)),
+          title: 'haetut-avustukset-organisaatioittain',
+          subtitle: {
+            text: this.i18n.tr(this.viranomainen)
+          },
+          height: 600
         });
-      this.http.fetch('avustus-details/' + this.childRoute)
-        .then(response => response.json())
-        .then(data => {
-          let xLabelIndex = R.indexOf('vuosi', R.head(data));
-          let groupKeys = this.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
-          let groupLabels = this.getOrganisaatioNames(groupKeys);
-          let o = R.merge(chartOptions, {
-            groupKeys: groupKeys,
-            groupLabels: groupLabels,
-            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
-            valueIndex: R.indexOf('haettavaavustus', R.head(data)),
-            title: 'haetut-avustukset-organisaatioittain',
-            subtitle: {
-              text: this.i18n.tr(this.childRoute)
-            },
-            height: 600
-          });
-          this.haetutAvustuksetOrganisaatioittain = {
-            data: data,
-            options: o
-          };
-          let o2 = R.merge(chartOptions, {
-            groupKeys: groupKeys,
-            groupLabels: groupLabels,
-            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
-            valueIndex: R.indexOf('myonnettyavustus', R.head(data)),
-            title: 'myonnetyt-avustukset-organisaatioittain',
-            subtitle: {
-              text: this.i18n.tr(this.childRoute)
-            },
-            height: 600
-          });
-          this.myonnetytAvustuksetOrganisaatioittain = {
-            data: data,
-            options: o2
-          };
+        this.haetutAvustuksetOrganisaatioittain = {
+          data: data,
+          options: o
+        };
+        let o2 = R.merge(chartOptions, {
+          groupKeys: groupKeys,
+          groupLabels: groupLabels,
+          xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
+          valueIndex: R.indexOf('myonnettyavustus', R.head(data)),
+          title: 'myonnetyt-avustukset-organisaatioittain',
+          subtitle: {
+            text: this.i18n.tr(this.viranomainen)
+          },
+          height: 600
         });
-      this.http.fetch('avustus-asukas/' + this.childRoute)
-        .then(response => response.json())
-        .then(data => {
-          let xLabelIndex = R.indexOf('vuosi', R.head(data));
-          let groupKeys = this.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
-          let groupLabels = this.getOrganisaatioNames(groupKeys);
-          let o = R.merge(chartOptions, {
+        this.myonnetytAvustuksetOrganisaatioittain = {
+          data: data,
+          options: o2
+        };
+      });
+      this.api.getAvustusPerAsukas(this.viranomainen).then(data => {
+        let xLabelIndex = R.indexOf('vuosi', R.head(data));
+        let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
+        let groupLabels = t.getOrganisaatioNames(groupKeys, this.organisaatiot);
+        this.avustusPerAsukas = {
+          data: data,
+          options: R.merge(chartOptions, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('myonnettyavustus_asukastakohti', R.head(data)),
             title: 'myonnetty-avustus-per-asukas',
-            subtitle: this.childRoute,
+            subtitle: this.viranomainen,
             height: 600
-          });
-          this.avustusPerAsukas = {
-            data: data,
-            options: o
-          };
-        });
+          })
+        };
+      });
     });
-  }
-
-  getGroupKeys = (groupIndex, data) => {
-    return R.sort((a, b) => {
-      return a - b;
-    }, R.uniq(R.map(item => {
-      return item[groupIndex];
-    }, R.tail(data))));
-  }
-
-  getOrganisaatioNames = (groupKeys) => {
-    return R.map(key => {
-      return R.find(R.propEq('id', key))(this.organisaatiot).nimi;
-    }, groupKeys);
-  }
-
-  toggleHaetutMyonnetytKey() {
-    this.haetutMyonnetytKey = this.haetutMyonnetytKey === 'M' ? 'H' : 'M';
   }
 }

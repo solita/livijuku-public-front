@@ -7,8 +7,7 @@ import R from 'ramda';
 @inject(Element, I18N)
 export class ChartCustomElement {
 
-  @bindable rawData;
-  @bindable options;
+  @bindable setup;
 
   constructor(Element, i18n) {
     this.element = Element;
@@ -18,23 +17,16 @@ export class ChartCustomElement {
     this.height = 600;
   }
 
-  bind() {}
-
-  rawDataChanged(rawData) {
-    // console.info(rawData);
+  setupChanged(setup) {
     if (this.element.getElementsByTagName('svg')[0]) {
       d3.selectAll(this.element.getElementsByTagName('svg')[0].childNodes).remove();
     }
-    this.draw(R.tail(rawData), this.options);
-  }
-
-  optionsChanged(options) {
-    this.title = this.i18n.tr(options.title);
+    this.draw(R.tail(setup.data), setup.options);
+    this.title = this.i18n.tr(setup.options.title);
     // this.subtitle = this.i18n.tr(options.subtitle);
   }
 
   draw(data, options) {
-    // console.info(data, options);
     let parseData = () => {
       let graphData = [];
       options.groupKeys.forEach((key, index) => {
