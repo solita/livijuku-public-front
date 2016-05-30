@@ -28,6 +28,11 @@ export class Api {
     return this.http.fetch('api/avustus-asukas/' + viranomainen).then(response => response.json());
   }
 
+  getKilpailutus(id) {
+    console.info(id);
+    return this.http.fetch('api/kilpailutus/' + id).then(response => response.json());
+  }
+
   getTyytyvaisyysJoukkoliikenteeseen(viranomainen) {
     return this.http.fetch('api/tilastot/alue-asiakastyytyvaisyys/' + viranomainen + '?group-by=organisaatioid&group-by=vuosi').then(response => response.json());
   }

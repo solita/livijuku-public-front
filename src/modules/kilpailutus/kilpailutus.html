@@ -1,102 +1,109 @@
 <template>
   <section class="P-lg bg-c-w">
+    <div class="clearfix">
+      <p>
+        <a href="#/kilpailutukset">&larr; Takaisin aikajananäkymään</a>
+      </p>
+    </div>
   	<h1>${ 'kilpailutus-page-title' | t }</h1>
-    <h2>Kohde</h2>
-  	<h3>Kohde</h3>
+  	<h2>Kohde</h2>
   	<div class="clearfix">
   		<div class="md-6 Ps-0">
         <label>Organisaatio</label>
-        <p>${ kilpailutus.organisaatioid }</p>
+        <p class="Mt-0">${ kilpailutus.organisaatio.nimi }</p>
       </div>
     </div>
     <div class="clearfix">
      	<div class="sm-4 md-6 Ps-0">
         <label>Kohteen nimi</label>
-  	   	<p class="Pt-0">${ kilpailutus.kohdenimi }</p>
+  	   	<p class="Mt-0">${ kilpailutus.kohdenimi }</p>
       </div>
-      <div class="xs-12 sm-4 md-3">
+      <div class="xs-12 sm-4 md-3 Ps-0 r-sm-Ps-1rem">
         <label>Kohteen arvioitu arvo</label>
-      	<p>${ kilpailutus.kohdearvo }</p>
+      	<p class="Mt-0">${ kilpailutus.kohdearvo }</p>
       </div>
-      <div class="xs-12 sm-4 md-3">
+      <div class="xs-12 sm-4 md-3 Ps-0 r-sm-Ps-1rem">
         <label>Arvio kaluston määrästä</label>
-        <p>${ kilpailutus.kalusto }</p>
+        <p class="Mt-0">${ kilpailutus.kalusto }</p>
       </div>
       <div class="xs-12 Ps-0">
-        <h4>Lisätiedot</h4>
-        ${ kilpailutus.selite }
+        <label>Lisätiedot</label>
+        <p class="Mt-0">${ kilpailutus.selite ? kilpailutus.selite : '-' }</p>
       </div>
     </div>
     <div class="clearfix">
       <div class="md-6 Ps-0">
-        <h4>Linkki Hilmaan</h4>
-        <a href.bind="kilpailutus.hilmalinkki" target="_blank">${ kilpailutus.hilmalinkki }</a>
+        <label>Linkki Hilmaan</label>
+        <p class="Mt-0">
+          <a show.bind="kilpailutus.hilmalinkki" href.bind="kilpailutus.hilmalinkki" target="_blank">${ kilpailutus.hilmalinkki }</a>
+          <span show.bind="!kilpailutus.hilmalinkki">-</span>
+        </p>
       </div>
       <div class="md-6">
-        <h4>Linkki kilpailutuksen asiakirjoihin</h4>
-        ${ kilpailutus.asiakirjalinkki }
+        <label>Linkki kilpailutuksen asiakirjoihin</label>
+        <p class="Mt-0">${ kilpailutus.asiakirjalinkki ? kilpailutus.asiakirjalinkki : '-' }</p>
       </div>
     </div>
-  	<h3>Kilpailutus</h3>
+  	<h2>Kilpailutus</h2>
     <div class="clearfix">
-      <div class="sm-6 md-3">
-        <h4>Tarjouksen julkaisupäivä</h4>
-        ${ kilpailutus.julkaisupvm }
+      <div class="sm-4 md-3 Ps-0">
+        <label>Tarjouksen julkaisupäivä</label>
+        <p class="Mt-0">${ kilpailutus.julkaisupvm }</p>
       </div>
-      <div class="sm-6 md-3">
-        <h4>Tarjousajan päättyminen</h4>
-        ${ kilpailutus.tarjouspaattymispvm }
+      <div class="sm-4 md-3">
+        <label>Tarjousajan päättyminen</label>
+        <p class="Mt-0">${ kilpailutus.tarjouspaattymispvm }</p>
       </div>
-  		<div class="sm-6 md-3">
-        <h4>Hankintapäätös</h4>
-        ${ kilpailutus.hankintapaatospvm }
+  		<div class="sm-4 md-6">
+        <label>Hankintapäätös</label>
+        <p class="Mt-0">${ kilpailutus.hankintapaatospvm }</p>
       </div>
     </div>
-    <h3>Liikennöinti</h3>
+    <h2>Liikennöinti</h2>
    	<div class="clearfix">
-  		<div class="sm-6 md-3">
-        <h4>Liikennöinnin aloituspäivä</h4>
-        ${ kilpailutus.liikennointialoituspvm }
+  		<div class="sm-4 md-3 Ps-0">
+        <label>Liikennöinnin aloituspäivä</label>
+        <p class="Mt-0">${ kilpailutus.liikennointialoituspvm }</p>
       </div>
-    	<div class="sm-6 md-3">
-        <h4>Liikennöinnin päättyminen</h4>
-        ${ kilpailutus.liikennointipaattymispvm }
-      </div>
-    </div>
-   	<h3>Optiot</h3>
-    <div class="clearfix">
-      <div class="sm-4 md-3">
-        <h4>Optiovuodet</h4>
-        ${ kilpailutus.optioselite }
-      </div>
-      <div class="sm-4 md-3">
-        <h4>Hankitun option päättyminen</h4>
-        ${ kilpailutus.hankittuoptiopaattymispvm }
-      </div>
-      <div class="sm-4 md-3">
-        <h4>Optioiden päättyminen</h4>
-        ${ kilpailutus.optiopaattymispvm }
+    	<div class="sm-8 md-9">
+        <label>Liikennöinnin päättyminen</label>
+        <p class="Mt-0">${ kilpailutus.liikennointipaattymispvm }</p>
       </div>
     </div>
-   	<h3>Tietoa kilpailutuksesta</h3>
+   	<h2>Optiot</h2>
     <div class="clearfix">
-    	<div class="md-9">
-        <h4>Valittu liikennöitsijä</h4>
-        ${ kilpailutus.liikennoitsijanimi }
+      <div class="sm-4 md-3 Ps-0">
+        <label>Optiovuodet</label>
+        <p class="Mt-0">${ kilpailutus.optioselite }</p>
+      </div>
+      <div class="sm-4 md-3">
+        <label>Hankitun option päättyminen</label>
+        <p class="Mt-0">${ kilpailutus.hankittuoptiopaattymispvm }</p>
+      </div>
+      <div class="sm-4 md-3">
+        <label>Optioiden päättyminen</label>
+        <p class="Mt-0">${ kilpailutus.optiopaattymispvm }</p>
+      </div>
+    </div>
+   	<h2>Tietoa kilpailutuksesta</h2>
+    <div class="clearfix">
+    	<div class="md-9 Ps-0">
+        <label>Valittu liikennöitsijä</label>
+        <p class="Mt-0">${ kilpailutus.liikennoitsijanimi ? kilpailutus.liikennoitsijanimi : '-' }</p>
       </div>
     </div>
     <div class="clearfix">
-      <div class="sm-4 md-3">
-        <h4>Tarjousten lukumäärä</h4>
-        ${ kilpailutus.tarjousmaara }
+      <div class="sm-4 md-3 Ps-0">
+        <label>Tarjousten lukumäärä</label>
+        <p class="Mt-0">${ kilpailutus.tarjousmaara ? kilpailutus.tarjousmaara : '-' }</p>
       </div>
       <div class="sm-4 md-3">
-        <h4>Voittaneen tarjouksen hinta</h4>
-        ${ kilpailutus.tarjoushinta1 }
+        <label>Voittaneen tarjouksen hinta</label>
+        <p class="Mt-0">${ kilpailutus.tarjoushinta1 ? kilpailutus.tarjoushinta1 : '-' }</p>
       </div>
       <div class="sm-4 md-3">
-        <h4>Toiseksi tulleen hinta</h4>
-        ${ kilpailutus.tarjoushinta2 }
+        <label>Toiseksi tulleen hinta</label>
+        <p class="Mt-0">${ kilpailutus.tarjoushinta2 ? kilpailutus.tarjoushinta2 : '-' }</p>
       </div>
     </div>
   </section>
