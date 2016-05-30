@@ -2,7 +2,7 @@ import {Api} from 'services/api';
 import {HttpClient} from 'aurelia-fetch-client';
 import {inject} from 'aurelia-framework';
 import R from 'ramda';
-import Moment from 'moment';
+import moment from 'moment';
 import 'moment/locale/fi';
 
 @inject(Api, HttpClient)
@@ -19,13 +19,13 @@ export class Kilpailutus {
       this.api.getKilpailutus(params.id).then(data => {
         this.kilpailutus = data;
         this.kilpailutus.organisaatio = R.find(R.propEq('id', this.kilpailutus.id), this.organisaatiot);
-        this.kilpailutus.julkaisupvm = Moment(this.kilpailutus.julkaisupvm).format('dd DD.MM.YYYY');
-        this.kilpailutus.tarjouspaattymispvm = Moment(this.kilpailutus.tarjouspaattymispvm).format('dd DD.MM.YYYY');
-        this.kilpailutus.hankintapaatospvm = Moment(this.kilpailutus.hankintapaatospvm).format('dd DD.MM.YYYY');
-        this.kilpailutus.liikennointialoituspvm = Moment(this.kilpailutus.liikennointialoituspvm).format('dd DD.MM.YYYY');
-        this.kilpailutus.liikennointipaattymispvm = Moment(this.kilpailutus.liikennointipaattymispvm).format('dd DD.MM.YYYY');
-        this.kilpailutus.hankittuoptiopaattymispvm = Moment(this.kilpailutus.hankittuoptiopaattymispvm).format('dd DD.MM.YYYY');
-        this.kilpailutus.optiopaattymispvm = Moment(this.kilpailutus.optiopaattymispvm).format('dd DD.MM.YYYY');
+        this.kilpailutus.julkaisupvm = moment(this.kilpailutus.julkaisupvm).format('dd DD.MM.YYYY');
+        this.kilpailutus.tarjouspaattymispvm = moment(this.kilpailutus.tarjouspaattymispvm).format('dd DD.MM.YYYY');
+        this.kilpailutus.hankintapaatospvm = moment(this.kilpailutus.hankintapaatospvm).format('dd DD.MM.YYYY');
+        this.kilpailutus.liikennointialoituspvm = moment(this.kilpailutus.liikennointialoituspvm).format('dd DD.MM.YYYY');
+        this.kilpailutus.liikennointipaattymispvm = moment(this.kilpailutus.liikennointipaattymispvm).format('dd DD.MM.YYYY');
+        this.kilpailutus.hankittuoptiopaattymispvm = moment(this.kilpailutus.hankittuoptiopaattymispvm).format('dd DD.MM.YYYY');
+        this.kilpailutus.optiopaattymispvm = moment(this.kilpailutus.optiopaattymispvm).format('dd DD.MM.YYYY');
       });
     });
   }
