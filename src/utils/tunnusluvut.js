@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import * as c from 'utils/core';
+import R from 'ramda';
 
 export function isSopimustyyppi(tunnuslukutyyppi) {
   return _.includes(['BR', 'KOS', 'SA', 'ME'], tunnuslukutyyppi);
@@ -88,6 +89,21 @@ export function laskeTayttoasteType(tunnusluvut, tyyppi) {
   else if (tayttoaste > 20) result = 'warning';
   return result;
 }
+
+export function getGroupKeys(groupIndex, data) {
+  return R.sort((a, b) => {
+    return a - b;
+  }, R.uniq(R.map(item => {
+    return item[groupIndex];
+  }, R.tail(data))));
+}
+
+export function getOrganisaatioNames(groupKeys, organisaatiot) {
+  return R.map(key => {
+    return R.find(R.propEq('id', key))(organisaatiot).nimi;
+  }, groupKeys);
+}
+
 const maksimipisteet = {
   TTYT: 17,
   BR: 94,
