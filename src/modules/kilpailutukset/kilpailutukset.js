@@ -1,3 +1,4 @@
+import {Api} from 'services/api';
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {I18N} from 'aurelia-i18n';
 import {inject} from 'aurelia-framework';
@@ -14,10 +15,11 @@ import * as tl from 'utils/tunnusluvut';
 import R from 'ramda';
 import 'wnumb';
 
-@inject(EventAggregator, HttpClient, I18N, Router)
+@inject(Api, EventAggregator, HttpClient, I18N, Router)
 export class Kilpailutukset {
 
-  constructor(eventAggregator, http, i18n, router) {
+  constructor(api, eventAggregator, http, i18n, router) {
+    this.api = api;
     this.ea = eventAggregator;
     this.i18n = i18n;
     this.router = router;
@@ -118,25 +120,13 @@ export class Kilpailutukset {
       }
     };
 
-    http.configure(config => {
-      config
-        .useStandardConfiguration()
-        .withBaseUrl('api/')
-        .withInterceptor({
-          request: function(request) {
-            request.headers.set('x-xsrf-token', 'juku');
-            return request;
-          }
-        });
-    });
     this.http = http;
-    this.http.fetch('organisaatiot')
-      .then(response => response.json())
-      .then(data => {
-        this.organisaatiot = data;
-        this.timeline.organisaatiot = data;
-        this.valitutOrganisaatiot = R.map(R.prop('id'), this.organisaatiot);
-      });
+
+    this.api.organisaatiot.then(data => {
+      this.organisaatiot = data;
+      this.timeline.organisaatiot = data;
+      this.valitutOrganisaatiot = R.map(R.prop('id'), this.organisaatiot);
+    });
 
     this.ea.subscribe('kalustokoko-slider-update', params => {
       this.currentKalustokoko = R.clone(this.kalustokoko);
@@ -196,33 +186,31 @@ export class Kilpailutukset {
     const showKilpailutuskausi = (date) => showKausi(this.isKilpailutuskausiChecked, date);
     const showLiikennointikausi = (date) => showKausi(this.isLiikennointikausiChecked, date);
 
-    this.http.fetch('kilpailutukset')
-      .then(response => response.json())
-      .then(data => {
-        this.kilpailutukset = _.map(data, kilpailutus => {
-          const dates = [
-            showKilpailutuskausi(kilpailutus.julkaisupvm),
-            showKilpailutuskausi(kilpailutus.tarjouspaattymispvm),
-            showKilpailutuskausi(kilpailutus.hankintapaatospvm),
-            kilpailutus.liikennointialoituspvm,
-            showLiikennointikausi(kilpailutus.liikennointipaattymispvm),
-            showLiikennointikausi(c.coalesce(kilpailutus.hankittuoptiopaattymispvm, kilpailutus.liikennointipaattymispvm)),
-            showLiikennointikausi(kilpailutus.optiopaattymispvm)];
+    this.api.kilpailutukset.then(data => {
+      this.kilpailutukset = _.map(data, kilpailutus => {
+        const dates = [
+          showKilpailutuskausi(kilpailutus.julkaisupvm),
+          showKilpailutuskausi(kilpailutus.tarjouspaattymispvm),
+          showKilpailutuskausi(kilpailutus.hankintapaatospvm),
+          kilpailutus.liikennointialoituspvm,
+          showLiikennointikausi(kilpailutus.liikennointipaattymispvm),
+          showLiikennointikausi(c.coalesce(kilpailutus.hankittuoptiopaattymispvm, kilpailutus.liikennointipaattymispvm)),
+          showLiikennointikausi(kilpailutus.optiopaattymispvm)];
 
-          const maxdate = _.max(dates);
+        const maxdate = _.max(dates);
 
-          if (c.isBlank(maxdate)) {
-            throw new Error('Kilpailutuksella ' + kilpailutus.id + ' ei ole yhtään päivämäärää.');
-          }
+        if (c.isBlank(maxdate)) {
+          throw new Error('Kilpailutuksella ' + kilpailutus.id + ' ei ole yhtään päivämäärää.');
+        }
 
-          kilpailutus.dates = _.map(dates, (date, index) => t.toLocalMidnight(c.isNotBlank(date) ?
-            date :
-            c.coalesce(_.find(_.slice(dates, index), c.isNotBlank), maxdate)));
+        kilpailutus.dates = _.map(dates, (date, index) => t.toLocalMidnight(c.isNotBlank(date) ?
+          date :
+          c.coalesce(_.find(_.slice(dates, index), c.isNotBlank), maxdate)));
 
-          return kilpailutus;
-        });
-        this.filterTimelineKilpailutukset();
+        return kilpailutus;
       });
+      this.filterTimelineKilpailutukset();
+    });
   }
 
   onOrganisaatioListChange() { return this.filterTimelineOrganisaatiot(); }
