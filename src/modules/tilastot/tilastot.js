@@ -20,7 +20,7 @@ export class Tilastot {
     this.ea = eventAggregator;
   }
 
-  bind() {
+  bind() {
     this.subscription = this.ea.subscribe('router:navigation:success', router => {
       this.fragment = router.instruction.config.navModel.relativeHref;
       this.pageTitle = router.instruction.config.title;

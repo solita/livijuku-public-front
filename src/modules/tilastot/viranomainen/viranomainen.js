@@ -11,7 +11,7 @@ export class Viranomainen {
     this.viranomainen = null;
   }
 
-  bind() {
+  bind() {
     this.subscription = this.ea.subscribe('router:navigation:success', router => {
       this.viranomainen = router.instruction.params.childRoute || 'ALL';
       this.tunnuslukuPageUrl = `modules/tilastot/${router.instruction.config.name}/${router.instruction.config.name}`;

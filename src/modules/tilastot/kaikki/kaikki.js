@@ -1,5 +1,4 @@
 import {Api} from 'services/api';
-import {Cookie} from 'aurelia-cookie';
 import {inject} from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {HttpClient} from 'aurelia-fetch-client';

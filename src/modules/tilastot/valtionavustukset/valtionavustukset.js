@@ -1,7 +1,6 @@
 import {Api} from 'services/api';
 import {I18N} from 'aurelia-i18n';
 import {inject} from 'aurelia-framework';
-import {Cookie} from 'aurelia-cookie';
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {HttpClient} from 'aurelia-fetch-client';
 import {Router} from 'aurelia-router';
@@ -46,7 +45,7 @@ export class Valtionavustukset {
   }
 
   activate(model) {
-    this.api.organisaatiot.then(data => {
+    this.api.organisaatiot.then(organisaatiot => {
       this.organisaatiot = data;
       this.viranomainen = model;
       this.api.getAvustukset(this.viranomainen).then(data => {

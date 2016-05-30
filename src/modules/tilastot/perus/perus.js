@@ -1,7 +1,6 @@
 import {Api} from 'services/api';
 import {I18N} from 'aurelia-i18n';
 import {inject} from 'aurelia-framework';
-import {Cookie} from 'aurelia-cookie';
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {HttpClient} from 'aurelia-fetch-client';
 import {Router} from 'aurelia-router';
@@ -64,8 +63,8 @@ export class Perustunnusluvut {
   }
 
   activate(model) {
-    this.api.organisaatiot.then(data => {
-      this.organisaatiot = data;
+    this.api.organisaatiot.then(organisaatiot => {
+      this.organisaatiot = organisaatiot;
       this.viranomainen = model;
       this.api.getTyytyvaisyysJoukkoliikenteeseen(this.viranomainen).then(data => {
         let chartOpts = createGraph('Tyytyväisyys joukkoliikenteeseen', '%');
