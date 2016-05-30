@@ -29,7 +29,6 @@ export class Api {
   }
 
   getKilpailutus(id) {
-    console.info(id);
     return this.http.fetch('api/kilpailutus/' + id).then(response => response.json());
   }
 
