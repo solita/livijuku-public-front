@@ -21,7 +21,6 @@ module.exports = {
         "aurelia-animator-css",
         "aurelia-framework",
         "aurelia-bootstrapper",
-        "aurelia-cookie",
         "aurelia-fetch-client",
         "aurelia-history-browser",
         "aurelia-html-import-template-loader",
@@ -45,7 +44,8 @@ module.exports = {
         "i18next-xhr-backend",
         "aurelia-i18n",
         "text",
-        "fetch"
+        "fetch",
+        "intl"
       ],
       "options": {
         inject: true,
@@ -59,7 +59,6 @@ module.exports = {
         "jquery",
         "lodash",
         "ramda",
-        "mobile-detect",
         "wnumb",
         "leongersen/noUiSlider",
         "select2",
