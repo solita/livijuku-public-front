@@ -18,8 +18,8 @@
       id="tunnusluku-filter-form-${tunnuslukuIndex}-${$index}"
       name="tunnusluku-filter-form"
       class="form-inline tunnusluku-filter-form left Mb-md">
-      <div repeat.for="filter of chart.filters" class="left Me-md">
-        <h4 class="Mb-xs">${filter.nimi}</h4>
+      <div repeat.for="filter of chart.filters" class="left Me-xl">
+        <label class="block Mb-xxs">${filter.nimi}</label>
         <select id="tunnusluku-filter-form-${filter.id}" name.bind="filter.id" value.bind="filter.defaultValue" change.delegate="chartSelectTouched($parent.$index, filter.id)">
           <option value="" selected disabled>${ 'valitse-rajoite' | t }</option>
           <option value.bind="id" repeat.for="id of filter.values.$order">${filter.values[id]}</option>

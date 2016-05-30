@@ -21,8 +21,12 @@ h1 {
 h2 {
   font-size: 16px;
   font-weight: 700;
+  margin-top: map-get($spacerSizes, lg);
+  margin-bottom: map-get($spacerSizes, xs);
   @media screen and (min-width: map-get($breakpoints, sm)) {
     font-size: 18px;
+    font-weight: 600;
+
   }
   @media screen and (min-width: map-get($breakpoints, md)) {
     font-size: 24px;
@@ -55,7 +59,8 @@ p {
 }
 
 label {
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 input {
