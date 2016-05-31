@@ -59,7 +59,7 @@ export class Valtionavustukset {
             groupLabels: groupLabels,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('sum(rahamaara)', R.head(data)),
-            title: 'joukkoliikenteen-haetut-ja-myonnetut-avustukset',
+            title: this.i18n.tr('joukkoliikenteen-haetut-ja-myonnetut-avustukset'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
             },
@@ -76,7 +76,7 @@ export class Valtionavustukset {
           groupLabels: groupLabels,
           xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
           valueIndex: R.indexOf('haettavaavustus', R.head(data)),
-          title: 'haetut-avustukset-organisaatioittain',
+          title: this.i18n.tr('haetut-avustukset-organisaatioittain'),
           subtitle: {
             text: this.i18n.tr(this.viranomainen)
           },
@@ -91,7 +91,7 @@ export class Valtionavustukset {
           groupLabels: groupLabels,
           xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
           valueIndex: R.indexOf('myonnettyavustus', R.head(data)),
-          title: 'myonnetyt-avustukset-organisaatioittain',
+          title: this.i18n.tr('myonnetyt-avustukset-organisaatioittain'),
           subtitle: {
             text: this.i18n.tr(this.viranomainen)
           },
@@ -113,7 +113,7 @@ export class Valtionavustukset {
             groupLabels: groupLabels,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('myonnettyavustus_asukastakohti', R.head(data)),
-            title: 'myonnetty-avustus-per-asukas',
+            title: this.i18n.tr('myonnetty-avustus-per-asukas'),
             subtitle: this.viranomainen,
             height: 600
           })

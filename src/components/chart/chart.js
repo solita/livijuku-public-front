@@ -22,7 +22,7 @@ export class ChartCustomElement {
       d3.selectAll(this.element.getElementsByTagName('svg')[0].childNodes).remove();
     }
     this.draw(R.tail(setup.data), setup.options);
-    this.title = this.i18n.tr(setup.options.title);
+    this.title = setup.options.title;
     // this.subtitle = this.i18n.tr(options.subtitle);
   }
 

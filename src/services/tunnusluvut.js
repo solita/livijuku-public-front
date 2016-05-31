@@ -129,13 +129,13 @@ export class Tunnusluvut {
       }] : [];
     }
 
-    let createAlueTunnusluku = (id, desc, unit) => {
+    let createAlueTunnusluku = (id, unit) => {
       return {
         id: 'alue-' + id,
-        nimi: this.i18n.tr('alue-' + id),
+        nimi: this.i18n.tr('alue-') + this.i18n.tr(id),
         charts: [{
-          title: 'Alueen ' + this.i18n.tr(desc) + ' vuosittain tarkasteltuna',
-          yTitle: filter => unit,
+          title: 'Alueen ' + this.i18n.tr(id + '-gen') + ' vuosittain tarkasteltuna',
+          yTitle: filter => this.i18n.tr(unit),
           groupBy: ['organisaatioid', 'vuosi'],
           filters: [],
           options: createMultiBarChart(id, 'Vuosi')
@@ -223,7 +223,7 @@ export class Tunnusluvut {
         filters: [
           createFilter('Sopimustyyppi', sopimustyypit),
           createFilter('Tarkastelujakso', kuukaudet)],
-        options: createMultiBarChart('Kysyntä', 'Vuosi')
+        options: createMultiBarChart('kysynta', 'Vuosi')
       }, {
         title: this.i18n.tr('nousujen-lukumaara-kuukausitasolla'),
         yTitle: filter => {
@@ -232,7 +232,7 @@ export class Tunnusluvut {
         groupBy: ['organisaatioid', 'kuukausi'],
         filters: [
           createFilter('Sopimustyyppi', sopimustyypit)],
-        options: createLineChartKK('Kysyntä')
+        options: createLineChartKK('kysynta')
       }
     ]}, {
       id: 'lahdot',
@@ -244,14 +244,14 @@ export class Tunnusluvut {
         filters: [
           createFilter('Sopimustyyppi', sopimustyypit),
           createFilter('Tarkastelujakso', kuukaudet)],
-        options: createMultiBarChart('Tarjonta', 'Vuosi')
+        options: createMultiBarChart('tarjonta', 'Vuosi')
       }, {
         title: 'Lähtöjen lukumäärä kuukausitasolla',
         yTitle: filter => 'Lähdöt' + filterInfoText(filter) + ' / kuukausi',
         groupBy: ['organisaatioid', 'kuukausi'],
         filters: [
           createFilter('Sopimustyyppi', sopimustyypit)],
-        options: createLineChartKK('Tarjonta')
+        options: createLineChartKK('tarjonta')
       }]
     }, {
       id: 'linjakilometrit',
@@ -263,14 +263,14 @@ export class Tunnusluvut {
         filters: [
           createFilter('Sopimustyyppi', sopimustyypit),
           createFilter('Tarkastelujakso', kuukaudet)],
-        options: createMultiBarChart('Tarjonta', 'Vuosi')
+        options: createMultiBarChart('tarjonta', 'Vuosi')
       }, {
         title: 'Linjakilometrien lukumäärä kuukausitasolla',
         yTitle: filter => 'Linjakilometrit' + filterInfoText(filter) + ' / kuukausi',
         groupBy: ['organisaatioid', 'kuukausi'],
         filters: [
           createFilter('Sopimustyyppi', sopimustyypit)],
-        options: createLineChartKK('Tarjonta')
+        options: createLineChartKK('tarjonta')
       }]
     }, {
       id: 'nousut-viikko',
@@ -282,7 +282,7 @@ export class Tunnusluvut {
         filters: [
           createFilter('Sopimustyyppi', sopimustyypit),
           createFilter('Viikonpäivä', viikonpaivaluokat, 'A')],
-        options: createMultiBarChart('Kysyntä', 'Vuosi')
+        options: createMultiBarChart('kysynta', 'Vuosi')
       }, {
         title: 'Valitun vuoden talviliikenteen nousijat viikonpäiväluokittain (arkipäivänä/lauantaina/sunnuntaina)',
         yTitle: filter => 'Nousut' + filterInfoText(filter) + ' / päivä vuonna ' + filter.vuosi,
@@ -290,7 +290,7 @@ export class Tunnusluvut {
         filters: [
           createFilter('Vuosi', vuodet, '2016'),
           createFilter('Sopimustyyppi', sopimustyypit)],
-        options: createMultiBarChart('Kysyntä', 'Viikonpäiväluokka', viikonpaivaluokat)
+        options: createMultiBarChart('kysynta', 'Viikonpäiväluokka', viikonpaivaluokat)
       }]
     }, {
       id: 'lahdot-viikko',
@@ -302,7 +302,7 @@ export class Tunnusluvut {
         filters: [
           createFilter('Sopimustyyppi', sopimustyypit),
           createFilter('Viikonpäivä', viikonpaivaluokat, 'A')],
-        options: createMultiBarChart('Tarjonta', 'Vuosi')
+        options: createMultiBarChart('tarjonta', 'Vuosi')
       }, {
         title: 'Valitun vuoden talviliikenteen vuorotarjonta viikonpäiväluokittain',
         yTitle: filter => 'Lähdöt' + filterInfoText(filter) + ' / päivä vuonna ' + filter.vuosi,
@@ -310,7 +310,7 @@ export class Tunnusluvut {
         filters: [
           createFilter('Vuosi', vuodet, '2016'),
           createFilter('Sopimustyyppi', sopimustyypit)],
-        options: createMultiBarChart('Tarjonta', 'Viikonpäiväluokka', viikonpaivaluokat)
+        options: createMultiBarChart('tarjonta', 'Viikonpäiväluokka', viikonpaivaluokat)
       }]
     }, {
       id: 'linjakilometrit-viikko',
@@ -322,7 +322,7 @@ export class Tunnusluvut {
         filters: [
           createFilter('Sopimustyyppi', sopimustyypit),
           createFilter('Viikonpäivä', viikonpaivaluokat, 'A')],
-        options: createMultiBarChart('Tarjonta', 'Vuosi')
+        options: createMultiBarChart('tarjonta', 'Vuosi')
       }, {
         title: 'Valitun vuoden talviliikenteen linjakilometrit viikonpäiväluokittain (arkipäivänä/lauantaina/sunnuntaina)',
         yTitle: filter => 'Linjakilometrit' + filterInfoText(filter) + ' / päivä vuonna ' + filter.vuosi,
@@ -330,7 +330,7 @@ export class Tunnusluvut {
         filters: [
           createFilter('Vuosi', vuodet, '2016'),
           createFilter('Sopimustyyppi', sopimustyypit)],
-        options: createMultiBarChart('Tarjonta', 'Viikonpäiväluokka', viikonpaivaluokat)
+        options: createMultiBarChart('tarjonta', 'Viikonpäiväluokka', viikonpaivaluokat)
       }]
     }, {
       id: 'liikennointikorvaus',
@@ -342,14 +342,14 @@ export class Tunnusluvut {
         filters: [
           createFilter('Sopimustyyppi', sopimustyypit),
           createFilter('Tarkastelujakso', kuukaudet)],
-        options: createMultiBarChart('Liikennöintikorvaus', 'Vuosi')
+        options: createMultiBarChart('liikennointikorvaus', 'Vuosi')
       }, {
         title: 'Liikennöintikorvaus kuukausitasolla',
         yTitle: filter => 'Liikennöintikorvaus' + filterInfoText(filter) + ' / kuukausi',
         groupBy: ['organisaatioid', 'kuukausi'],
         filters: [
           createFilter('Sopimustyyppi', sopimustyypit)],
-        options: createLineChartKK('Liikennöintikorvaus')
+        options: createLineChartKK('liikennointikorvaus')
       }]
     }, {
       id: 'lipputulo',
@@ -362,7 +362,7 @@ export class Tunnusluvut {
           createFilter('Sopimustyyppi', sopimustyypit),
           createFilter('Lipputyyppi', lipputuloluokat),
           createFilter('Tarkastelujakso', kuukaudet)],
-        options: createMultiBarChart('Lipputulo', 'Vuosi')
+        options: createMultiBarChart('lipputulo', 'Vuosi')
       }, {
         title: 'Lipputulo kuukausitasolla',
         yTitle: filter => 'Lipputulo' + filterInfoText(filter) + ' / kuukausi',
@@ -370,7 +370,7 @@ export class Tunnusluvut {
         filters: [
           createFilter('Sopimustyyppi', sopimustyypit),
           createFilter('Lipputyyppi', lipputuloluokat)],
-        options: createLineChartKK('Lipputulo')
+        options: createLineChartKK('lipputulo')
       }]
     }, {
       id: 'kalusto',
@@ -382,7 +382,7 @@ export class Tunnusluvut {
         filters: [
           createFilter('Sopimustyyppi', sopimustyypit),
           createFilter('Päästöluokka', paastoluokat)],
-        options: createMultiBarChart('Kalusto', 'Vuosi')
+        options: createMultiBarChart('kalusto', 'Vuosi')
       }, {
         title: 'Kaluston lukumäärä päästöluokittain',
         yTitle: filter => 'Kaluston lukumäärä' + filterInfoText(filter) + ' vuonna ' + filter.vuosi,
@@ -390,7 +390,7 @@ export class Tunnusluvut {
         filters: [
           createFilter('Vuosi', vuodet, '2016'),
           createFilter('Sopimustyyppi', sopimustyypit)],
-        options: createMultiBarChart('Kalusto', 'Päästöluokka', paastoluokat)
+        options: createMultiBarChart('kalusto', 'Päästöluokka', paastoluokat)
       }]
     }, {
       id: 'kustannukset',
@@ -401,14 +401,14 @@ export class Tunnusluvut {
         groupBy: ['organisaatioid', 'vuosi'],
         filters: [
           createFilter('Kustannuslaji', kustannuslajit)],
-        options: createMultiBarChart('Kustannukset', 'Vuosi')
+        options: createMultiBarChart('kustannukset', 'Vuosi')
       }, {
         title: 'Vuoden kustannukset kustannuslajeittain',
         yTitle: filter => 'Kustannukset (€)' + filterInfoText(filter) + ' vuonna ' + filter.vuosi,
         groupBy: ['organisaatioid', 'kustannuslajitunnus'],
         filters: [
           createFilter('Vuosi', vuodet, '2016')],
-        options: createMultiBarChart('Kustannukset', 'Kustannuslaji', kustannuslajit)
+        options: createMultiBarChart('kustannukset', 'Kustannuslaji', kustannuslajit)
       }]
     }, {
       id: 'lippuhinnat',
@@ -420,7 +420,7 @@ export class Tunnusluvut {
         filters: [
           createFilter('Lipputyyppi', lippuhintaluokat, 'KE'),
           createFilter('Vyöhykemäärä', vyohykemaarat, '1')],
-        options: createMultiBarChart('Lippuhinnat', 'Vuosi')
+        options: createMultiBarChart('lippuhinnat', 'Vuosi')
       }, {
         title: 'Vuoden lippuhinnat vyöhykeittäin',
         yTitle: filter => 'Lippuhinta' + filterInfoText(filter) + ' €',
@@ -428,7 +428,7 @@ export class Tunnusluvut {
         filters: [
           createFilter('Vuosi', vuodet, '2016'),
           createFilter('Lipputyyppi', lippuhintaluokat, 'KE')],
-        options: createMultiBarChart('Lippuhinnat', 'Vyöhykemäärä', vyohykemaarat)
+        options: createMultiBarChart('lippuhinnat', 'Vyöhykemäärä', vyohykemaarat)
       }, {
         title: 'Vuoden lippuhinnat vyöhykeittäin ja lipputyypeittäin',
         yTitle: filter => undefined,
@@ -444,17 +444,17 @@ export class Tunnusluvut {
         }
       }]
     },
-      createAlueTunnusluku('kuntamaara', 'kuntien-lukumaara', 'Lukumäärä (kpl)'),
-      createAlueTunnusluku('vyohykemaara', 'vyohykkeiden-lukumaara', 'Lukumäärä (kpl)'),
-      createAlueTunnusluku('pysakkimaara', 'pysäkkien lukumäärä', 'Lukumäärä (kpl)'),
-      createAlueTunnusluku('maapintaala', 'maapintaala', 'Neliökilometri (km2)'),
-      createAlueTunnusluku('asukasmaara', 'asukkaiden lukumäärä', 'Lukumäärä (kpl)'),
-      createAlueTunnusluku('tyopaikkamaara', 'työpaikkojen lukumäärä', 'Lukumäärä (kpl)'),
-      createAlueTunnusluku('henkilosto', 'suunnittelun ja organisaation henkilöstö', 'Henkilötyövuotta'),
-      createAlueTunnusluku('pendeloivienosuus', 'pendelöivien osuus (oman kunnan ulkopuolella työssäkäynti)', 'Prosenttia työssäkäyvistä (%)'),
-      createAlueTunnusluku('henkiloautoliikennesuorite', 'henkilöautoliikennesuorite', 'Milj. km / vuosi'),
-      createAlueTunnusluku('autoistumisaste', 'autoistumisaste', 'Autoa (kpl) / 1000 asukasta'),
-      createAlueTunnusluku('asiakastyytyvaisyys', 'tyytyväisten joukkoliikenteen käyttäjien osuus', 'Prosenttia (%)')
+      createAlueTunnusluku('kuntamaara', 'lukumaara-kpl'),
+      createAlueTunnusluku('vyohykemaara', 'lukumaara-kpl'),
+      createAlueTunnusluku('pysakkimaara', 'lukumaara-kpl'),
+      createAlueTunnusluku('maapintaala', 'neliokilometri-km2'),
+      createAlueTunnusluku('asukasmaara', 'lukumaara-kpl'),
+      createAlueTunnusluku('tyopaikkamaara', 'lukumaara-kpl'),
+      createAlueTunnusluku('henkilosto', 'henkilotyovuotta'),
+      createAlueTunnusluku('pendeloivienosuus', 'prosenttia-tyossakayvista'),
+      createAlueTunnusluku('henkiloautoliikennesuorite', 'milj-km-vuosi'),
+      createAlueTunnusluku('autoistumisaste', 'autoa-kpl-1000-asukasta'),
+      createAlueTunnusluku('asiakastyytyvaisyys', 'prosenttia')
     ];
   }
 }

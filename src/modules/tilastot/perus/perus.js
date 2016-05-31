@@ -78,7 +78,7 @@ export class Perustunnusluvut {
             groupLabels: groupLabels,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('tunnusluku', R.head(data)),
-            title: 'tyytyvaisyys-joukkoliikenteeseen',
+            title: this.i18n.tr('tyytyvaisyys-joukkoliikenteeseen'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
             },
@@ -98,7 +98,7 @@ export class Perustunnusluvut {
             groupLabels: groupLabels,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('tunnusluku', R.head(data)),
-            title: 'matkustajamaarat',
+            title: this.i18n.tr('matkustajamaarat'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
             },
@@ -118,7 +118,7 @@ export class Perustunnusluvut {
             groupLabels: groupLabels,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('tunnusluku', R.head(data)),
-            title: 'lahtojen-maara',
+            title: this.i18n.tr('lahtojen-maara'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
             },
@@ -138,7 +138,7 @@ export class Perustunnusluvut {
             groupLabels: groupLabels,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('tunnusluku', R.head(data)),
-            title: 'linjakilometrit',
+            title: this.i18n.tr('linjakilometrit'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
             },
@@ -158,7 +158,7 @@ export class Perustunnusluvut {
             groupLabels: groupLabels,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('myonnettyavustus_asukastakohti', R.head(data)),
-            title: 'valtion-rahoitus-asukasta-kohden',
+            title: this.i18n.tr('valtion-rahoitus-asukasta-kohden'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
             },
@@ -178,7 +178,7 @@ export class Perustunnusluvut {
             groupLabels: groupLabels,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('myonnettyavustus_asukastakohti', R.head(data)),
-            title: 'toimivaltaisen-viranomaisen-omarahoitus-asukasta-kohden',
+            title: this.i18n.tr('toimivaltaisen-viranomaisen-omarahoitus-asukasta-kohden'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
             },
@@ -198,7 +198,7 @@ export class Perustunnusluvut {
             groupLabels: groupLabels,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('liikennointikorvaus.korvaus-lipputulo.total', R.head(data)),
-            title: 'psa-liikenteen-nettokustannukset',
+            title: this.i18n.tr('psa-liikenteen-nettokustannukset'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
             },
