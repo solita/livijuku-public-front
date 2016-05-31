@@ -27,6 +27,8 @@ module.exports = {
     "jspm_packages/npm/nvd3@1.8.3/build/nv.d3.css",
     "jspm_packages/npm/moment@2.13.0.js",
     "jspm_packages/npm/moment@2.13.0/moment.js",
-    "jspm_packages/npm/moment@2.13.0/locale/fi.js"
+    "jspm_packages/npm/moment@2.13.0/locale/fi.js",
+    "jspm_packages/npm/intl@1.2.3.js",
+    "jspm_packages/npm/intl@1.2.3/**/*"
   ]
 };

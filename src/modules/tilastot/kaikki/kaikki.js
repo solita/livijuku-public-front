@@ -37,7 +37,7 @@ export class Kaikki {
 
   chartSelectTouched(chartIndex, filterId) {
     let chart = this.selectedTunnusluku.charts[chartIndex];
-    this.fetchDataForChart('tilastot/' + this.selectedTunnusluku.id + '/' + this.viranomainen + this.generateDataUrl(chart), data => {
+    this.api.fetchDataForChart(`tilastot/${this.selectedTunnusluku.id}/${this.viranomainen}${this.generateDataUrl(chart)}`).then(data => {
       this.chartConfig = this.createChartConfig(chartIndex, data);
     });
   }
@@ -79,10 +79,6 @@ export class Kaikki {
     };
   }
 
-  fetchDataForChart(url, cb) {
-    return this.http.fetch(url).then(response => response.json()).then(cb);
-  }
-
   a = (chart) => {
     let result = '';
     let paramsArr = R.map(filter => {
@@ -110,7 +106,7 @@ export class Kaikki {
     this.selectedTunnusluku = this.tunnusluvut.tunnusluvut[this.tunnuslukuIndex - 1];
     if (this.selectedTunnusluku) {
       this.selectedTunnusluku.charts.forEach((chart, index) => {
-        this.fetchDataForChart('api/tilastot/' + this.selectedTunnusluku.id + '/' + this.viranomainen + this.generateDataUrl(chart), data => {
+        this.api.fetchDataForChart('tilastot/' + this.selectedTunnusluku.id + '/' + this.viranomainen + this.generateDataUrl(chart)).then(data => {
           this.chartConfig = this.createChartConfig(index, data);
         });
       });

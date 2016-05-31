@@ -45,7 +45,7 @@ export class Valtionavustukset {
   }
 
   activate(model) {
-    this.api.organisaatiot.then(organisaatiot => {
+    return this.api.organisaatiot.then(organisaatiot => {
       this.organisaatiot = organisaatiot;
       this.viranomainen = model;
       this.api.getAvustukset(this.viranomainen).then(data => {

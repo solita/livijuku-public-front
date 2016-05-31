@@ -6,58 +6,82 @@ export class Api {
 
   constructor(http) {
     this.http = http;
+    this.http.configure(config => {
+      config
+        .withBaseUrl('api/')
+        .withDefaults({
+          credentials: 'same-origin',
+          headers: {
+            'Accept': 'application/json',
+            'X-Requested-With': 'Fetch'
+          }
+        })
+        .withInterceptor({
+          request(request) {
+            request.headers.set('x-xsrf-token', 'guest');
+            return request;
+          },
+          response(response) {
+            return response.json();
+          }
+        });
+    });
+  }
+
+  fetchDataForChart(url) {
+    return this.http.fetch(url);
   }
 
   get kilpailutukset() {
-    return this.http.fetch('api/kilpailutukset').then(response => response.json());
+    return this.http.fetch('kilpailutukset');
   }
 
   get organisaatiot() {
-    return this.http.fetch('api/organisaatiot').then(response => response.json());
+    return this.http.fetch('organisaatiot');
   }
 
   getAvustukset(viranomainen) {
-    return this.http.fetch('api/avustus/' + viranomainen).then(response => response.json());
+    return this.http.fetch('avustus/' + viranomainen);
   }
 
   getAvustuksetOrganisaatioittain(viranomainen) {
-    return this.http.fetch('api/avustus-details/' + viranomainen).then(response => response.json());
+    return this.http.fetch('avustus-details/' + viranomainen);
   }
 
   getAvustusPerAsukas(viranomainen) {
-    return this.http.fetch('api/avustus-asukas/' + viranomainen).then(response => response.json());
+    return this.http.fetch('avustus-asukas/' + viranomainen);
   }
 
   getKilpailutus(id) {
-    return this.http.fetch('api/kilpailutus/' + id).then(response => response.json());
+    return this.http.fetch('kilpailutus/' + id);
   }
 
   getTyytyvaisyysJoukkoliikenteeseen(viranomainen) {
-    return this.http.fetch('api/tilastot/alue-asiakastyytyvaisyys/' + viranomainen + '?group-by=organisaatioid&group-by=vuosi').then(response => response.json());
+    return this.http.fetch('tilastot/alue-asiakastyytyvaisyys/' + viranomainen + '?group-by=organisaatioid&group-by=vuosi');
   }
 
   getMatkustajamaarat(viranomainen) {
-    return this.http.fetch('api/tilastot/nousut/' + viranomainen + '?group-by=organisaatioid&group-by=vuosi').then(response => response.json());
+    return this.http.fetch('tilastot/nousut/' + viranomainen + '?group-by=organisaatioid&group-by=vuosi');
   }
 
   getLahtojenMaara(viranomainen) {
-    return this.http.fetch('api/tilastot/lahdot/' + viranomainen + '?group-by=organisaatioid&group-by=vuosi').then(response => response.json());
+    return this.http.fetch('tilastot/lahdot/' + viranomainen + '?group-by=organisaatioid&group-by=vuosi');
   }
 
   getLinjakilometrit(viranomainen) {
-    return this.http.fetch('api/tilastot/linjakilometrit/' + viranomainen + '?group-by=organisaatioid&group-by=vuosi').then(response => response.json());
+    return this.http.fetch('tilastot/linjakilometrit/' + viranomainen + '?group-by=organisaatioid&group-by=vuosi');
   }
 
   getValtionRahoitusAsukastaKohden(viranomainen) {
-    return this.http.fetch('api/avustus-asukas/' + viranomainen).then(response => response.json());
+    return this.http.fetch('avustus-asukas/' + viranomainen);
   }
 
   getToimivaltaisenViranomaisenOmarahoitusAsukastaKohden(viranomainen) {
-    return this.http.fetch('api/omarahoitus-asukas/' + viranomainen).then(response => response.json());
+    return this.http.fetch('omarahoitus-asukas/' + viranomainen);
   }
 
   getPsaLiikenteenNettokustannukset(viranomainen) {
-    return this.http.fetch('api/psa-nettokustannus/' + viranomainen).then(response => response.json());
+    return this.http.fetch('psa-nettokustannus/' + viranomainen);
   }
 
 }
