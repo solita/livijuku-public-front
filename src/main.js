@@ -1,6 +1,7 @@
 import {EventManager} from 'aurelia-framework';
 import XHR from 'i18next-xhr-backend';
 
+
 export function configure(aurelia) {
   let eventManager = aurelia.container.get(EventManager);
   eventManager.registerElementConfig({
@@ -19,7 +20,7 @@ export function configure(aurelia) {
     instance.i18next.use(XHR);
 
     // adapt options to your needs (see http://i18next.com/docs/options/)
-    instance.setup({
+    return instance.setup({
       backend: {
         loadPath: 'locale/{{lng}}/{{ns}}.json'
       },
@@ -38,5 +39,5 @@ export function configure(aurelia) {
   //Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
   aurelia.use.plugin('aurelia-html-import-template-loader');
 
-  aurelia.start().then(() => aurelia.setRoot());
+  aurelia.start().then(a => a.setRoot());
 }

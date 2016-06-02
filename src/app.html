@@ -2,28 +2,28 @@
   <paper-drawer-panel id="panel" force-narrow right-drawer>
     <paper-header-panel drawer>
       <paper-toolbar>
-        <div class="f-left c-a">Valikko</div>
+        <div class="f-left c-a">${ 'valikko' & t }</div>
       </paper-toolbar>
       <paper-menu role="listbox">
         <a class="paper-item-link block" href="#/" tabindex="-1" click.delegate="onPanelItemClick()">
           <paper-item click.delegate="onPanelItemClick()">Etusivu</paper-item>
         </a>
         <hr/>
-        <p class="f-12 f-w-700 Mb-xs" style="padding-left: 16px;">${ 'tilastot' | t }</p>
+        <p class="f-12 f-w-700 Mb-xs" style="padding-left: 16px;">${ 'tilastot' & t }</p>
         <a class="paper-item-link block" href="#/tilastot/valtionavustukset/ALL" tabindex="-1" click.delegate="onPanelItemClick()">
-          <paper-item>${ 'valtionavustukset' | t }</paper-item>
+          <paper-item>${ 'valtionavustukset' & t }</paper-item>
         </a>
         <a class="paper-item-link block" href="#/tilastot/perus/ALL" tabindex="-1" click.delegate="onPanelItemClick()">
-          <paper-item click.delegate="onPanelItemClick()">${ 'perustunnusluvut' | t }</paper-item>
+          <paper-item click.delegate="onPanelItemClick()">${ 'perustunnusluvut' & t }</paper-item>
         </a>
         <a class="paper-item-link block" href="#/tilastot/kaikki" tabindex="-1" click.delegate="onPanelItemClick()">
           <paper-item click.delegate="onPanelItemClick()">
-            <span>${ 'kaikki-tunnusluvut' | t }</span>
+            <span>${ 'kaikki-tunnusluvut' & t }</span>
           </paper-item>
         </a>
         <hr/>
         <a class="paper-item-link block" href="#/kilpailutukset" tabindex="-1" click.delegate="onPanelItemClick()">
-          <paper-item click.delegate="onPanelItemClick()">${ 'kilpailutukset' | t }</paper-item>
+          <paper-item click.delegate="onPanelItemClick()">${ 'kilpailutukset' & t }</paper-item>
         </a>
       </paper-menu>
     </paper-header-panel>
@@ -38,11 +38,11 @@
         <nav class="hidden r-sm-block">
           <ul class="list-inline list-no-style left">
            <li repeat.for="route of router.navigation" class="left">
-             <a href.bind="route.href" class="Px-md Py-xs f-no-decoration c-w f-14 r-md-f-16 ${ route.isActive ? 'bg-c-c' : '' } ${ !$last ? 'Be-xs Be-solid B-c-c' : '' }">${ route.title }</a>
+             <a href.bind="route.href" class="Px-md Py-xs f-no-decoration c-w f-14 r-md-f-16 ${ route.isActive ? 'bg-c-c' : '' } ${ !$last ? 'Be-xs Be-solid B-c-c' : '' }">${ route.title & t }</a>
            </li>
           </ul>
         </nav>
-        <paper-button paper-drawer-toggle class="r-sm-hidden flex flex-ai-c f-13 right">${ 'valikko' | t } <iron-icon paper-drawer-toggle icon="menu"></iron-icon></paper-button>
+        <paper-button paper-drawer-toggle class="r-sm-hidden flex flex-ai-c f-13 right">${ 'valikko' & t } <iron-icon paper-drawer-toggle icon="menu"></iron-icon></paper-button>
       </paper-toolbar>
       <div class="content h-center">
         <router-view></router-view>

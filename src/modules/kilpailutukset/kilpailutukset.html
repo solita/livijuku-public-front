@@ -7,12 +7,12 @@
 
   <section class="w-max-1200 h-center Px-md Py-xl">
 
-    <h1>${ 'kilpailutukset' | t }</h1>
+    <h1>${ 'kilpailutukset' & t }</h1>
 
     <form is="iron-form" class="clearfix Mb-xl">
     	<div class="row">
         <div class="xs-12 sm-6 Ps-0 Pe-0 r-sm-Pe-1rem">
-          <label class="f-14">${ 'toimivaltainen-viranomainen' | t }
+          <label class="f-14">${ 'toimivaltainen-viranomainen' & t }
             <br/>
             <select select2.bind="organisaatioSelectOptions" value.bind="filter.organisaatiot" multiple="multiple" class="full-width My-md" change.trigger="onOrganisaatioListChange()">
               <option repeat.for="organisaatio of organisaatiot" value.bind="organisaatio.id">${organisaatio.nimi}</option>
@@ -20,7 +20,7 @@
           </label>
         </div>
         <div class="xs-12 sm-6 Pe-0 Ps-0 r-sm-Ps-1rem Mt-md r-sm-Mt-0">
-          <label class="f-14">${ 'toimivaltaryhma' | t }
+          <label class="f-14">${ 'toimivaltaryhma' & t }
             <br/>
             <select select2.bind="organisaatiolajiSelectOptions" value.bind="filter.organisaatiolajit" multiple="multiple" class="full-width My-md" change.trigger="onOrganisaatiolajiListChange()">
               <option repeat.for="organisaatiolaji of organisaatiolajit" value.bind="organisaatiolaji.id">${organisaatiolaji.nimi}</option>
@@ -28,22 +28,22 @@
           </label>
         </div>
         <div class="xs-12 sm-6 md-4 Ps-0 Mt-lg Pe-0 r-sm-Pe-1rem">
-          <label for="kohdearvo" class="f-14">${ 'kohteen-arvioitu-arvo' | t }</label>
+          <label for="kohdearvo" class="f-14">${ 'kohteen-arvioitu-arvo' & t }</label>
           <div class="clearfix">
             <no-ui-slider id="kohdearvo" options.bind="kohdearvo" class="left Ms-md My-xs w-095"></no-ui-slider>
           </div>
         </div>
         <div class="xs-12 sm-6 md-4 Ps-0 r-sm-Ps-1rem Mt-lg Pe-0 r-sm-Pe-1rem">
-          <label for="kalustokoko" class="f-14">${ 'kaluston-maara' | t }</label>
+          <label for="kalustokoko" class="f-14">${ 'kaluston-maara' & t }</label>
           <div class="clearfix">
             <no-ui-slider id="kalustokoko" options.bind="kalustokoko" class="left full-width Ms-md My-xs w-095"></no-ui-slider>
           </div>
         </div>
         <div class="xs-12 sm-6 md-4 Mt-lg Ps-0 r-md-Ps-1-rem">
-          <label class="f-14">${ 'aikajanalla-naytettava-ajanjakso' | t }</label>
+          <label class="f-14">${ 'aikajanalla-naytettava-ajanjakso' & t }</label>
           <div class="My-xs f-14">
-            <paper-toggle-button class="left Me-md" change.delegate="toggleKilpailukausi()" checked.two-way="isKilpailutuskausiChecked">${ 'kilpailutuskausi' | t }</paper-toggle-button>
-            <paper-toggle-button change.delegate="toggleLiikennointikausi()" checked.two-way="isLiikennointikausiChecked">${ 'liikennointikausi' | t }</paper-toggle-button>
+            <paper-toggle-button class="left Me-md" change.delegate="toggleKilpailukausi()" checked.two-way="isKilpailutuskausiChecked">${ 'kilpailutuskausi' & t }</paper-toggle-button>
+            <paper-toggle-button change.delegate="toggleLiikennointikausi()" checked.two-way="isLiikennointikausiChecked">${ 'liikennointikausi' & t }</paper-toggle-button>
           </div>
         </div>
       </div>

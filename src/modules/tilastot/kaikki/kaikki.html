@@ -2,9 +2,9 @@
 
   <require from="components/chart/chart"></require>
 
-  <paper-dropdown-menu label="${ 'tarkasteltava-tunnusluku' | t }" class="Pb-lg w-315">
+  <paper-dropdown-menu label="${ 'tarkasteltava-tunnusluku' & t }" class="Pb-lg w-315">
     <paper-listbox class="dropdown-content" selected.two-way="tunnuslukuIndex" iron-select.delegate="selectTunnusluku()">
-      <paper-item value="" selected disabled>${ 'valitse-tunnusluku' | t }</paper-item>
+      <paper-item value="" disabled>${ 'valitse-tunnusluku' & t }</paper-item>
       <template is="dom-repeat" items.two-way="tunnusluvut.tunnusluvut">
         <paper-item model="{{item}}">{{ item.nimi }}</paper-item>
       </template>
@@ -21,8 +21,9 @@
       <div repeat.for="filter of chart.filters" class="left Me-xl">
         <label class="block Mb-xxs">${filter.nimi}</label>
         <select id="tunnusluku-filter-form-${filter.id}" name.bind="filter.id" value.bind="filter.defaultValue" change.delegate="chartSelectTouched($parent.$index, filter.id)">
-          <option value="" selected disabled>${ 'valitse-rajoite' | t }</option>
-          <option value.bind="id" repeat.for="id of filter.values.$order">${filter.values[id]}</option>
+          <optgroup label="${ 'valitse-rajoite' & t }">
+            <option value.bind="id" repeat.for="id of filter.values.$order">${filter.values.$nimi(id)}</option>
+          </optgroup>
         </select>
       </div>
     </form>

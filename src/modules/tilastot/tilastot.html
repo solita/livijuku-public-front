@@ -1,11 +1,11 @@
 <template>
   <section class="Px-xxxl Py-xl">
-    <h1>${ pageTitle }</h1>
+    <h1>${ pageTitle & t }</h1>
     <nav class="Mb-md">
       <paper-dropdown-menu label="Toimivalta-alue" class="r-sm-hidden">
         <paper-listbox class="dropdown-content" selected.bind="childRouteIndex">
           <a repeat.for="route of router.navigation" class="paper-item-link" href="${ '#/' + $parent.fragment + '/' + route.settings.viranomainen }" tabindex="-1">
-            <paper-item>${ route.title }</paper-item>
+            <paper-item>${ route.title & t }</paper-item>
           </a>
         </paper-listbox>
       </paper-dropdown-menu>
@@ -14,7 +14,7 @@
           <ul class="list-no-style left h-center P-0 full-width">
             <li repeat.for="route of router.navigation" class="left ${ !$last ? 'Be-xs Be-solid B-c-a' : '' } ${ route.isActive ? 'bg-c-a c-w' : 'bg-c-w c-a' }">
               <a class="paper-item-link" href="${ '#/' + $parent.fragment + '/' + route.settings.viranomainen }" tabindex="-1">
-                <paper-item class="r-sm-f-14 r-md-f-16 r-sm-h-min-40 r-md-h-min-48 Px-sm2 r-md-Px-md bg-c-a012">${ route.title }</paper-item>
+                <paper-item class="r-sm-f-14 r-md-f-16 r-sm-h-min-40 r-md-h-min-48 Px-sm2 r-md-Px-md bg-c-a012">${ route.title & t }</paper-item>
               </a>
             </li>
           </ul>

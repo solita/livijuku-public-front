@@ -8,11 +8,11 @@ export class Tilastot {
   configureRouter(config, router) {
     config.title = 'Tilastot';
     config.map([
-      { route: ['', 'ALL'], moduleId: 'modules/tilastot/viranomainen/viranomainen', name: 'ALL', nav: true, title: this.i18n.tr('kaikki'), settings: { viranomainen: 'ALL'} },
-      { route: 'KS1', moduleId: 'modules/tilastot/viranomainen/viranomainen', name: 'KS1', nav: true, title: this.i18n.tr('suuret-kaupunkiseudut'), settings: { viranomainen: 'KS1'} },
-      { route: 'KS2', moduleId: 'modules/tilastot/viranomainen/viranomainen', name: 'KS2', nav: true, title: this.i18n.tr('keskisuuret-kaupunkiseudut'), settings: { viranomainen: 'KS2'} },
-      { route: 'KS3', moduleId: 'modules/tilastot/viranomainen/viranomainen', name: 'KS3', nav: true, title: this.i18n.tr('pienet-kaupunkiseudut'), settings: { viranomainen: 'KS3'} },
-      { route: 'ELY', moduleId: 'modules/tilastot/viranomainen/viranomainen', name: 'ELY', nav: true, title: this.i18n.tr('ELY-keskukset'), settings: { viranomainen: 'ELY'} }
+      { route: ['', 'ALL'], moduleId: 'modules/tilastot/viranomainen/viranomainen', name: 'ALL', nav: true, title: 'kaikki', settings: { viranomainen: 'ALL'} },
+      { route: 'KS1', moduleId: 'modules/tilastot/viranomainen/viranomainen', name: 'KS1', nav: true, title: 'suuret-kaupunkiseudut', settings: { viranomainen: 'KS1'} },
+      { route: 'KS2', moduleId: 'modules/tilastot/viranomainen/viranomainen', name: 'KS2', nav: true, title: 'keskisuuret-kaupunkiseudut', settings: { viranomainen: 'KS2'} },
+      { route: 'KS3', moduleId: 'modules/tilastot/viranomainen/viranomainen', name: 'KS3', nav: true, title: 'pienet-kaupunkiseudut', settings: { viranomainen: 'KS3'} },
+      { route: 'ELY', moduleId: 'modules/tilastot/viranomainen/viranomainen', name: 'ELY', nav: true, title: 'ELY-keskukset', settings: { viranomainen: 'ELY'} }
     ]);
     this.router = router;
   }
