@@ -71,7 +71,7 @@ export class Tunnusluvut {
     };
 
     let vuodet = {
-      $order: _.range(2013, 2017).reverse(),
+      $order: _.range(2013, new Date().getFullYear() + 1).reverse(),
       $nimi: _.identity,
       $id: 'vuosi'
     };
@@ -391,24 +391,6 @@ export class Tunnusluvut {
           createFilter('Vuosi', vuodet, '2016'),
           createFilter('Sopimustyyppi', sopimustyypit)],
         options: createMultiBarChart('kalusto', 'Päästöluokka', paastoluokat)
-      }]
-    }, {
-      id: 'kustannukset',
-      nimi: this.i18n.tr('kustannukset'),
-      charts: [{
-        title: 'Kustannukset vuosittain tarkasteltuna',
-        yTitle: filter => 'Kustannukset' + filterInfoText(filter) + ' € / vuosi',
-        groupBy: ['organisaatioid', 'vuosi'],
-        filters: [
-          createFilter('Kustannuslaji', kustannuslajit)],
-        options: createMultiBarChart('kustannukset', 'Vuosi')
-      }, {
-        title: 'Vuoden kustannukset kustannuslajeittain',
-        yTitle: filter => 'Kustannukset (€)' + filterInfoText(filter) + ' vuonna ' + filter.vuosi,
-        groupBy: ['organisaatioid', 'kustannuslajitunnus'],
-        filters: [
-          createFilter('Vuosi', vuodet, '2016')],
-        options: createMultiBarChart('kustannukset', 'Kustannuslaji', kustannuslajit)
       }]
     }, {
       id: 'lippuhinnat',
