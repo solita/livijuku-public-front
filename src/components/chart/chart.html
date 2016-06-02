@@ -4,6 +4,7 @@
   <div if.bind="setup" class="chart left full-width bg-c-w Mb-md">
     <h4 class="f-center f-uppercase">${ title }</h4>
     <p class="f-center">${ subtitle }</p>
-    <svg height.bind="height" class="Mx-md"></svg>
+    <!-- hard coded because of IE 11 -->
+    <svg height.bind="height" class="Mx-md" style="height: 500px;"></svg>
   </div>
 </template>
