@@ -1,10 +1,14 @@
+.f-shadow-1-1-w {
+  text-shadow: 1px 1px map-get($baseColors, w);
+}
+
 #mainContainer {
   display: flex;
   flex-direction: column;
 }
 
 .front-page-hero {
-  background-image: url(../images/juku_header_bg_tre2.jpg);
+  background-image: url(../images/linja-autobg2.jpg);
 }
 
 .paper-toolbar-0 .toolbar-tools.paper-toolbar .title {
@@ -213,6 +217,10 @@ paper-scroll-header-panel > #headerContainer {
 
 .w-100 {
   width: 100px;
+}
+
+.w-200 {
+  width: 200px;
 }
 
 .w-315 {

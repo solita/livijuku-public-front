@@ -21,8 +21,8 @@ h1 {
 h2 {
   font-size: 16px;
   font-weight: 700;
-  margin-top: map-get($spacerSizes, lg);
-  margin-bottom: map-get($spacerSizes, xs);
+  margin-top: map-get($spacerSizes, md);
+  margin-bottom: map-get($spacerSizes, md);
   @media screen and (min-width: map-get($breakpoints, sm)) {
     font-size: 18px;
     font-weight: 600;
@@ -47,8 +47,8 @@ h3 {
 }
 
 p, ul {
+  font-weight: 300;
   font-size: 12px;
-  font-weight: 400;
   @media screen and (min-width: map-get($breakpoints, sm)) {
     font-size: 14px;
   }
@@ -86,7 +86,9 @@ select {
 chart {
   float: left;
   width: 100%;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid map-get($baseColors, i);
+  border-bottom: 1px solid map-get($baseColors, i);;
   padding: map-get($spacerSizes, xl);
+  padding-bottom: map-get($spacerSizes, xxl);
   background-color: #ffffff;
 }
