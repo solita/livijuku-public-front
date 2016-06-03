@@ -1,3 +1,27 @@
+.w-095 {
+  width: 95%;
+}
+
+.w-100 {
+  width: 100px;
+}
+
+.w-200 {
+  width: 200px;
+}
+
+.w-315 {
+  width: 315px;
+}
+
+.w-min-100vw {
+  min-width: 100vw;
+}
+
+.h-min-100vh {
+  min-height: 100vh;
+}
+
 .f-shadow-1-1-w {
   text-shadow: 1px 1px map-get($baseColors, w);
 }
@@ -8,7 +32,13 @@
 }
 
 .front-page-hero {
-  background-image: url(../images/linja-autobg2.jpg);
+  @media screen and (min-width: map-get($breakpoints, lg)) {
+    height: 640px;
+    overflow: hidden;
+    img {
+      width: 2500px;
+    }
+  }
 }
 
 .paper-toolbar-0 .toolbar-tools.paper-toolbar .title {
@@ -65,11 +95,31 @@ paper-scroll-header-panel > #headerContainer {
   background-repeat: no-repeat;
 }
 
+.w-max-1 {
+  max-width: 100%;
+}
+
 .w-max-1200 {
   max-width: 1200px;
 }
 
+@media screen and (min-width: map-get($breakpoints, qs)) {
+  .r-qs-26 {
+    font-size: 26px;
+  }
+  .r-qs-f-16 {
+    font-size: map-get($typographySizes, 16);
+  }
+  .r-qs-w-315 {
+    width: 315px;
+  }
+}
+
 @media screen and (min-width: map-get($breakpoints, sm)) {
+  .r-sm-My-0 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
   .r-sm-Mt-0 {
     margin-top: 0;
   }
@@ -88,6 +138,9 @@ paper-scroll-header-panel > #headerContainer {
   .r-sm-flex-d-r {
     flex-direction: row;
   }
+  .r-sm-flex-d-rr {
+    flex-direction: row-reverse;
+  }
   .r-sm-f-left {
     text-align: left;
   }
@@ -97,14 +150,20 @@ paper-scroll-header-panel > #headerContainer {
   .r-sm-f-14 {
     font-size: map-get($typographySizes, 14);
   }
-  .r-sm-f-16 {
-    font-size: map-get($typographySizes, 16);
-  }
   .r-sm-h-min-40 {
     min-height: 40px;
   }
   .r-sm-h-300 {
     height: 300px;
+  }
+  .r-sm-f-32 {
+    font-size: 32px;
+  }
+  .r-sm-Ms-xxxl {
+    margin-left: map-get($spacerSizes, xxxl);
+  }
+  .r-sm-Me-xxxl {
+    margin-right: map-get($spacerSizes, xxxl);
   }
 }
 
@@ -127,6 +186,9 @@ paper-scroll-header-panel > #headerContainer {
   .r-md-f-16 {
     font-size: map-get($typographySizes, 16);
   }
+  .r-md-f-18 {
+    font-size: 18px;
+  }
   .r-md-h-min-48 {
     min-height: 48px;
   }
@@ -136,6 +198,12 @@ paper-scroll-header-panel > #headerContainer {
   }
   .r-md-h-400 {
     height: 400px;
+  }
+  .r-md-f-40 {
+    font-size: 40px;
+  }
+  .r-md-f-48 {
+    font-size: 48px;
   }
 }
 
@@ -150,6 +218,9 @@ paper-scroll-header-panel > #headerContainer {
   .r-lg-Px-md {
     padding-left: map-get($spacerSizes, md);
     padding-right: map-get($spacerSizes, md);
+  }
+  .r-lg-f-54 {
+    font-size: 54px;
   }
 }
 
@@ -209,30 +280,6 @@ paper-scroll-header-panel > #headerContainer {
   @media screen and (min-width: map-get($breakpoints, sm)) {
     text-align: left;
   }
-}
-
-.w-095 {
-  width: 95%;
-}
-
-.w-100 {
-  width: 100px;
-}
-
-.w-200 {
-  width: 200px;
-}
-
-.w-315 {
-  width: 315px;
-}
-
-.w-min-100vw {
-  min-width: 100vw;
-}
-
-.h-min-100vh {
-  min-height: 100vh;
 }
 
 .cursor-pointer:hover {

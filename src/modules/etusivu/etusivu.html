@@ -1,33 +1,45 @@
 <template>
-  <div class="front-page-hero full-width r-sm-h-300 r-md-h-400 bg-size-cover">
-    <div class="w-max-1200 h-center Px-md flex flex-ai-c full-height">
-      <p class="c-f f-32 f-center f-shadow-1-1-w">${ 'front-page-chapter-1' & t }</p>
+  <div class="front-page-hero full-width bg-size-cover relative">
+    <img src="../images/linja-autobg2_1280.jpg" class="w-max-1" />
+    <div class="h-center Px-md flex flex-ai-c full-height absolute t-0">
+      <p class="c-f f-18 r-qs-26 r-sm-f-32 r-md-f-48 r-lg-f-54 f-center f-shadow-1-1-w Px-md">${ 'front-page-chapter-1' & t }</p>
     </div>
   </div>
   <article class="r-lg-Px-0">
-    <div class="P-lg" style="background-color: #ff8a3c;">
+    <div class="P-lg bg-c-j">
       <div class="w-max-1200 h-center Px-md">
-        <p class="c-w">Joukkoliikenteen valtionrahoituksen tilastot kattavat Liikenneviraston suurille ja keskisuurille kaupunkiseuduille sekä ELY-keskuksille myöntämän joukkoliikennetuen. Tunnusluvut tarjoavat valtakunnallista perustietoa joukkoliikenteen kysynnästä ja tarjonnasta sekä niiden kehittymisestä. Tunnusluvut kattavat joukkoliikenteen toimivaltaisten viranomaisten hankkiman liikenteen sekä markkinaehtoisen liikenteen reittiluvista saatava tiedot. Tunnuslukupalvelun tavoitteena on valtakunnallisen ja alueellisen avoimen joukkoliikennetiedon tuottaminen.</p>
-        <ul class="c-w list-no-style M-0 P-0">
-          <li><a href="#/tilastot/valtionavustukset" class="c-w f-no-decoration f-w-600">Valtionavustukset</a></li>
-          <li><a href="#/tilastot/perus" class="c-w f-no-decoration f-w-600">Perustunnusluvut</a></li>
-          <li><a href="#/tilastot/kaikki" class="c-w f-no-decoration f-w-600">Kaikki tunnusluvut</a></li>
-        </ul>
-        <ul class="c-w list-no-style Mt-md Mx-0 P-0">
-          <li><a class="c-w f-no-decoration f-w-600" href="http://www.liikennevirasto.fi/liikennejarjestelma/henkiloliikenne/joukkoliikenne">Lue lisää liikenneviraston ja toimivaltaisten viranomaisten roolista valtakunnallisessa joukkoliikenteessä &raquo;</a></li>
-          <li><a class="c-w f-no-decoration f-w-600" href="http://www.liikennevirasto.fi/documents/20473/23545/TVV-kartta.pdf/e432d675-81f1-49f9-96f3-4e911a1479d4">Toimivaltaiset viranomaiset kartalla &raquo;</a></li>
-        </ul>
+        <div class="flex flex-d-c r-sm-flex-d-r flex-ai-c Py-xxxl">
+          <img src="../images/juku-img-chart-white-01.svg" class="w-200 r-qs-w-315 r-sm-Me-xxxl Mb-xl r-sm-My-0" />
+          <div>
+            <p class="c-w f-14 r-qs-f-16 r-md-f-18">Joukkoliikenteen valtionrahoituksen tilastot kattavat Liikenneviraston suurille ja keskisuurille kaupunkiseuduille sekä ELY-keskuksille myöntämän joukkoliikennetuen. Tunnusluvut tarjoavat valtakunnallista perustietoa joukkoliikenteen kysynnästä ja tarjonnasta sekä niiden kehittymisestä. Tunnusluvut kattavat joukkoliikenteen toimivaltaisten viranomaisten hankkiman liikenteen sekä markkinaehtoisen liikenteen reittiluvista saatava tiedot. Tunnuslukupalvelun tavoitteena on valtakunnallisen ja alueellisen avoimen joukkoliikennetiedon tuottaminen.</p>
+            <ul class="c-w list-no-style M-0 P-0 f-14 r-qs-f-16 r-md-f-18">
+              <li><a href="#/tilastot/valtionavustukset" class="c-w f-no-decoration f-w-600">Valtionavustukset</a></li>
+              <li><a href="#/tilastot/perus" class="c-w f-no-decoration f-w-600">Perustunnusluvut</a></li>
+              <li><a href="#/tilastot/kaikki" class="c-w f-no-decoration f-w-600">Kaikki tunnusluvut</a></li>
+            </ul>
+            <ul class="c-w list-no-style Mt-md Mx-0 P-0 f-14 r-qs-f-16 r-md-f-18">
+              <li><a class="c-w f-no-decoration f-w-600" href="http://www.liikennevirasto.fi/liikennejarjestelma/henkiloliikenne/joukkoliikenne">Liikenneviraston ja toimivaltaisten viranomaisten rooli valtakunnallisessa joukkoliikenteessä &raquo;</a></li>
+              <li><a class="c-w f-no-decoration f-w-600" href="http://www.liikennevirasto.fi/documents/20473/23545/TVV-kartta.pdf/e432d675-81f1-49f9-96f3-4e911a1479d4">Toimivaltaiset viranomaiset kartalla &raquo;</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="P-lg" style="background-color: #64be47;">
+    <div class="P-lg bg-c-k">
       <div class="w-max-1200 h-center Px-md">
-        <p class="c-w">${ 'front-page-chapter-3' & t }</p>
+        <div class="flex flex-d-c r-sm-flex-d-rr flex-ai-c Py-xxxl">
+          <img src="../images/juku-img-buses-white-02.svg" class="w-200 r-qs-w-315 r-sm-Ms-xxxl Mb-xl r-sm-My-0" />
+          <div>
+            <p class="c-w f-14 r-qs-f-16 r-md-f-18">${ 'front-page-chapter-3' & t }</p>
+            <p class="c-w f-14 r-qs-f-16 r-md-f-18"><a href="#/kilpailutukset" class="c-w f-no-decoration f-w-600">${ 'kilpailutukset' & t }</a></p>
+          </div>
+        </div>
       </div>
     </div>
   </article>
   <div class="h-200 Py-xl">
     <div class="flex flex-jc-c flex-d-c">
-      <p class="f-12 f-center f-w-700">Oletko joukkoliikenteen toimivaltainen viranomainen?</p>
+      <p class="f-14 r-qs-f-16 r-md-f-18 f-center f-w-700 Mx-md Mb-xl">Oletko joukkoliikenteen toimivaltainen viranomainen?</p>
       <div class="h-center">
         <paper-button class="bg-c-a c-w Mb-xl Px-md">Kirjaudu JUKU-palveluun</paper-button>
       <div>
