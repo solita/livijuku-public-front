@@ -44,9 +44,14 @@
         </nav>
         <paper-button paper-drawer-toggle class="r-sm-hidden flex flex-ai-c f-13 right">${ 'valikko' & t } <iron-icon paper-drawer-toggle icon="menu"></iron-icon></paper-button>
       </paper-toolbar>
-      <div class="content h-center">
+      <div class="content h-center flex-1 full-width">
         <router-view></router-view>
       </div>
+      <footer class="flex flex-jc-c flex-d-c flex-ai-c bg-c-f Px-xl" style="min-height: 200px;">
+        <div class="Bb-xs Bb-solid B-c-g full-width">
+          <img src="../images/livi-logo.png" class="block h-center Py-xl" style="-webkit-filter: brightness(2);" />
+        </div>
+      </footer>
     </paper-scroll-header-panel>
   </paper-drawer-panel>
 </template>

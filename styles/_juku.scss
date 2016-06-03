@@ -1,3 +1,12 @@
+#mainContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.front-page-hero {
+  background-image: url(../images/juku_header_bg_tre2.jpg);
+}
+
 .paper-toolbar-0 .toolbar-tools.paper-toolbar .title {
   pointer-events: auto;
 }
@@ -44,6 +53,10 @@ paper-scroll-header-panel > #headerContainer {
   background-size: contain;
 }
 
+.bg-size-cover {
+  background-size: cover;
+}
+
 .bg-repeat-0 {
   background-repeat: no-repeat;
 }
@@ -86,6 +99,9 @@ paper-scroll-header-panel > #headerContainer {
   .r-sm-h-min-40 {
     min-height: 40px;
   }
+  .r-sm-h-300 {
+    height: 300px;
+  }
 }
 
 @media screen and (min-width: map-get($breakpoints, md)) {
@@ -113,6 +129,9 @@ paper-scroll-header-panel > #headerContainer {
   .r-md-Px-md {
     padding-left: map-get($spacerSizes, md);
     padding-right: map-get($spacerSizes, md);
+  }
+  .r-md-h-400 {
+    height: 400px;
   }
 }
 

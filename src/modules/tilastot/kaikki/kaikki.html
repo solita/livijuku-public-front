@@ -2,31 +2,35 @@
 
   <require from="components/chart/chart"></require>
 
-  <paper-dropdown-menu label="${ 'tarkasteltava-tunnusluku' & t }" class="Pb-lg w-315">
-    <paper-listbox class="dropdown-content" selected.two-way="tunnuslukuIndex" iron-select.delegate="selectTunnusluku()">
-      <paper-item value="" disabled>${ 'valitse-tunnusluku' & t }</paper-item>
-      <template is="dom-repeat" items.two-way="tunnusluvut.tunnusluvut">
-        <paper-item model="{{item}}">{{ item.nimi }}</paper-item>
-      </template>
-    </paper-listbox>
-  </paper-dropdown-menu>
+  <div class="w-max-1200 h-center Px-md">
+    <paper-dropdown-menu label="${ 'tarkasteltava-tunnusluku' & t }" class="Pb-lg w-315">
+      <paper-listbox class="dropdown-content" selected.two-way="tunnuslukuIndex" iron-select.delegate="selectTunnusluku()">
+        <paper-item value="" disabled>${ 'valitse-tunnusluku' & t }</paper-item>
+        <template is="dom-repeat" items.two-way="tunnusluvut.tunnusluvut">
+          <paper-item model="{{item}}">{{ item.nimi }}</paper-item>
+        </template>
+      </paper-listbox>
+    </paper-dropdown-menu>
+  </div>
 
-  <div if.bind="selectedTunnusluku" class="Py-xl" repeat.for="chart of selectedTunnusluku.charts">
-    <h2>${ chart.title }</h2>
+  <div if.bind="selectedTunnusluku" class="bg-c-h clearfix" repeat.for="chart of selectedTunnusluku.charts">
+    <div class="w-max-1200 h-center Px-md Py-md clearfix">
+      <h2>${ chart.title }</h2>
 
-    <form
-      id="tunnusluku-filter-form-${tunnuslukuIndex}-${$index}"
-      name="tunnusluku-filter-form"
-      class="form-inline tunnusluku-filter-form left Mb-md">
-      <div repeat.for="filter of chart.filters" class="left Me-xl">
-        <label class="block Mb-xxs">${filter.nimi}</label>
-        <select id="tunnusluku-filter-form-${filter.id}" name.bind="filter.id" value.bind="filter.defaultValue" change.delegate="chartSelectTouched($parent.$index, filter.id)">
-          <optgroup label="${ 'valitse-rajoite' & t }">
-            <option value.bind="id" repeat.for="id of filter.values.$order">${filter.values.$nimi(id)}</option>
-          </optgroup>
-        </select>
-      </div>
-    </form>
+      <form
+        id="tunnusluku-filter-form-${tunnuslukuIndex}-${$index}"
+        name="tunnusluku-filter-form"
+        class="form-inline tunnusluku-filter-form left Mb-md">
+        <div repeat.for="filter of chart.filters" class="left Me-xl">
+          <label class="block Mb-xxs">${filter.nimi}</label>
+          <select id="tunnusluku-filter-form-${filter.id}" name.bind="filter.id" value.bind="filter.defaultValue" change.delegate="chartSelectTouched($parent.$index, filter.id)">
+            <optgroup label="${ 'valitse-rajoite' & t }">
+              <option value.bind="id" repeat.for="id of filter.values.$order">${filter.values.$nimi(id)}</option>
+            </optgroup>
+          </select>
+        </div>
+      </form>
+    </div>
 
     <chart if.bind="chartConfigs[$index]" setup.bind="chartConfigs[$index]"></chart>
   </div>
