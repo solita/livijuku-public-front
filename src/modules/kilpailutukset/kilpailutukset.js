@@ -149,19 +149,22 @@ export class Kilpailutukset {
   }
 
   filterTimelineOrganisaatiot = () => {
-    let findOrganisaatiotInLajit = lajitunnukset => {
-      return _.isEmpty(lajitunnukset) ? [] :
-        _.filter(this.organisaatiot, org => _.includes(lajitunnukset, org.lajitunnus));
-    };
-    let organisaatiolajitunnukset = this.filter.organisaatiolajit;
-    let organisaatiot = _.unionBy(
-      R.map(this.findOrganisaatioById, this.filter.organisaatiot), findOrganisaatiotInLajit(organisaatiolajitunnukset),
-      org => org.id);
-    if (_.isEmpty(organisaatiot)) {
-      this.timeline.organisaatiot = this.organisaatiot;
-    } else {
-      this.timeline.organisaatiot = organisaatiot;
-    }
+    // TODO: This is for Firefox. Fix this ugly Select2 related hacking.
+    setTimeout(() => {
+      let findOrganisaatiotInLajit = lajitunnukset => {
+        return _.isEmpty(lajitunnukset) ? [] :
+          _.filter(this.organisaatiot, org => _.includes(lajitunnukset, org.lajitunnus));
+      };
+      let organisaatiolajitunnukset = this.filter.organisaatiolajit;
+      let organisaatiot = _.unionBy(
+        R.map(this.findOrganisaatioById, this.filter.organisaatiot), findOrganisaatiotInLajit(organisaatiolajitunnukset),
+        org => org.id);
+      if (_.isEmpty(organisaatiot)) {
+        this.timeline.organisaatiot = this.organisaatiot;
+      } else {
+        this.timeline.organisaatiot = organisaatiot;
+      }
+    });
   }
 
   filterTimelineKilpailutukset = () => {
