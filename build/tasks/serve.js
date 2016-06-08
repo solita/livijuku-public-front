@@ -52,7 +52,7 @@ gulp.task('serve', ['build'], function(done) {
   browserSync({
     online: false,
     open: false,
-    port: 9000,
+    port: 48200,
     server: {
       baseDir: ['.'],
       middleware: [function(req, res, next) {
@@ -70,7 +70,7 @@ gulp.task('serve-bundle', ['bundle'], function(done) {
   browserSync({
     online: false,
     open: false,
-    port: 9000,
+    port: 48200,
     server: {
       baseDir: ['.'],
       middleware: function(req, res, next) {

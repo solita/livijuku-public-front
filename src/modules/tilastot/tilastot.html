@@ -9,16 +9,14 @@
           </a>
         </paper-listbox>
       </paper-dropdown-menu>
-      <div class="flex flex-d-c">
-        <div class="hidden r-sm-block">
-          <ul class="list-no-style left h-center P-0 full-width">
-            <li repeat.for="route of router.navigation" class="left ${ !$last ? 'Be-xs Be-solid B-c-a' : '' } ${ route.isActive ? 'bg-c-a c-w' : 'bg-c-w c-a' }">
-              <a class="paper-item-link" href="${ '#/' + $parent.fragment + '/' + route.settings.viranomainen }" tabindex="-1">
-                <paper-item class="r-sm-f-14 r-md-f-16 r-sm-h-min-40 r-md-h-min-48 Px-sm2 r-md-Px-md bg-c-a012">${ route.title & t }</paper-item>
-              </a>
-            </li>
-          </ul>
-        </div>
+      <div class="clearfix hidden r-sm-block">
+        <ul class="list-no-style left h-center P-0 full-width">
+          <li repeat.for="route of router.navigation" class="left">
+            <a class="block ${ route.isActive ? 'bg-c-a c-w' : 'bg-c-a012 c-a' } ${ !$last ? 'Be-xs Be-solid B-c-a' : '' } f-no-decoration Px-md Py-sm r-sm-f-14 r-md-f-16 Px-sm2 r-md-Px-md" href="${ '#/' + $parent.fragment + '/' + route.settings.viranomainen }">
+              ${ route.title & t }
+            </a>
+          </li>
+        </ul>
       </div>
     </nav>
   </section>

@@ -1,34 +1,86 @@
 <template>
-  <paper-drawer-panel id="panel" force-narrow right-drawer>
-    <paper-header-panel drawer>
-      <paper-toolbar>
-        <div class="f-left c-a">${ 'valikko' & t }</div>
-      </paper-toolbar>
+  <div class="h-min-100vh">
+    <div class="block r-sm-hidden full-width anim-1 h-320 z-100 fixed ${ isMenuOpen && (isScrollingUp || lastScrollTop <= 60) ? 'Mt-60' : 'Mt--320' }" style="box-shadow: 0 2px 2px #666;">
       <paper-menu role="listbox">
-        <a class="paper-item-link block" href="#/" tabindex="-1" click.delegate="onPanelItemClick()">
-          <paper-item click.delegate="onPanelItemClick()">Etusivu</paper-item>
+        <a class="paper-item-link block" href="#/" tabindex="-1" click.delegate="closeMenu()">
+          <paper-item click.delegate="closeMenu()">Etusivu</paper-item>
         </a>
         <hr/>
         <p class="f-12 f-w-700 Mb-xs" style="padding-left: 16px;">${ 'tilastot' & t }</p>
-        <a class="paper-item-link block" href="#/tilastot/valtionavustukset/ALL" tabindex="-1" click.delegate="onPanelItemClick()">
+        <a class="paper-item-link block" href="#/tilastot/valtionavustukset/ALL" tabindex="-1" click.delegate="closeMenu()">
           <paper-item>${ 'valtionavustukset' & t }</paper-item>
         </a>
-        <a class="paper-item-link block" href="#/tilastot/perus/ALL" tabindex="-1" click.delegate="onPanelItemClick()">
-          <paper-item click.delegate="onPanelItemClick()">${ 'perustunnusluvut' & t }</paper-item>
+        <a class="paper-item-link block" href="#/tilastot/perus/ALL" tabindex="-1" click.delegate="closeMenu()">
+          <paper-item click.delegate="closeMenu()">${ 'perustunnusluvut' & t }</paper-item>
         </a>
-        <a class="paper-item-link block" href="#/tilastot/kaikki" tabindex="-1" click.delegate="onPanelItemClick()">
-          <paper-item click.delegate="onPanelItemClick()">
+        <a class="paper-item-link block" href="#/tilastot/kaikki" tabindex="-1" click.delegate="closeMenu()">
+          <paper-item click.delegate="closeMenu()">
             <span>${ 'kaikki-tunnusluvut' & t }</span>
           </paper-item>
         </a>
         <hr/>
-        <a class="paper-item-link block" href="#/kilpailutukset" tabindex="-1" click.delegate="onPanelItemClick()">
-          <paper-item click.delegate="onPanelItemClick()">${ 'kilpailutukset' & t }</paper-item>
+        <a class="paper-item-link block" href="#/kilpailutukset" tabindex="-1" click.delegate="closeMenu()">
+          <paper-item click.delegate="closeMenu()">${ 'kilpailutukset' & t }</paper-item>
         </a>
       </paper-menu>
-    </paper-header-panel>
+    </div>
+    <div class="fixed h-60 r-sm-h-63 r-md-h-70 z-100 full-width anim-1 ${ !isScrollingUp && lastScrollTop > 60 ? 'Mt--60 r-sm-Mt--63 r-md-Mt--70' : '' }">
+      <nav class="flex flex-ai-c flex-jc-sb bg-c-a Px-md Py-xs">
+        <div class="title">
+          <a class="paper-item-link app block" href="#/" tabindex="-1" click.delegate="closeMenu()">
+            <img src="images/juku_logo_white.svg" class="block h-35" />
+          </a>
+        </div>
+        <ul class="list-inline list-no-style left hidden r-sm-block">
+         <li repeat.for="route of router.navigation" class="left">
+           <a href.bind="route.href" class="Px-md Py-xs f-no-decoration c-w f-14 r-md-f-16 ${ route.isActive ? 'bg-c-c' : '' } ${ !$last ? 'Be-xs Be-solid B-c-c' : '' }">${ route.title & t }</a>
+         </li>
+        </ul>
+        <paper-button class="r-sm-hidden flex flex-ai-c c-w f-13 right" click.delegate="toggleMenu()">${ 'valikko' & t } <iron-icon paper-drawer-toggle icon="menu"></iron-icon></paper-button>
+      </nav>
+    </div>
+    <div class="Pt-60 r-sm-Pt-63 r-md-Pt-70 h-min-100vh" click.delegate="closeMenu()">
+      <router-view></router-view>
+    </div>
+    <footer class="bg-c-l Px-xl">
+      <div class="Bb-xs Bb-solid B-c-g full-width">
+        <a href="http://www.liikennevirasto.fi/" class="h-center block Py-xl" style="width: 136px;">
+          <img src="images/liikennevirasto_logo_2x.png" class="w-max-1" />
+        </a>
+      </div>
+    </footer>
+  </div>
 
-    <paper-scroll-header-panel main>
+  <!-- <paper-drawer-panel id="panel" force-narrow right-drawer> -->
+    <!-- <paper-header-panel drawer>
+      <paper-toolbar>
+        <div class="f-left c-a">${ 'valikko' & t }</div>
+      </paper-toolbar>
+      <paper-menu role="listbox">
+        <a class="paper-item-link block" href="#/" tabindex="-1" click.delegate="closeMenu()">
+          <paper-item click.delegate="closeMenu()">Etusivu</paper-item>
+        </a>
+        <hr/>
+        <p class="f-12 f-w-700 Mb-xs" style="padding-left: 16px;">${ 'tilastot' & t }</p>
+        <a class="paper-item-link block" href="#/tilastot/valtionavustukset/ALL" tabindex="-1" click.delegate="closeMenu()">
+          <paper-item>${ 'valtionavustukset' & t }</paper-item>
+        </a>
+        <a class="paper-item-link block" href="#/tilastot/perus/ALL" tabindex="-1" click.delegate="closeMenu()">
+          <paper-item click.delegate="closeMenu()">${ 'perustunnusluvut' & t }</paper-item>
+        </a>
+        <a class="paper-item-link block" href="#/tilastot/kaikki" tabindex="-1" click.delegate="closeMenu()">
+          <paper-item click.delegate="closeMenu()">
+            <span>${ 'kaikki-tunnusluvut' & t }</span>
+          </paper-item>
+        </a>
+        <hr/>
+        <a class="paper-item-link block" href="#/kilpailutukset" tabindex="-1" click.delegate="closeMenu()">
+          <paper-item click.delegate="closeMenu()">${ 'kilpailutukset' & t }</paper-item>
+        </a>
+      </paper-menu>
+    </paper-header-panel> -->
+
+    <!-- <paper-scroll-header-panel main>
       <paper-toolbar>
         <div class="flex title">
           <a class="paper-item-link app block" href="#/" tabindex="-1">
@@ -44,16 +96,9 @@
         </nav>
         <paper-button paper-drawer-toggle class="r-sm-hidden flex flex-ai-c f-13 right">${ 'valikko' & t } <iron-icon paper-drawer-toggle icon="menu"></iron-icon></paper-button>
       </paper-toolbar>
-      <div class="content h-center flex-1 full-width">
-        <router-view></router-view>
-      </div>
-      <footer class="flex flex-jc-c flex-d-c flex-ai-c bg-c-f Px-xl" style="min-height: 200px;">
-        <div class="Bb-xs Bb-solid B-c-g full-width">
-          <a href="http://www.liikennevirasto.fi/">
-            <img src="images/livi-logo.png" class="block h-center Py-xl" style="-webkit-filter: brightness(2);" />
-          </a>
-        </div>
-      </footer>
+      <div class="content full-width relative"> -->
+      <!-- <router-view></router-view> -->
+      <!-- </div>
     </paper-scroll-header-panel>
-  </paper-drawer-panel>
+  </paper-drawer-panel> -->
 </template>

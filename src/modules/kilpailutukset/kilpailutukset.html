@@ -5,7 +5,7 @@
   <require from="components/noUiSlider/noUiSlider"></require>
   <require from="components/timeline/timeline"></require>
 
-  <section class="w-max-1200 h-center Px-md Py-xl">
+  <section class="w-max-1200 h-center clearfix h-min-100vh Px-md Pt-xl">
 
     <h1>${ 'kilpailutukset' & t }</h1>
 
@@ -52,7 +52,7 @@
     <div class="clearfix Mb-md">
       <div repeat.for="label of labels" class="left Mb-xs" style="width: 300px;">
         <div class="flex flex-ai-c f-12">
-          <div style="background-color: ${label.color}; width: 20px; height: 20px; border: ${ label.border ? label.border : '' }">
+          <div class="w-20 h-20" css="background-color:${label.color};border:${label.border}">
             &nbsp;
           </div>
           <div class="Ms-xs Me-xl">${ label.text }</div>
