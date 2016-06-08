@@ -75,19 +75,24 @@ export class Kilpailutukset {
 
     this.labels = [{
       text: this.i18n.tr('tarjousaika'),
-      color: '#3385D6'
+      color: '#3385D6',
+      border: 'none'
     }, {
       text: this.i18n.tr('tarjousten-kasittely-ja-hankintapaatos'),
-      color: '#C266EB'
+      color: '#C266EB',
+      border: 'none'
     }, {
       text: this.i18n.tr('liikennoinnin-valmistelu'),
-      color: '#FFA033'
+      color: '#FFA033',
+      border: 'none'
     }, {
       text: this.i18n.tr('liikennointi-sopimuskausi'),
-      color: '#33BB33'
+      color: '#33BB33',
+      border: 'none'
     }, {
       text: this.i18n.tr('hankitut-optiot'),
-      color: '#66CCD6'
+      color: '#66CCD6',
+      border: 'none'
     }, {
       text: this.i18n.tr('optiot-kokonaisuudessaan'),
       color: '#cfeff2',

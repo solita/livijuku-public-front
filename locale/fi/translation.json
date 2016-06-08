@@ -7,7 +7,7 @@
   "asukasmaara": "Asukasmäärä",
   "asukasmaara-gen": "asukkaiden lukumäärä",
   "autoa-kpl-1000-asukasta": "Autoa (kpl) / 1000 asukasta",
-  "autoistumisaste": "autoistumisaste",
+  "autoistumisaste": "Autoistumisaste",
   "autoistumisaste-gen": "autoistumisaste",
   "avustukset-organisaatioittain": "avustukset organisaatioittain",
 
@@ -17,7 +17,8 @@
 
   "front-page-chapter-1": "Liikenneviraston JUKU-palvelusta löydät monipuolista tietoa joukkoliikenteen valtionrahoituksesta ja tunnusluvuista.",
   "front-page-chapter-2": "Joukkoliikenteen valtionrahoituksen tilastot kattavat Liikenneviraston suurille ja keskisuurille kaupunkiseuduille sekä ELY-keskuksille myöntämän joukkoliikennetuen. Tunnusluvut tarjoavat valtakunnallista perustietoa joukkoliikenteen kysynnästä ja tarjonnasta sekä niiden kehittymisestä. Tunnusluvut kattavat joukkoliikenteen toimivaltaisten viranomaisten hankkiman liikenteen sekä markkinaehtoisen liikenteen reittiluvista saatava tiedot. Tunnuslukupalvelun tavoitteena on valtakunnallisen ja alueellisen avoimen joukkoliikennetiedon tuottaminen.",
-  "front-page-chapter-3": "Tieto tulevista kilpailutuksista ja nykyisistä liikennöintisopimuksista on tarkoitettu liikenteenharjoittajille ja joukkoliikenteen toimivaltaisille viranomaisille, jotka voivat hyödyntää tietoa omassa toiminnansuunnittelussaan. Tavoitteena on, että kilpailutuksien aikataulu pystyttäisiin suunnittelemaan valtakunnallisesti ja alueellisesti järkevällä tavalla ja kilpailutukset jakautuisivat ajallisesti tasaisemmin. Liikenteenharjoittajille kilpailutusrekisteri tarjoaa valtakunnallisen näkymän tulossa oleviin kilpailutuksiin. Tunnuslukujen ja kilpailutusrekisterin tiedot ovat joukkoliikenteen toimivaltaisten viranomaisten tuottamia, eikä Liikennevirasto valvo niiden oikeellisuutta. Kilpailutusrekisterin tieto kilpailutuksista ei korvaa virallisia kilpailuttamisasiakirjoja.",
+  "front-page-chapter-3A": "Tieto tulevista kilpailutuksista ja nykyisistä liikennöintisopimuksista on tarkoitettu liikenteenharjoittajille ja joukkoliikenteen toimivaltaisille viranomaisille, jotka voivat hyödyntää tietoa omassa toiminnansuunnittelussaan. Tavoitteena on, että kilpailutuksien aikataulu pystyttäisiin suunnittelemaan valtakunnallisesti ja alueellisesti järkevällä tavalla ja kilpailutukset jakautuisivat ajallisesti tasaisemmin.",
+  "front-page-chapter-3B": "Liikenteenharjoittajille kilpailutusrekisteri tarjoaa valtakunnallisen näkymän tulossa oleviin kilpailutuksiin. Tunnuslukujen ja kilpailutusrekisterin tiedot ovat joukkoliikenteen toimivaltaisten viranomaisten tuottamia, eikä Liikennevirasto valvo niiden oikeellisuutta. Kilpailutusrekisterin tieto kilpailutuksista ei korvaa virallisia kilpailuttamisasiakirjoja.",
 
   "haetut": "Haetut",
   "haetut-avustukset-organisaatioittain": "Haetut avustukset organisaatioittain",

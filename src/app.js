@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 export class App {
 
   configureRouter(config, router) {
@@ -13,8 +15,27 @@ export class App {
     this.router = router;
   }
 
-  onPanelItemClick() {
-    document.querySelector('#panel').togglePanel();
+  constructor() {
+    this.isMenuOpen = false;
+    this.isScrollingUp = false;
+    this.lastScrollTop = 0;
+  }
+
+  attached() {
+    let self = this;
+    $(window).scroll(function() {
+      let scrollTop = $(this).scrollTop();
+      self.isScrollingUp = scrollTop < self.lastScrollTop;
+      self.lastScrollTop = scrollTop;
+    });
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;
     return true;
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

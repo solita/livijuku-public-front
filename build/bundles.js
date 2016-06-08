@@ -45,23 +45,13 @@ module.exports = {
         "aurelia-i18n",
         "text",
         "fetch",
-        "intl"
-      ],
-      "options": {
-        inject: true,
-        minify: true,
-        depCache: false,
-        rev: false
-      }
-    },
-    "dist/vendor": {
-      includes: [
+        "intl",
         "jquery",
         "lodash",
         "ramda",
         "wnumb",
         "leongersen/noUiSlider",
-        "select2",
+        "select2"
       ],
       "options": {
         inject: true,
