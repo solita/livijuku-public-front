@@ -328,7 +328,7 @@ System.config({
     }
   },
   bundles: {
-    "app-build-34054e0039.js": [
+    "app-build-9a6577a720.js": [
       "app.html!github:systemjs/plugin-text@0.0.4.js",
       "app.js",
       "blur-image.js",
