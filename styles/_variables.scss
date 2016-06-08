@@ -25,7 +25,8 @@ $baseColors: (
   j: #FFA033,
   k: #33BB33,
   l: #444444,
-  w: #ffffff  // white
+  w: #ffffff,  // white
+  w08: rgba(#ffffff, 0.8)
 );
 
 $breakpoints: (xs: 320px, qs: 480px,  sm: 768px, md: 1024px, lg: 1280px);

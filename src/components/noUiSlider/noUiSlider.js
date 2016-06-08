@@ -23,6 +23,9 @@ export class NoUiSliderCustomElement {
 
     slider.on('update', (values, handle) => {
       snapValues[handle].innerHTML = values[handle];
+    });
+
+    slider.on('end', (values, handle) => {
       this.ea.publish(this.id + '-slider-update', {
         start: values,
         handle: handle

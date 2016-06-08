@@ -51,6 +51,7 @@
   "kuukausi": "kuukausi",
   "kysynta": "Kysyntä",
 
+  "ladataan-kilpailutuksia": "Ladataan kilpailutuksia",
   "lahdot": "Lähdöt",
   "lahdot-paiva": "Lähdöt (päivä)",
   "lahtojen-maara": "Lähtöjen määrä",
@@ -89,6 +90,9 @@
   "psa-liikenteen-nettokustannukset": "PSA-liikenteen nettokustannukset (kunnan ja valtion maksama subventio)",
   "pysakkimaara": "Pysäkkimäärä",
   "pysakkimaara-gen": "pysäkkien lukumäärä",
+
+  "ohjeet-aikajanan-zoomaamiseksi": "Voit zoomata aikajanaa hiiren rullalla. Aikajanan vieritys onnistuu liikuttamalla hiirtä vasen nappi pohjassa.",
+  "ohjeet-kilpailutusten-filtteroimiseksi": "Käytä yllä olevia filttereitä nähdäksesi kilpailutustietoja.",
 
   "suodata-aikajanaa-valitsemalla-toimivaltaryhmia": "Suodata aikajanaa valitsemalla toimivaltaryhmiä",
   "suodata-aikajanaa-valitsemalla-viranomaisia": "Suodata aikajanaa valitsemalla viranomaisia",
