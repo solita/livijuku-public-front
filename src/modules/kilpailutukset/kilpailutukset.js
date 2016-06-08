@@ -24,6 +24,7 @@ export class Kilpailutukset {
     this.i18n = i18n;
     this.router = router;
 
+    this.lastFetch = null;
     this.timeline = {};
 
     this.filter = {
@@ -136,16 +137,14 @@ export class Kilpailutukset {
     this.ea.subscribe('kalustokoko-slider-update', params => {
       this.currentKalustokoko = R.clone(this.kalustokoko);
       this.currentKalustokoko.start = R.map(value => { return parseInt(value, 10); }, params.start);
-      this.filterTimelineKilpailutukset();
+      this.loadKilpailutukset();
     });
 
     this.ea.subscribe('kohdearvo-slider-update', params => {
       this.currentKohdearvo = R.clone(this.kohdearvo);
       this.currentKohdearvo.start = R.map(value => { return parseFloat(value); }, params.start);
-      this.filterTimelineKilpailutukset();
+      this.loadKilpailutukset();
     });
-
-    this.loadKilpailutukset();
   }
 
   findOrganisaatioById = (id) => {
@@ -154,6 +153,9 @@ export class Kilpailutukset {
   }
 
   filterTimelineOrganisaatiot = () => {
+    if (!this.lastFetch || (moment() - this.lastFetch) / 1000 / 60 > 1) {
+      this.loadKilpailutukset();
+    }
     // TODO: This is for Firefox. Fix this ugly Select2 related hacking.
     setTimeout(() => {
       let findOrganisaatiotInLajit = lajitunnukset => {
@@ -194,31 +196,37 @@ export class Kilpailutukset {
     const showKilpailutuskausi = (date) => showKausi(this.isKilpailutuskausiChecked, date);
     const showLiikennointikausi = (date) => showKausi(this.isLiikennointikausiChecked, date);
 
-    this.api.kilpailutukset.then(data => {
-      this.kilpailutukset = _.map(data, kilpailutus => {
-        const dates = [
-          showKilpailutuskausi(kilpailutus.julkaisupvm),
-          showKilpailutuskausi(kilpailutus.tarjouspaattymispvm),
-          showKilpailutuskausi(kilpailutus.hankintapaatospvm),
-          kilpailutus.liikennointialoituspvm,
-          showLiikennointikausi(kilpailutus.liikennointipaattymispvm),
-          showLiikennointikausi(c.coalesce(kilpailutus.hankittuoptiopaattymispvm, kilpailutus.liikennointipaattymispvm)),
-          showLiikennointikausi(kilpailutus.optiopaattymispvm)];
+    // Let's fetch the data if we have no data or if the data has been fetch over 1 minute ago
+    if (!this.lastFetch || (moment() - this.lastFetch) / 1000 / 60 > 1) {
+      this.api.kilpailutukset.then(data => {
+        this.lastFetch = moment();
+        this.kilpailutukset = _.map(data, kilpailutus => {
+          const dates = [
+            showKilpailutuskausi(kilpailutus.julkaisupvm),
+            showKilpailutuskausi(kilpailutus.tarjouspaattymispvm),
+            showKilpailutuskausi(kilpailutus.hankintapaatospvm),
+            kilpailutus.liikennointialoituspvm,
+            showLiikennointikausi(kilpailutus.liikennointipaattymispvm),
+            showLiikennointikausi(c.coalesce(kilpailutus.hankittuoptiopaattymispvm, kilpailutus.liikennointipaattymispvm)),
+            showLiikennointikausi(kilpailutus.optiopaattymispvm)];
 
-        const maxdate = _.max(dates);
+          const maxdate = _.max(dates);
 
-        if (c.isBlank(maxdate)) {
-          throw new Error('Kilpailutuksella ' + kilpailutus.id + ' ei ole yhtään päivämäärää.');
-        }
+          if (c.isBlank(maxdate)) {
+            throw new Error('Kilpailutuksella ' + kilpailutus.id + ' ei ole yhtään päivämäärää.');
+          }
 
-        kilpailutus.dates = _.map(dates, (date, index) => t.toLocalMidnight(c.isNotBlank(date) ?
-          date :
-          c.coalesce(_.find(_.slice(dates, index), c.isNotBlank), maxdate)));
+          kilpailutus.dates = _.map(dates, (date, index) => t.toLocalMidnight(c.isNotBlank(date) ?
+            date :
+            c.coalesce(_.find(_.slice(dates, index), c.isNotBlank), maxdate)));
 
-        return kilpailutus;
+          return kilpailutus;
+        });
+        this.filterTimelineKilpailutukset();
       });
+    } else {
       this.filterTimelineKilpailutukset();
-    });
+    }
   }
 
   onOrganisaatioListChange() { return this.filterTimelineOrganisaatiot(); }

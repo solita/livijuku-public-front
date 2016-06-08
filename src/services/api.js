@@ -5,6 +5,7 @@ import {HttpClient} from 'aurelia-fetch-client';
 export class Api {
 
   constructor(http) {
+    let self = this;
     this.http = http;
     this.http.configure(config => {
       config
@@ -18,10 +19,12 @@ export class Api {
         })
         .withInterceptor({
           request(request) {
+            self.isLoading = true;
             request.headers.set('x-xsrf-token', 'guest');
             return request;
           },
           response(response) {
+            self.isLoading = false;
             return response.json();
           }
         });
