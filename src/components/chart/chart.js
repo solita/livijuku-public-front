@@ -138,6 +138,11 @@ export class ChartCustomElement {
 
         chart.noData(this.i18n.tr('ei-dataa-saatavilla'));
 
+        chart.controlLabels({
+          grouped: this.i18n.tr('ryhmitelty'),
+          stacked: this.i18n.tr('pinottu')
+        });
+
         if (chartOptions.height) {
           this.height = chartOptions.height;
           chart.height(chartOptions.height);
