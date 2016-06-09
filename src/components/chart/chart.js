@@ -90,6 +90,8 @@ export class ChartCustomElement {
 
         chart.options(chartOptions);
 
+        chart.noData(this.i18n.tr('ei-dataa-saatavilla'));
+
         if (chartOptions.height) {
           this.height = chartOptions.height + 50;
           chart.height(chartOptions.height);
@@ -133,6 +135,8 @@ export class ChartCustomElement {
         delete chartOptions.y;
 
         chart.options(chartOptions);
+
+        chart.noData(this.i18n.tr('ei-dataa-saatavilla'));
 
         if (chartOptions.height) {
           this.height = chartOptions.height;
