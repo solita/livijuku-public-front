@@ -129,8 +129,8 @@ export class Kilpailutukset {
     this.http = http;
 
     this.api.organisaatiot.then(data => {
-      this.organisaatiot = data;
-      this.timeline.organisaatiot = data;
+      this.organisaatiot = R.filter(organisaatio => { return organisaatio.nimi !== 'Liikennevirasto' }, data);
+      this.timeline.organisaatiot = this.organisaatiot;
       this.valitutOrganisaatiot = R.map(R.prop('id'), this.organisaatiot);
     });
 
