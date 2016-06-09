@@ -411,19 +411,6 @@ export class Tunnusluvut {
           createFilter('Vuosi', vuodet, '2016'),
           createFilter('Lipputyyppi', lippuhintaluokat, 'KE')],
         options: createMultiBarChart('lippuhinnat', 'Vyöhykemäärä', vyohykemaarat)
-      }, {
-        title: 'Vuoden lippuhinnat vyöhykeittäin ja lipputyypeittäin',
-        yTitle: filter => undefined,
-        data: _.partial(convertToTree, 'Lippuhinnat', [vyohykemaarat.$nimi, lippuhintaluokat.$nimi]),
-        groupBy: ['organisaatioid', 'vyohykemaara', 'lippuhintaluokkatunnus'],
-        filters: [createFilter('Vuosi', vuodet, '2016')],
-        options: {
-          chart: {
-            type: 'sunburstChart',
-            height: 450
-            //mode: 'size'
-          }
-        }
       }]
     },
       createAlueTunnusluku('kuntamaara', 'lukumaara-kpl'),
