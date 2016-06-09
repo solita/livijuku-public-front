@@ -29,7 +29,7 @@
   "henkilosto-gen": "suunnittelun ja organisaation henkilöstö",
   "henkilotyovuotta": "Henkilötyövuotta",
 
-  "ei-dataa-saatavilla": "Ei dataa saatavilla",
+  "ei-dataa-saatavilla": "Ei tietoja saatavilla",
 
   "joukkoliikenteen-haetut-ja-myonnetut-avustukset": "Joukkoliikenteen haetut ja myönnetyt avustukset",
   "juku-info-short": "Tietoa joukkoliikenteen rahoituksesta, kustannuksista ja tunnusluvuista sekä joukkoliikenteen kilpailutuksista.",
@@ -87,6 +87,7 @@
   "pendeloivienosuus-gen": "pendelöivien osuus (oman kunnan ulkopuolella työssäkäynti)",
   "perustunnusluvut": "Perustunnusluvut",
   "pienet-kaupunkiseudut": "Pienet kaupunkiseudut",
+  "pinottu": "Pinottu",
   "prosenttia": "Prosenttia (%)",
   "prosenttia-tyossakayvista": "Prosenttia työssäkäyvistä (%)",
   "psa-liikenteen-nettokustannukset": "PSA-liikenteen nettokustannukset (kunnan ja valtion maksama subventio)",
@@ -94,7 +95,9 @@
   "pysakkimaara-gen": "pysäkkien lukumäärä",
 
   "ohjeet-aikajanan-zoomaamiseksi": "Voit zoomata aikajanaa hiiren rullalla. Aikajanan vieritys onnistuu liikuttamalla hiirtä vasen nappi pohjassa.",
-  "ohjeet-kilpailutusten-filtteroimiseksi": "Käytä yllä olevia filttereitä nähdäksesi kilpailutustietoja.",
+  "ohjeet-kilpailutusten-filtteroimiseksi": "Käytä yllä olevia suodattimia nähdäksesi kilpailutustietoja.",
+
+  "ryhmitelty": "Ryhmitelty",
 
   "suodata-aikajanaa-valitsemalla-toimivaltaryhmia": "Suodata aikajanaa valitsemalla toimivaltaryhmiä",
   "suodata-aikajanaa-valitsemalla-viranomaisia": "Suodata aikajanaa valitsemalla viranomaisia",
