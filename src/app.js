@@ -4,6 +4,7 @@ export class App {
 
   configureRouter(config, router) {
     config.title = 'JUKU';
+    config.addPipelineStep('postcomplete', PostCompleteStep);
     config.map([
       { route: ['', 'etusivu'], moduleId: 'modules/etusivu/etusivu', name: 'etusivu', nav: false, title: 'etusivu' },
       { route: 'tilastot/valtionavustukset', moduleId: 'modules/tilastot/tilastot', name: 'valtionavustukset', nav: true, title: 'valtionavustukset' },
@@ -37,5 +38,12 @@ export class App {
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+}
+
+class PostCompleteStep {
+  run(routingContext, next) {
+    $("body").scrollTop(0);
+    return next();
   }
 }
