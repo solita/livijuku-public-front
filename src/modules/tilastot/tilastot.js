@@ -1,9 +1,15 @@
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {inject} from 'aurelia-framework';
 import {I18N} from 'aurelia-i18n';
+import R from 'ramda';
 
 @inject(EventAggregator, I18N)
 export class Tilastot {
+
+  constructor(eventAggregator, i18n) {
+    this.ea = eventAggregator;
+    this.i18n = i18n;
+  }
 
   configureRouter(config, router) {
     config.title = 'Tilastot';
@@ -17,20 +23,23 @@ export class Tilastot {
     this.router = router;
   }
 
-  constructor(eventAggregator, i18n) {
-    this.ea = eventAggregator;
-    this.i18n = i18n;
-  }
-
   bind() {
     this.subscription = this.ea.subscribe('router:navigation:success', router => {
-      this.fragment = router.instruction.config.navModel.relativeHref;
-      this.pageTitle = router.instruction.config.title;
+      this.fragment = router.instruction.router.currentInstruction.params.childRoute || 'ALL';
     });
+    this.fragment = this.router.currentInstruction.fragment || 'ALL';
+    this.childRouteIndex = R.findIndex(R.propEq('relativeHref', this.router.currentInstruction.fragment))(this.router.navigation);
+    this.toimivaltaalueet = R.map(alue => { return this.i18n.tr(alue.title); }, this.router.navigation);
   }
 
   unbind() {
     this.subscription.dispose();
+  }
+
+  selectToimivaltaalue() {
+    if (this.childRouteIndex) {
+      this.router.navigate(this.router.navigation[this.childRouteIndex - 1].href);
+    }
   }
 
 }

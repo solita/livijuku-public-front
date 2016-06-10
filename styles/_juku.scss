@@ -57,7 +57,7 @@
 
 .front-page-hero {
   @media screen and (min-width: map-get($breakpoints, lg)) {
-    height: 640px;
+    height: 264px;
     overflow: hidden;
     img {
       width: 2500px;
@@ -369,7 +369,7 @@
     padding-left: map-get($spacerSizes, md);
     padding-right: map-get($spacerSizes, md);
   }
-  .r-lg-f-54 {
-    font-size: 54px;
+  .r-lg-f-50 {
+    font-size: 50px;
   }
 }
