@@ -82,6 +82,8 @@
   "nousut-paiva": "Nousut (päivä)",
 
   "optiot-kokonaisuudessaan": "Optiot kokonaisuudessaan",
+  "organisaatio-tip": "Seuraavat toimivaltaiset viranomaiset eivät toistaiseksi ole ilmoittaneet liikennöintitietoja tai tulevia kilpailutuksia:",
+  "organisaatiolaji-tip": "Aikajanalla näytetään ne toimivaltaryhmän toimivaltaiset viranomaiset, jotka ovat lisänneet järjestelmään liikennöintietoja tai tulevia kilpailutuksia.",
 
   "pendeloivienosuus": "Pendelöivien osuus",
   "pendeloivienosuus-gen": "pendelöivien osuus (oman kunnan ulkopuolella työssäkäynti)",
@@ -118,6 +120,7 @@
 
   "valikko": "Valikko",
   "valitse-rajoite": "Valitse rajoite",
+  "valitse-toimivalta-alue": "Valitse toimivalta-alue",
   "valitse-tunnusluku": "Valitse tunnusluku",
   "valitse-tarkasteluvali": "Valitse tarkasteluväli",
   "valtionavustukset": "Valtionavustukset",
