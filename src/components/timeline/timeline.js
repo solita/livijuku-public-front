@@ -7,9 +7,8 @@ import _ from 'lodash';
 export class TimelineCustomElement {
 
   @bindable events;
-  @bindable kilpailutukset;
+  @bindable data;
   @bindable options;
-  @bindable organisaatiot;
 
   constructor(element) {
     this.element = element;
@@ -25,12 +24,14 @@ export class TimelineCustomElement {
 
   bind() {
     this.timeline = new vis.Timeline($(this.element).find('div')[0]);
+    this.refresh();
   }
 
-  kilpailutuksetChanged() { this.refresh(); }
-  organisaatiotChanged() { this.refresh(); }
+  dataChanged() { this.refresh(); }
 
   refresh() {
+    this.kilpailutukset = this.data.kilpailutukset;
+    this.organisaatiot = this.data.organisaatiot;
     const groups = _.map(this.organisaatiot, organisaatio => ({
       id: organisaatio.id,
       content: organisaatio.nimi
@@ -76,9 +77,6 @@ export class TimelineCustomElement {
       this.timeline.on(key, event);
     });
 
-    this.timeline.setData({
-      groups: groups,
-      items: items
-    });
+    this.timeline.setData({ groups, items });
   }
 }

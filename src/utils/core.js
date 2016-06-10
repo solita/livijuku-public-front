@@ -80,3 +80,20 @@ export function updateAll(object, paths, updater) {
   _.forEach(paths, path => _.update(object, path, updater));
   return object;
 }
+
+export function generateSearchPart(queryParams) {
+  let search = '';
+  Object.keys(queryParams).forEach((key, index) => {
+    if (index === 0) {
+      search += '?' + key + '=' + queryParams[key];
+    } else {
+      search += '&' + key + '=' + queryParams[key];
+    }
+  });
+  return search;
+}
+
+export function editUrlParameterValue(queryParams, parameter, value) {
+  queryParams[parameter] = value;
+  return generateSearchPart(queryParams);
+}
