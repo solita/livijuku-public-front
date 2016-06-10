@@ -1,18 +1,19 @@
 <template>
   <section class="Px-md Py-xl w-max-1200 h-center">
-    <h1>${ pageTitle & t }</h1>
+    <h1>${ fragment & t }</h1>
     <nav class="Mb-md">
       <paper-dropdown-menu label="Toimivalta-alue" class="r-sm-hidden">
-        <paper-listbox class="dropdown-content" selected.bind="childRouteIndex">
-          <a repeat.for="route of router.navigation" class="paper-item-link" href="${ '#/' + $parent.fragment + '/' + route.settings.viranomainen }" tabindex="-1">
-            <paper-item>${ route.title & t }</paper-item>
-          </a>
+        <paper-listbox class="dropdown-content" selected.two-way="childRouteIndex" iron-select.delegate="selectToimivaltaalue()">
+          <paper-item value="" disabled>${ 'valitse-toimivalta-alue' & t }</paper-item>
+          <template is="dom-repeat" items.two-way="toimivaltaalueet">
+            <paper-item model="{{item}}">{{ item }}</paper-item>
+          </template>
         </paper-listbox>
       </paper-dropdown-menu>
       <div class="clearfix hidden r-sm-block">
         <ul class="list-no-style left h-center P-0 full-width">
           <li repeat.for="route of router.navigation" class="left">
-            <a class="block ${ route.isActive ? 'bg-c-a c-w' : 'bg-c-a012 c-a' } ${ !$last ? 'Be-xs Be-solid B-c-a' : '' } f-no-decoration Px-md Py-sm r-sm-f-14 r-md-f-16 Px-sm2 r-md-Px-md" href="${ '#/' + $parent.fragment + '/' + route.settings.viranomainen }">
+            <a class="block ${ route.isActive ? 'bg-c-a c-w' : 'bg-c-a012 c-a' } ${ !$last ? 'Be-xs Be-solid B-c-a' : '' } f-no-decoration Px-md Py-sm r-sm-f-14 r-md-f-16 Px-sm2 r-md-Px-md" href="${ route.href }">
               ${ route.title & t }
             </a>
           </li>

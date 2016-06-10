@@ -43,7 +43,7 @@ export class App {
 
 class PostCompleteStep {
   run(routingContext, next) {
-    $("body").scrollTop(0);
+    $('body').scrollTop(0);
     return next();
   }
 }

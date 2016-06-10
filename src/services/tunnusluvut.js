@@ -121,14 +121,6 @@ export class Tunnusluvut {
       };
     };
 
-    function convertToTree(name, names, alldata, organisaatiot) {
-      let data = _.filter(_.tail(alldata), r => R.not(R.isNil(r[r.length - 1])));
-      return data.length > 1 ? [{
-        name: name,
-        children: group(_.tail(data), 0, [id => _.find(organisaatiot, {id: id}).nimi].concat(names))
-      }] : [];
-    }
-
     let createAlueTunnusluku = (id, unit) => {
       return {
         id: 'alue-' + id,
