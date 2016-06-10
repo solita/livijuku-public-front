@@ -1,8 +1,9 @@
 <template>
   <div class="front-page-hero full-width bg-size-cover relative">
-    <img src="images/linja-autobg2_1280.jpg" class="w-max-1" />
+    <img src="images/juku_etusivu_1280.jpg" class="r-sm-hidden w-max-1" />
+    <img src="images/juku_etusivu_1280.jpg" class="hidden r-sm-block w-max-1" />
     <div class="h-center Px-md flex flex-ai-c full-height absolute t-0">
-      <p class="c-f f-18 r-qs-26 r-sm-f-32 r-md-f-48 r-lg-f-54 f-center f-shadow-1-1-w Px-md">${ 'front-page-chapter-1' & t }</p>
+      <p class="c-f f-18 r-qs-26 r-md-f-40 r-lg-f-50 f-center f-shadow-1-1-w Px-md">${ 'front-page-chapter-1' & t }</p>
     </div>
   </div>
   <article class="r-lg-Px-0">
@@ -19,7 +20,7 @@
             </ul>
             <ul class="c-w list-no-style Mt-md Mx-0 P-0 f-14 r-qs-f-16 r-md-f-18">
               <li><a class="c-w f-no-decoration f-w-600" target="_blank" href="http://www.liikennevirasto.fi/liikennejarjestelma/henkiloliikenne/joukkoliikenne">Liikenneviraston ja toimivaltaisten viranomaisten rooli valtakunnallisessa joukkoliikenteessä &raquo;</a></li>
-              <li><a class="c-w f-no-decoration f-w-600" target="_blank" href="http://www.liikennevirasto.fi/documents/20473/23545/TVV-kartta.pdf/e432d675-81f1-49f9-96f3-4e911a1479d4">Toimivaltaiset viranomaiset kartalla &raquo;</a></li>
+              <li><a class="c-w f-no-decoration f-w-600" target="_blank" href="http://www.liikennevirasto.fi/documents/20473/23545/TVV_alueet/bedff84c-c276-4051-b41b-1bcf427c367e">Toimivaltaiset viranomaiset kartalla &raquo;</a></li>
             </ul>
           </div>
         </div>
@@ -44,7 +45,7 @@
         <p class="f-14 r-qs-f-16 r-md-f-18 f-center f-w-700 Mx-md Mb-xl">Oletko joukkoliikenteen toimivaltainen viranomainen?</p>
       </div>
       <div class="w-max-1">
-        <paper-button class="bg-c-a c-w Mb-xl Px-md">Kirjaudu JUKU-palveluun</paper-button>
+        <paper-button class="bg-c-a c-w Mb-xl Px-md" click.delegate="toExtranet()">Kirjaudu JUKU-palveluun</paper-button>
       </div>
     </div>
   </div>
