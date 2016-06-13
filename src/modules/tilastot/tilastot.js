@@ -28,7 +28,7 @@ export class Tilastot {
       this.fragment = router.instruction.router.currentInstruction.params.childRoute || 'ALL';
     });
     this.fragment = this.router.currentInstruction.fragment || 'ALL';
-    this.childRouteIndex = R.findIndex(R.propEq('relativeHref', this.router.currentInstruction.fragment))(this.router.navigation);
+    this.childRouteIndex = R.findIndex(R.propEq('relativeHref', this.router.currentInstruction.fragment))(this.router.navigation) || 0;
     this.toimivaltaalueet = R.map(alue => { return this.i18n.tr(alue.title); }, this.router.navigation);
   }
 
@@ -37,9 +37,7 @@ export class Tilastot {
   }
 
   selectToimivaltaalue() {
-    if (this.childRouteIndex) {
-      this.router.navigate(this.router.navigation[this.childRouteIndex - 1].href);
-    }
+    this.router.navigate(this.router.navigation[this.childRouteIndex].href);
   }
 
 }
