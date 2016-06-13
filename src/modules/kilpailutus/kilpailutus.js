@@ -29,4 +29,8 @@ export class Kilpailutus {
       });
     });
   }
+
+  backToKilpailutuksetView() {
+    history.back();
+  }
 }
