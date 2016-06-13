@@ -83,7 +83,7 @@ export class Kilpailutukset {
       select: (properties) => {
         let $target = $(properties.event.target);
         if (!$target.hasClass('link-to-hilma')) {
-          let url = `/kilpailutukset/${ _.split(properties.items[0], '-')[1] }`;
+          let url = `/kilpailutus/${ _.split(properties.items[0], '-')[1] }`;
           this.router.navigate(url);
         }
       }
@@ -100,16 +100,16 @@ export class Kilpailutukset {
   }
 
   activate(params) {
-    this.fetchAndParse(params);
     this.subscriptions.push(this.ea.subscribe('router:navigation:success', router => {
       this.fetchAndParse(router.instruction.queryParams);
     }));
+    return this.fetchAndParse(params);
   }
 
-  unattached() {
-    R.each(this.subscriptions, subscription => {
-      subsciption.dispose();
-    });
+  detached() {
+    R.forEach(subscription => {
+      subscription.dispose();
+    }, this.subscriptions);
   }
 
   // VM methods
@@ -150,7 +150,7 @@ export class Kilpailutukset {
       } else {
         calls = [this.kilpailutukset, this.organisaatiot];
       }
-      Promise.all(calls).then(values => {
+      return Promise.all(calls).then(values => {
         this.organisaatiot = R.filter(organisaatio => { return organisaatio.nimi !== 'Liikennevirasto'; }, values[1]);
         this.filter.organisaatiot = organisaatioIDs;
         this.filter.organisaatiolajit = organisaatiolajit;
