@@ -207,7 +207,13 @@ export class Kilpailutukset {
     const showKilpailutuskausi = (date) => showKausi(this.isKilpailutuskausiChecked, date);
     const showLiikennointikausi = (date) => showKausi(this.isLiikennointikausiChecked, date);
 
-    this.kilpailutukset = _.map(data, kilpailutus => {
+    let filterKilpailutuksetForKilpailutuskausi = kilpailutukset => {
+      return this.isKilpailutuskausiChecked && !this.isLiikennointikausiChecked ?
+        _.filter(kilpailutukset, k => _.some([k.julkaisupvm, k.tarjouspaattymispvm, k.hankintapaatospvm], c.isDefinedNotNull)) :
+        kilpailutukset;
+    };
+
+    this.kilpailutukset = _.map(filterKilpailutuksetForKilpailutuskausi(data), kilpailutus => {
       const dates = [
         showKilpailutuskausi(kilpailutus.julkaisupvm),
         showKilpailutuskausi(kilpailutus.tarjouspaattymispvm),

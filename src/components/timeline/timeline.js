@@ -2,6 +2,7 @@ import {bindable, inject} from 'aurelia-framework';
 import $ from 'jquery';
 import vis from 'vis';
 import _ from 'lodash';
+import * as c from 'utils/core';
 
 @inject(Element)
 export class TimelineCustomElement {
@@ -37,23 +38,37 @@ export class TimelineCustomElement {
       content: organisaatio.nimi
     }));
     const items = _.flatMap(this.kilpailutukset, kilpailutus => {
-      let subgroup = _.map(_.initial(kilpailutus.dates), (startDate, index) => ({
-        id: kilpailutus.organisaatioid + '-' + kilpailutus.id + '-' + index,
+
+      const allIntervals = _.map(_.initial(kilpailutus.dates), (startDate, index) => ({
+        index: index,
+        start: startDate,
+        end: _.find(_.slice(kilpailutus.dates, index + 1), c.isDefinedNotNull)
+      }));
+      const intervals = _.filter(allIntervals,
+        interval => _.every(_.values(interval), c.isDefinedNotNull) &&
+                    !_.isEqual(interval.start, interval.end));
+
+      if (_.isEmpty(intervals)) {
+        throw "Kilpailutuksella " + kilpailutus.id + " ei ole määritelty kahta päivämäärää."
+      }
+
+      var subgroup = _.map(intervals, interval => ({
+        id: kilpailutus.organisaatioid + '-' + kilpailutus.id + '-' + interval.index,
         type: 'range',
         content: '&nbsp;',
-        start: startDate,
-        end: kilpailutus.dates[index + 1],
+        start: interval.start,
+        end: interval.end,
         group: kilpailutus.organisaatioid,
         subgroup: kilpailutus.id,
         title: kilpailutus.kohdenimi,
-        style: 'background-color: ' + this.colors[index][0] + '; color: ' + this.colors[index][1] + '; border: ' + this.colors[index][2] + '; height: 24px;'
+        style: 'background-color: ' + this.colors[interval.index][0] + '; color: ' + this.colors[interval.index][1] + '; border: ' + this.colors[interval.index][2] + '; height: 24px;'
       }));
 
       subgroup.push({
         id: kilpailutus.organisaatioid + '-' + kilpailutus.id + '-' + (kilpailutus.dates.length - 1),
         content: kilpailutus.kohdenimi,
-        start: _.first(kilpailutus.dates),
-        end: _.last(kilpailutus.dates),
+        start: _.first(intervals).start,
+        end: _.last(intervals).end,
         group: kilpailutus.organisaatioid,
         subgroup: kilpailutus.id,
         title: kilpailutus.kohdenimi,
