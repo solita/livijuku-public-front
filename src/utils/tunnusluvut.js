@@ -92,7 +92,7 @@ export function laskeTayttoasteType(tunnusluvut, tyyppi) {
 
 export function getGroupKeys(groupIndex, data) {
   return R.sort((a, b) => {
-    return a - b;
+    return a > b;
   }, R.uniq(R.map(item => {
     return item[groupIndex];
   }, R.tail(data))));
