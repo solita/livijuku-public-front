@@ -4,7 +4,6 @@
     <nav class="Mb-md">
       <paper-dropdown-menu label="Toimivalta-alue" class="r-sm-hidden">
         <paper-listbox class="dropdown-content" selected.two-way="childRouteIndex" iron-select.delegate="selectToimivaltaalue()">
-          <paper-item value="" disabled>${ 'valitse-toimivalta-alue' & t }</paper-item>
           <template is="dom-repeat" items.two-way="toimivaltaalueet">
             <paper-item model="{{item}}">{{ item }}</paper-item>
           </template>
