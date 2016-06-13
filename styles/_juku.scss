@@ -171,8 +171,8 @@
   margin-top: -60px;
 }
 
-.Mt-60 {
-  margin-top: 60px;
+.Mt-58 {
+  margin-top: 58px;
 }
 
 .Pt-60 {
@@ -233,6 +233,9 @@
   .r-qs-f-16 {
     font-size: map-get($typographySizes, 16);
   }
+  .r-qs-f-18 {
+    font-size: map-get($typographySizes, 18);
+  }
   .r-qs-w-315 {
     width: 315px;
   }
@@ -291,8 +294,8 @@
   .r-sm-h-300 {
     height: 300px;
   }
-  .r-sm-f-32 {
-    font-size: 32px;
+  .r-sm-f-26 {
+    font-size: 26px;
   }
   .r-sm-Ms-xxxl {
     margin-left: map-get($spacerSizes, xxxl);
