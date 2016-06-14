@@ -1,10 +1,15 @@
 <template>
   <require from="../../../jspm_packages/npm/nvd3@1.8.3/build/nv.d3.css"></require>
   <require from="../../utils/d3-locale.js"></require>
+  <require from="components/csv/csv"></require>
+
   <div if.bind="setup" class="chart left full-width bg-c-w Mb-md">
     <h4 class="f-center f-uppercase">${ title }</h4>
     <p class="f-center">${ subtitle }</p>
     <!-- hard coded because of IE 11 -->
-    <svg height.bind="height" class="Mx-md" style="height: 500px;"></svg>
+    <svg height.bind="height" css.bind="{ height: height }" show.bind="setup.data"></svg>
+    <p if.bind="setup.data[1]" class="Pe-md">
+      <csv filename.bind="title" column-delimiter=";" data.bind="setup.data"></csv>
+    </p>
   </div>
 </template>

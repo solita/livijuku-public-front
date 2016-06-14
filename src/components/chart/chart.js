@@ -14,7 +14,6 @@ export class ChartCustomElement {
     this.i18n = i18n;
     this.d3 = d3;
     this.nv = nv;
-    this.height = 600;
   }
 
   setupChanged(setup) {
@@ -23,10 +22,13 @@ export class ChartCustomElement {
     }
     this.draw(R.tail(setup.data), setup.options);
     this.title = setup.options.title;
-    // this.subtitle = this.i18n.tr(options.subtitle);
   }
 
   draw(data, options) {
+    this.height = options.height || 500;
+    if (R.isNil(data[1])) {
+      this.height = 100;
+    }
     let parseData = () => {
       let graphData = [];
       options.groupKeys.forEach((key, index) => {
@@ -91,9 +93,7 @@ export class ChartCustomElement {
         chart.options(chartOptions);
 
         chart.noData(this.i18n.tr('ei-dataa-saatavilla'));
-
         if (chartOptions.height) {
-          this.height = chartOptions.height + 50;
           chart.height(chartOptions.height);
         }
 

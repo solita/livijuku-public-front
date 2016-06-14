@@ -15,7 +15,6 @@ const chartOptions = {
       '#6b6ecf', '#b5cf6b', '#bd9e39', '#d6616b', '#a55194', '#9c9ede', '#cedb9c', '#e7ba52', '#ce6dbd', '#de9ed6',
       '#3182bd', '#e6550d', '#fdae6b', '#31a354', '#969696'],
     type: 'multiBarChart',
-    height: 500,
     stacked: false,
     showControls: false,
     tooltip: {valueFormatter: t.numberFormatTooltip},
@@ -42,6 +41,7 @@ export class Valtionavustukset {
     this.i18n = i18n;
     this.viranomainen = null;
     this.router = router;
+    // chartOptions.height = ;
   }
 
   activate(model) {
@@ -57,13 +57,13 @@ export class Valtionavustukset {
           options: R.merge(chartOptions, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
+            height: document.body.clientWidth < 768 ? 200 : 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('sum(rahamaara)', R.head(data)),
             title: this.i18n.tr('joukkoliikenteen-haetut-ja-myonnetut-avustukset'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
-            },
-            height: 600
+            }
           })
         };
       });
@@ -74,13 +74,13 @@ export class Valtionavustukset {
         let o = R.merge(chartOptions, {
           groupKeys: groupKeys,
           groupLabels: groupLabels,
+          height: document.body.clientWidth < 768 ? 1000 : 500,
           xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
           valueIndex: R.indexOf('haettavaavustus', R.head(data)),
           title: this.i18n.tr('haetut-avustukset-organisaatioittain'),
           subtitle: {
             text: this.i18n.tr(this.viranomainen)
-          },
-          height: 600
+          }
         });
         this.haetutAvustuksetOrganisaatioittain = {
           data: data,
@@ -89,13 +89,13 @@ export class Valtionavustukset {
         let o2 = R.merge(chartOptions, {
           groupKeys: groupKeys,
           groupLabels: groupLabels,
+          height: document.body.clientWidth < 768 ? 1000 : 500,
           xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
           valueIndex: R.indexOf('myonnettyavustus', R.head(data)),
           title: this.i18n.tr('myonnetyt-avustukset-organisaatioittain'),
           subtitle: {
             text: this.i18n.tr(this.viranomainen)
-          },
-          height: 600
+          }
         });
         this.myonnetytAvustuksetOrganisaatioittain = {
           data: data,
@@ -111,11 +111,11 @@ export class Valtionavustukset {
           options: R.merge(chartOptions, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
+            height: document.body.clientWidth < 768 ? 1000 : 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('myonnettyavustus_asukastakohti', R.head(data)),
             title: this.i18n.tr('myonnetty-avustus-per-asukas'),
-            subtitle: this.viranomainen,
-            height: 600
+            subtitle: this.viranomainen
           })
         };
       });

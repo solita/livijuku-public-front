@@ -1,5 +1,6 @@
 <template>
   <require from="custom-attributes/select2"></require>
+  <require from="components/csv/csv"></require>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
 
   <require from="components/noUiSlider/noUiSlider"></require>
@@ -87,6 +88,10 @@
     <div show.bind="!filter.organisaatiot.length && !filter.organisaatiolajit.length" class="By-xs By-solid B-c-l c-w P-xl">
       <p>${ 'ohjeet-kilpailutusten-filtteroimiseksi' & t }</p>
     </div>
+
+    <p class="Pe-md">
+      <csv filename.bind="title" column-delimiter=";" data.bind="timeline.data.kilpailutukset"></csv>
+    </p>
 
   </section>
 

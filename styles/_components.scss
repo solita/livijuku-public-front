@@ -88,7 +88,7 @@ chart {
   float: left;
   width: 100%;
   border-top: 1px solid map-get($baseColors, i);
-  border-bottom: 1px solid map-get($baseColors, i);;
+  border-bottom: 1px solid map-get($baseColors, i);
   padding: map-get($spacerSizes, xl);
   padding-bottom: map-get($spacerSizes, xxl);
   background-color: #ffffff;

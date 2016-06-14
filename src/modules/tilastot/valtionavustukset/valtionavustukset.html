@@ -4,11 +4,6 @@
     <p show.bind="viranomainen === 'KS3'" class="Px-md Pb-xl w-max-1200 h-center">Pienet kaupunkiseudut saavat joukkoliikennetukensa ELY keskusten kautta. ELY välittää osan saamastaan valtion avustuksesta pienille kaupunkiseuduille ja muille toimivalta-alueensa kunnille. Pienten kaupunkiseutujen tuki näytetään eriteltynä vain tällä välilehdellä ja tuesta näytetään vain myönnetty avustus. Kaikki välilehdellä ja ELY-välilehdellä tämä tuki sisältyy ELY:jen saamaan tukeen.</p>
 
     <chart if.bind="haetutJaMyonnetytAvustukset" setup.bind="haetutJaMyonnetytAvustukset"></chart>
-    <!-- <a ng-csv="avustus.csv" class="pull-right lataacsv"
-       filename="avustukset.csv"
-       field-separator=";" add-bom="true" decimal-separator=","><span class="glyphicon glyphicon-save"></span> Lataa CSV
-    </a> -->
-
     <chart if.bind="haetutAvustuksetOrganisaatioittain" setup.bind="haetutAvustuksetOrganisaatioittain"></chart>
     <chart if.bind="myonnetytAvustuksetOrganisaatioittain" setup.bind="myonnetytAvustuksetOrganisaatioittain"></chart>
     <chart if.bind="avustusPerAsukas" setup.bind="avustusPerAsukas"></chart>

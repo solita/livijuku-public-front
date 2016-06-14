@@ -22,7 +22,6 @@ const colors = ['#aec7e8', '#1f77b4', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a'
 const chartOptions = ytitle => ({
   color: colors,
   type: 'multiBarChart',
-  height: 500,
   stacked: false,
   showControls: false,
   tooltip: {valueFormatter: t.numberFormatTooltip},
@@ -76,13 +75,13 @@ export class Perustunnusluvut {
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
+            height: document.body.clientWidth < 768 ? 1000 : 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('tunnusluku', R.head(data)),
             title: this.i18n.tr('tyytyvaisyys-joukkoliikenteeseen'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
-            },
-            height: 600
+            }
           })
         };
       });
@@ -96,13 +95,13 @@ export class Perustunnusluvut {
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
+            height: document.body.clientWidth < 768 ? 1000 : 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('tunnusluku', R.head(data)),
             title: this.i18n.tr('matkustajamaarat'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
-            },
-            height: 600
+            }
           })
         };
       });
@@ -116,13 +115,13 @@ export class Perustunnusluvut {
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
+            height: document.body.clientWidth < 768 ? 1000 : 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('tunnusluku', R.head(data)),
             title: this.i18n.tr('lahtojen-maara'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
-            },
-            height: 600
+            }
           })
         };
       });
@@ -136,13 +135,13 @@ export class Perustunnusluvut {
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
+            height: document.body.clientWidth < 768 ? 1000 : 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('tunnusluku', R.head(data)),
             title: this.i18n.tr('linjakilometrit'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
-            },
-            height: 600
+            }
           })
         };
       });
@@ -156,13 +155,13 @@ export class Perustunnusluvut {
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
+            height: document.body.clientWidth < 768 ? 1000 : 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('myonnettyavustus_asukastakohti', R.head(data)),
             title: this.i18n.tr('valtion-rahoitus-asukasta-kohden'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
-            },
-            height: 600
+            }
           })
         };
       });
@@ -176,13 +175,13 @@ export class Perustunnusluvut {
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
+            height: document.body.clientWidth < 768 ? 1000 : 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('myonnettyavustus_asukastakohti', R.head(data)),
             title: this.i18n.tr('toimivaltaisen-viranomaisen-omarahoitus-asukasta-kohden'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
-            },
-            height: 600
+            }
           })
         };
       });
@@ -196,13 +195,13 @@ export class Perustunnusluvut {
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
+            height: document.body.clientWidth < 768 ? 1000 : 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('liikennointikorvaus.korvaus-lipputulo.total', R.head(data)),
             title: this.i18n.tr('psa-liikenteen-nettokustannukset'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
-            },
-            height: 600
+            }
           })
         };
       });
