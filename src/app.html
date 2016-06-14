@@ -1,26 +1,9 @@
 <template>
   <div class="h-min-100vh">
-    <div class="block r-sm-hidden full-width anim-1 h-320 z-100 fixed ${ isMenuOpen && (isScrollingUp || lastScrollTop <= 60) ? 'Mt-58' : 'Mt--320' }" style="box-shadow: 0 2px 2px #666;">
+    <div class="block r-sm-hidden full-width anim-1 z-100 fixed ${ isMenuOpen && (isScrollingUp || lastScrollTop <= 60) ? 'Mt-58' : 'Mt--320' }" style="box-shadow: 0 2px 2px #666;">
       <paper-menu role="listbox">
-        <a class="paper-item-link block c-m f-no-decoration" href="#/" tabindex="-1" click.delegate="closeMenu()">
-          <paper-item click.delegate="closeMenu()">Etusivu</paper-item>
-        </a>
-        <hr/>
-        <p class="f-12 f-w-700 Mb-xs" style="padding-left: 16px;">${ 'tilastot' & t }</p>
-        <a class="paper-item-link block c-m f-no-decoration" href="#/tilastot/valtionavustukset/ALL" tabindex="-1" click.delegate="closeMenu()">
-          <paper-item>${ 'valtionavustukset' & t }</paper-item>
-        </a>
-        <a class="paper-item-link block c-m f-no-decoration" href="#/tilastot/perus/ALL" tabindex="-1" click.delegate="closeMenu()">
-          <paper-item click.delegate="closeMenu()">${ 'perustunnusluvut' & t }</paper-item>
-        </a>
-        <a class="paper-item-link block c-m f-no-decoration" href="#/tilastot/kaikki" tabindex="-1" click.delegate="closeMenu()">
-          <paper-item click.delegate="closeMenu()">
-            <span>${ 'kaikki-tunnusluvut' & t }</span>
-          </paper-item>
-        </a>
-        <hr/>
-        <a class="paper-item-link block c-m f-no-decoration" href="#/kilpailutukset" tabindex="-1" click.delegate="closeMenu()">
-          <paper-item click.delegate="closeMenu()">${ 'kilpailutukset' & t }</paper-item>
+        <a repeat.for="route of router.navigation" class="${ route.isActive ? 'bg-c-c' : '' } paper-item-link block c-e f-no-decoration" href.bind="route.href" tabindex="-1" click.delegate="closeMenu()">
+          <paper-item>${ route.title & t }</paper-item>
         </a>
       </paper-menu>
     </div>

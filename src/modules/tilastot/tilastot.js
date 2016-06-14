@@ -23,17 +23,17 @@ export class Tilastot {
     this.router = router;
   }
 
-  bind() {
+  activate() {
     this.subscription = this.ea.subscribe('router:navigation:success', router => {
-      this.fragment = router.instruction.router.currentInstruction.params.childRoute || 'ALL';
+      this.initialize();
     });
-    this.fragment = this.router.currentInstruction.fragment || 'ALL';
-    this.childRouteIndex = R.findIndex(R.propEq('relativeHref', this.router.currentInstruction.fragment))(this.router.navigation) || 0;
-    this.toimivaltaalueet = R.map(alue => { return this.i18n.tr(alue.title); }, this.router.navigation);
   }
 
-  unbind() {
-    this.subscription.dispose();
+  initialize() {
+    this.pageTitle = this.router.parent.currentInstruction.config.title;
+    this.toimivaltaalueet = R.map(alue => { return this.i18n.tr(alue.title); }, this.router.navigation);
+    this.fragment = this.router.currentInstruction.fragment || 'ALL';
+    this.childRouteIndex = R.findIndex(R.propEq('relativeHref', this.router.currentInstruction.fragment))(this.router.navigation) || 0;
   }
 
   selectToimivaltaalue() {
