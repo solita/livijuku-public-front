@@ -163,7 +163,7 @@ export class Tunnusluvut {
             '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5',
             '#6b6ecf', '#b5cf6b', '#bd9e39', '#d6616b', '#a55194', '#9c9ede', '#cedb9c', '#e7ba52', '#ce6dbd', '#de9ed6',
             '#3182bd', '#e6550d', '#fdae6b', '#31a354', '#969696'],
-          height: 450,
+          height: document.body.clientWidth < 768 ? 1000 : 450,
           x: d => d[1],
           y: d => d[2],
           yAxis: {

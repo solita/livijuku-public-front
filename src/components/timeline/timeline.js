@@ -38,7 +38,6 @@ export class TimelineCustomElement {
       content: organisaatio.nimi
     }));
     const items = _.flatMap(this.kilpailutukset, kilpailutus => {
-
       const allIntervals = _.map(_.initial(kilpailutus.dates), (startDate, index) => ({
         index: index,
         start: startDate,
@@ -49,10 +48,10 @@ export class TimelineCustomElement {
                     !_.isEqual(interval.start, interval.end));
 
       if (_.isEmpty(intervals)) {
-        throw "Kilpailutuksella " + kilpailutus.id + " ei ole määritelty kahta päivämäärää."
+        throw new Error('Kilpailutuksella ' + kilpailutus.id + ' ei ole määritelty kahta päivämäärää.');
       }
 
-      var subgroup = _.map(intervals, interval => ({
+      let subgroup = _.map(intervals, interval => ({
         id: kilpailutus.organisaatioid + '-' + kilpailutus.id + '-' + interval.index,
         type: 'range',
         content: '&nbsp;',
