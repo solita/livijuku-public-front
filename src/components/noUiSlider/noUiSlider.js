@@ -15,7 +15,8 @@ export class NoUiSliderCustomElement {
   }
 
   attached() {
-    let slider = noUiSlider.create($(this.element).find('.slider')[0], this.options);
+    let options = this.options || {};
+    let slider = noUiSlider.create($(this.element).find('.slider')[0], options);
     let snapValues = [
       $(this.element).find('.min')[0],
       $(this.element).find('.max')[0]
