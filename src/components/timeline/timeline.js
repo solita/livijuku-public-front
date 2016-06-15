@@ -74,6 +74,7 @@ export class TimelineCustomElement {
         style: 'background-color: transparent; color: white; border: 1px solid transparent; z-index: 2; height: 24px; line-height: 10px; ',
         linkToHilma: kilpailutus.hilmalinkki
       });
+
       return subgroup;
     });
 

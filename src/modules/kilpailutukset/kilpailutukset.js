@@ -27,6 +27,7 @@ export class Kilpailutukset {
     this.router = router;
     this.lastFetch = null;
     this.timeline = {};
+    this.promises = [];
     this.filter = {
       organisaatiot: [],
       organisaatiolajit: []
@@ -114,6 +115,14 @@ export class Kilpailutukset {
 
   // VM methods
 
+  createPromises() {
+    if (!this.lastFetch || (moment() - this.lastFetch) / 1000 / 60 > 1) {
+      this.promises = [this.api.kilpailutukset, this.api.organisaatiot];
+      this.lastFetch = moment();
+    }
+    return this.promises;
+  }
+
   fetchAndParse = (params) => {
     if (!this.latestParams || R.not(R.equals(params, this.latestParams))) {
       let organisaatioIDs = params.o ? params.o.split(',') : [];
@@ -143,46 +152,48 @@ export class Kilpailutukset {
       };
       this.isKilpailutuskausiChecked = params.kil || false;
       this.isLiikennointikausiChecked = params.lii || false;
-      let calls = [];
-      if (!this.lastFetch || (moment() - this.lastFetch) / 1000 / 60 > 1) {
-        calls = [this.api.kilpailutukset, this.api.organisaatiot];
-        this.lastFetch = moment();
-      } else {
-        calls = [this.kilpailutukset, this.organisaatiot];
-      }
-      return Promise.all(calls).then(values => {
+      return Promise.all(this.createPromises()).then(values => {
+        let kilpailutukset = this.parseKilpailutukset(values[0]);
+
+        kilpailutukset = R.filter(kilpailutus => {
+          let arvo = kilpailutus.kohdearvo / 1000000;
+          let kalusto = kilpailutus.kalusto;
+          return (arvo >= this.kohdearvo.start[0] && arvo <= this.kohdearvo.start[1]) && (kalusto >= this.kalustokoko.start[0] && kalusto <= this.kalustokoko.start[1]);
+        }, kilpailutukset);
+
         this.organisaatiot = R.filter(organisaatio => { return organisaatio.nimi !== 'Liikennevirasto'; }, values[1]);
         this.filter.organisaatiot = organisaatioIDs;
         this.filter.organisaatiolajit = organisaatiolajit;
+
         let allOrganisaatioIDs = R.map(organisaatio => {
           return organisaatio.id;
         }, this.organisaatiot);
-        let activeOrganisaatioIDs = R.uniq(R.map(kilpailutus => {
-          return kilpailutus.organisaatioid;
-        }, values[0]));
+
+        let activeOrganisaatioIDs = R.uniq(R.map(R.prop('organisaatioid'), values[0]));
+
         let inactiveOrganisaatioIDs = R.without(activeOrganisaatioIDs, allOrganisaatioIDs);
+
         this.inactiveOrganisaatiot = R.filter(organisaatio => {
           return R.indexOf(organisaatio.id, inactiveOrganisaatioIDs) !== -1;
         }, this.organisaatiot);
+
         this.activeOrganisaatiot = R.filter(organisaatio => {
           return R.indexOf(organisaatio.id, activeOrganisaatioIDs) !== -1;
         }, this.organisaatiot);
+
         let organisaatiot = R.filter(organisaatio => {
           return (R.indexOf(organisaatio.id.toString(), organisaatioIDs) !== -1 ||
             R.indexOf(organisaatio.lajitunnus, organisaatiolajit) !== -1) &&
-            R.filter(kilpailutus => { return kilpailutus.organisaatioid === organisaatio.id; }, values[0]).length;
+            R.find(kilpailutus => {
+              return kilpailutus.organisaatioid === organisaatio.id;
+            }, kilpailutukset);
         }, this.organisaatiot);
-        let kilpailutukset = [];
-        R.forEach(organisaatio => {
-          kilpailutukset = R.concat(kilpailutukset, R.filter(kilpailutus => {
-            let arvo = kilpailutus.kohdearvo / 1000000;
-            return (arvo >= this.kohdearvo.start[0] && arvo <= this.kohdearvo.start[1]) &&
-              (kilpailutus.kalusto >= this.kalustokoko.start[0] && kilpailutus.kalusto <= this.kalustokoko.start[1]) &&
-              (kilpailutus.organisaatioid === organisaatio.id);
-          }, values[0]));
-        }, organisaatiot);
+
+        kilpailutukset = R.filter(kilpailutus => {
+          return R.indexOf(kilpailutus.organisaatioid, R.map(R.prop('id'), organisaatiot)) !== -1;
+        }, kilpailutukset);
+
         this.timeline.data = { organisaatiot, kilpailutukset };
-        this.parseKilpailutukset(values[0]);
       });
     }
     this.latestParams = R.clone(params);
@@ -213,7 +224,7 @@ export class Kilpailutukset {
         kilpailutukset;
     };
 
-    this.kilpailutukset = _.map(filterKilpailutuksetForKilpailutuskausi(data), kilpailutus => {
+    return R.map(kilpailutus => {
       const dates = [
         showKilpailutuskausi(kilpailutus.julkaisupvm),
         showKilpailutuskausi(kilpailutus.tarjouspaattymispvm),
@@ -223,18 +234,10 @@ export class Kilpailutukset {
         showLiikennointikausi(c.coalesce(kilpailutus.hankittuoptiopaattymispvm, kilpailutus.liikennointipaattymispvm)),
         showLiikennointikausi(kilpailutus.optiopaattymispvm)];
 
-      const maxdate = _.max(dates);
-
-      if (c.isBlank(maxdate)) {
-        throw new Error('Kilpailutuksella ' + kilpailutus.id + ' ei ole yhtään päivämäärää.');
-      }
-
-      kilpailutus.dates = _.map(dates, (date, index) => t.toLocalMidnight(c.isNotBlank(date) ?
-        date :
-        c.coalesce(_.find(_.slice(dates, index), c.isNotBlank), maxdate)));
+      kilpailutus.dates = R.map(date => c.isNotBlank(date) ? t.toLocalMidnight(date) : null, dates);
 
       return kilpailutus;
-    });
+    }, filterKilpailutuksetForKilpailutuskausi(data));
   };
 
   toggleKilpailukausi() {
