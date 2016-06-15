@@ -247,14 +247,12 @@ export class Kilpailutukset {
 
   updateView(key, value) {
     if (this.router.currentInstruction) {
-      let search = '';
       if (value) {
-        search = c.editUrlParameterValue(this.router.currentInstruction.queryParams, key, value);
+        this.router.currentInstruction.queryParams[key] = value;
       } else {
         delete this.router.currentInstruction.queryParams[key];
-        search = c.generateSearchPart(this.router.currentInstruction.queryParams);
       }
-      this.router.navigate('#/kilpailutukset' + this.router.history.location.pathname + encodeURI(search));
+      this.router.navigateToRoute('kilpailutukset', this.router.currentInstruction.queryParams);
     }
   }
 }
