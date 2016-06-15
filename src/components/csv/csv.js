@@ -53,9 +53,12 @@ export class CsvCustomElement {
     let data = encodeURI(csv);
 
     link = document.createElement('a');
+    link.style = 'visibility:hidden';
     link.setAttribute('href', data);
     link.setAttribute('download', filename);
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
   };
 
 }
