@@ -89,9 +89,11 @@
       <p>${ 'ohjeet-kilpailutusten-filtteroimiseksi' & t }</p>
     </div>
 
-    <p class="Pe-md">
-      <csv filename.bind="title" column-delimiter=";" data.bind="timeline.data.kilpailutukset"></csv>
-    </p>
+    <div class="clearfix">
+      <div class="Pb-xl left full-width">
+        <csv if.bind="timeline.data.kilpailutukset.length" filename.bind="title" column-delimiter=";" data.bind="timeline.data.kilpailutukset"></csv>
+      </div>
+    </div>
 
   </section>
 
