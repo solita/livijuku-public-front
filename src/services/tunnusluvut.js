@@ -280,7 +280,7 @@ export class Tunnusluvut {
         yTitle: filter => 'Nousut' + filterInfoText(filter) + ' / päivä vuonna ' + filter.vuosi,
         groupBy: ['organisaatioid', 'viikonpaivaluokkatunnus'],
         filters: [
-          createFilter('Vuosi', vuodet, '2016'),
+          createFilter('Vuosi', vuodet, (new Date().getFullYear() - 1).toString()),
           createFilter('Sopimustyyppi', sopimustyypit)],
         options: createMultiBarChart('kysynta', 'Viikonpäiväluokka', viikonpaivaluokat)
       }]
@@ -300,7 +300,7 @@ export class Tunnusluvut {
         yTitle: filter => 'Lähdöt' + filterInfoText(filter) + ' / päivä vuonna ' + filter.vuosi,
         groupBy: ['organisaatioid', 'viikonpaivaluokkatunnus'],
         filters: [
-          createFilter('Vuosi', vuodet, '2016'),
+          createFilter('Vuosi', vuodet, (new Date().getFullYear() - 1).toString()),
           createFilter('Sopimustyyppi', sopimustyypit)],
         options: createMultiBarChart('tarjonta', 'Viikonpäiväluokka', viikonpaivaluokat)
       }]
@@ -320,7 +320,7 @@ export class Tunnusluvut {
         yTitle: filter => 'Linjakilometrit' + filterInfoText(filter) + ' / päivä vuonna ' + filter.vuosi,
         groupBy: ['organisaatioid', 'viikonpaivaluokkatunnus'],
         filters: [
-          createFilter('Vuosi', vuodet, '2016'),
+          createFilter('Vuosi', vuodet, (new Date().getFullYear() - 1).toString()),
           createFilter('Sopimustyyppi', sopimustyypit)],
         options: createMultiBarChart('tarjonta', 'Viikonpäiväluokka', viikonpaivaluokat)
       }]
@@ -380,7 +380,7 @@ export class Tunnusluvut {
         yTitle: filter => 'Kaluston lukumäärä' + filterInfoText(filter) + ' vuonna ' + filter.vuosi,
         groupBy: ['organisaatioid', 'paastoluokkatunnus'],
         filters: [
-          createFilter('Vuosi', vuodet, '2016'),
+          createFilter('Vuosi', vuodet, (new Date().getFullYear() - 1).toString()),
           createFilter('Sopimustyyppi', sopimustyypit)],
         options: createMultiBarChart('kalusto', 'Päästöluokka', paastoluokat)
       }]
@@ -400,7 +400,7 @@ export class Tunnusluvut {
         yTitle: filter => 'Lippuhinta' + filterInfoText(filter) + ' €',
         groupBy: ['organisaatioid', 'vyohykemaara'],
         filters: [
-          createFilter('Vuosi', vuodet, '2016'),
+          createFilter('Vuosi', vuodet, (new Date().getFullYear() - 1).toString()),
           createFilter('Lipputyyppi', lippuhintaluokat, 'KE')],
         options: createMultiBarChart('lippuhinnat', 'Vyöhykemäärä', vyohykemaarat)
       }]
