@@ -7,7 +7,7 @@
     <h4 class="f-center f-uppercase">${ title }</h4>
     <p class="f-center">${ subtitle }</p>
     <!-- hard coded because of IE 11 -->
-    <svg height.bind="height" css.bind="{ height: height }" show.bind="setup.data"></svg>
+    <svg height.bind="height" css.bind="{ height: height }" show.bind="setup.data" style="height: 500px;"></svg>
     <p if.bind="setup.data[1]" class="Pe-md">
       <csv filename.bind="title" column-delimiter=";" data.bind="setup.data"></csv>
     </p>
