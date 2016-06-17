@@ -75,7 +75,7 @@ export class Perustunnusluvut {
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
-            height: document.body.clientWidth < 768 ? 1000 : 500,
+            height: 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('tunnusluku', R.head(data)),
             title: this.i18n.tr('tyytyvaisyys-joukkoliikenteeseen'),
@@ -95,7 +95,7 @@ export class Perustunnusluvut {
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
-            height: document.body.clientWidth < 768 ? 1000 : 500,
+            height: 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('tunnusluku', R.head(data)),
             title: this.i18n.tr('matkustajamaarat'),
@@ -115,7 +115,7 @@ export class Perustunnusluvut {
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
-            height: document.body.clientWidth < 768 ? 1000 : 500,
+            height: 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('tunnusluku', R.head(data)),
             title: this.i18n.tr('lahtojen-maara'),
@@ -135,7 +135,7 @@ export class Perustunnusluvut {
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
-            height: document.body.clientWidth < 768 ? 1000 : 500,
+            height: 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('tunnusluku', R.head(data)),
             title: this.i18n.tr('linjakilometrit'),
@@ -155,7 +155,7 @@ export class Perustunnusluvut {
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
-            height: document.body.clientWidth < 768 ? 1000 : 500,
+            height: 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('myonnettyavustus_asukastakohti', R.head(data)),
             title: this.i18n.tr('valtion-rahoitus-asukasta-kohden'),
@@ -175,7 +175,7 @@ export class Perustunnusluvut {
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
-            height: document.body.clientWidth < 768 ? 1000 : 500,
+            height: 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('myonnettyavustus_asukastakohti', R.head(data)),
             title: this.i18n.tr('toimivaltaisen-viranomaisen-omarahoitus-asukasta-kohden'),
@@ -195,7 +195,7 @@ export class Perustunnusluvut {
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
-            height: document.body.clientWidth < 768 ? 1000 : 500,
+            height: 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('liikennointikorvaus.korvaus-lipputulo.total', R.head(data)),
             title: this.i18n.tr('psa-liikenteen-nettokustannukset'),

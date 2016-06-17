@@ -9,11 +9,12 @@ export class Viranomainen {
     this.ea = eventAggregator;
     this.router = router;
     this.viranomainen = null;
+    this.isMobile = document.body.clientWidth < 768;
   }
 
   bind() {
     this.subscription = this.ea.subscribe('router:navigation:success', router => {
-      this.viranomainen = router.instruction.params.childRoute || 'ALL';
+      this.viranomainen = router.instruction.params.childRoute || (this.isMobile ? 'KS1' : 'ALL');
       this.tunnuslukuPageUrl = `modules/tilastot/${router.instruction.config.name}/${router.instruction.config.name}`;
     });
   }

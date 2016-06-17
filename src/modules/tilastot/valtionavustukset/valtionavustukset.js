@@ -41,7 +41,6 @@ export class Valtionavustukset {
     this.i18n = i18n;
     this.viranomainen = null;
     this.router = router;
-    // chartOptions.height = ;
   }
 
   activate(model) {
@@ -74,7 +73,7 @@ export class Valtionavustukset {
         let o = R.merge(chartOptions, {
           groupKeys: groupKeys,
           groupLabels: groupLabels,
-          height: document.body.clientWidth < 768 ? 1000 : 500,
+          height: 500,
           xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
           valueIndex: R.indexOf('haettavaavustus', R.head(data)),
           title: this.i18n.tr('haetut-avustukset-organisaatioittain'),
@@ -89,7 +88,7 @@ export class Valtionavustukset {
         let o2 = R.merge(chartOptions, {
           groupKeys: groupKeys,
           groupLabels: groupLabels,
-          height: document.body.clientWidth < 768 ? 1000 : 500,
+          height: 500,
           xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
           valueIndex: R.indexOf('myonnettyavustus', R.head(data)),
           title: this.i18n.tr('myonnetyt-avustukset-organisaatioittain'),
@@ -111,7 +110,7 @@ export class Valtionavustukset {
           options: R.merge(chartOptions, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
-            height: document.body.clientWidth < 768 ? 1000 : 500,
+            height: 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('myonnettyavustus_asukastakohti', R.head(data)),
             title: this.i18n.tr('myonnetty-avustus-per-asukas'),
