@@ -8,6 +8,12 @@ export function second(array) {
   return array[1];
 }
 
+export function checkIfInSelectedRange(rangeMin, rangeMax, rangeStart, rangeEnd, currentValue) {
+  let biggerOrEqualThanRangeStart = currentValue >= rangeStart;
+  let smallerOrEqualThanRangeEnd = currentValue <= rangeEnd;
+  return rangeEnd < rangeMax ? biggerOrEqualThanRangeStart && smallerOrEqualThanRangeEnd : biggerOrEqualThanRangeStart;
+}
+
 /**
  * String is blank if it is only whitespace, null or undefined.
  */
