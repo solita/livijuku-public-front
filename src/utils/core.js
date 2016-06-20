@@ -9,6 +9,9 @@ export function second(array) {
 }
 
 export function checkIfInSelectedRange(rangeMin, rangeMax, rangeStart, rangeEnd, currentValue) {
+  if (_.isNil(currentValue)) {
+    return true;
+  }
   let biggerOrEqualThanRangeStart = currentValue >= rangeStart;
   let smallerOrEqualThanRangeEnd = currentValue <= rangeEnd;
   return rangeEnd < rangeMax ? biggerOrEqualThanRangeStart && smallerOrEqualThanRangeEnd : biggerOrEqualThanRangeStart;
