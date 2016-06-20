@@ -154,11 +154,11 @@ export class Kilpailutukset {
       this.isLiikennointikausiChecked = params.lii || false;
       return Promise.all(this.createPromises()).then(values => {
         let kilpailutukset = this.parseKilpailutukset(values[0]);
-
         kilpailutukset = R.filter(kilpailutus => {
           let arvo = kilpailutus.kohdearvo / 1000000;
           let kalusto = kilpailutus.kalusto;
-          return (arvo >= this.kohdearvo.start[0] && arvo <= this.kohdearvo.start[1]) && (kalusto >= this.kalustokoko.start[0] && kalusto <= this.kalustokoko.start[1]);
+          return c.checkIfInSelectedRange(this.kohdearvo.range.min, this.kohdearvo.range.max, parseFloat(this.kohdearvo.start[0]), parseFloat(this.kohdearvo.start[1]), arvo) &&
+            c.checkIfInSelectedRange(this.kalustokoko.range.min, this.kalustokoko.range.max, parseFloat(this.kalustokoko.start[0]), parseFloat(this.kalustokoko.start[1]), kalusto);
         }, kilpailutukset);
 
         this.organisaatiot = R.filter(organisaatio => { return organisaatio.nimi !== 'Liikennevirasto'; }, values[1]);

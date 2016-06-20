@@ -23,7 +23,8 @@ export class NoUiSliderCustomElement {
     ];
 
     slider.on('update', (values, handle) => {
-      snapValues[handle].innerHTML = values[handle];
+      let labelText = options.range.max === parseFloat(values[handle]) ? values[handle] + '+' : values[handle];
+      snapValues[handle].innerHTML = labelText;
     });
 
     slider.on('set', (values, handle) => {
