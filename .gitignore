@@ -11,3 +11,4 @@ test/e2e/dist
 /export
 export.zip
 config.js
+*.iml
