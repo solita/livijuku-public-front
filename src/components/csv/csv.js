@@ -45,7 +45,7 @@ export class CsvCustomElement {
     let csv = convertArrayOfObjectsToCSV();
     if (csv === null) return;
 
-    filename = this.filename || 'export.csv';
+    filename = this.filename + '.csv' || 'export.csv';
 
     if (!csv.match(/^data:text\/csv/i)) {
       csv = 'data:text/csv;charset=utf-8,' + csv;
