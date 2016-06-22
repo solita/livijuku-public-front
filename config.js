@@ -7,6 +7,7 @@ System.config({
     "npm:*": "jspm_packages/npm/*"
   },
   buildCSS: false,
+
   map: {
     "aurelia-animator-css": "npm:aurelia-animator-css@1.0.0-beta.1.2.1",
     "aurelia-binding": "npm:aurelia-binding@1.0.0-beta.1.3.6",
@@ -39,6 +40,7 @@ System.config({
     "bootstrap": "github:twbs/bootstrap@3.3.6",
     "d3": "npm:d3@3.5.17",
     "fetch": "github:github/fetch@0.11.1",
+    "file-saver": "npm:file-saver@1.3.2",
     "font-awesome": "npm:font-awesome@4.6.3",
     "i18next-xhr-backend": "npm:i18next-xhr-backend@0.5.4",
     "jquery": "npm:jquery@2.2.4",
