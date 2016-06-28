@@ -1,0 +1,14 @@
+<template>
+  <!-- <require from="src/resources/utils/d3-locale.js"></require> -->
+  <require from="resources/components/csv/csv"></require>
+
+  <div if.bind="setup" class="chart left full-width bg-c-w Mb-md">
+    <h4 class="f-center f-uppercase">${ title }</h4>
+    <p class="f-center">${ subtitle }</p>
+    <!-- hard coded because of IE 11 -->
+    <svg height.bind="height" css.bind="{ height: height }" show.bind="setup.data" style="height: 500px;"></svg>
+    <p if.bind="setup.data[1]" class="Pe-md">
+      <csv filename.bind="title" column-delimiter=";" data.bind="setup.csv"></csv>
+    </p>
+  </div>
+</template>

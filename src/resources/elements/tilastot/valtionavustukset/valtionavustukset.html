@@ -1,0 +1,11 @@
+<template>
+  <require from="resources/components/chart/chart"></require>
+  <div class="h-min-100vh clearfix">
+    <p show.bind="viranomainen === 'KS3'" class="Px-md Pb-xl w-max-1200 h-center">${ 'pienet-kaupunkiseudut-selitys' & t }</p>
+
+    <chart if.bind="haetutJaMyonnetytAvustukset" setup.bind="haetutJaMyonnetytAvustukset"></chart>
+    <chart if.bind="haetutAvustuksetOrganisaatioittain" setup.bind="haetutAvustuksetOrganisaatioittain"></chart>
+    <chart if.bind="myonnetytAvustuksetOrganisaatioittain" setup.bind="myonnetytAvustuksetOrganisaatioittain"></chart>
+    <chart if.bind="avustusPerAsukas" setup.bind="avustusPerAsukas"></chart>
+  </div>
+</template>

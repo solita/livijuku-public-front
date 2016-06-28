@@ -13,8 +13,8 @@
     "paper-menu": "PolymerElements/paper-menu#^1.0.0",
     "paper-spinner": "PolymerElements/paper-spinner#^1.0.0",
     "paper-toggle-button": "PolymerElements/paper-toggle-button#^1.0.0",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.20",
-    "paper-tooltip": "PolymerElements/paper-tooltip#^1.0.0"
+    "paper-tooltip": "PolymerElements/paper-tooltip#^1.0.0",
+    "webcomponentsjs": "^0.7.22"
   },
   "resolutions": {
     "promise-polyfill": "^1.0.0"
