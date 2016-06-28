@@ -51,6 +51,7 @@ export class Valtionavustukset {
         let groupKeys = t.getGroupKeys(R.indexOf('avustustyyppi', R.head(data)), data);
         let groupLabels = [this.i18n.tr('haetut'), this.i18n.tr('myonnetyt')];
         this.haetutJaMyonnetytAvustukset = {
+          csv: R.tail(data),
           data: data,
           options: R.merge(chartOptions, {
             groupKeys: groupKeys,
@@ -69,35 +70,35 @@ export class Valtionavustukset {
         let xLabelIndex = R.indexOf('vuosi', R.head(data));
         let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
         let groupLabels = t.getOrganisaatioNames(groupKeys, this.organisaatiot);
-        let o = R.merge(chartOptions, {
-          groupKeys: groupKeys,
-          groupLabels: groupLabels,
-          height: 500,
-          xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
-          valueIndex: R.indexOf('haettavaavustus', R.head(data)),
-          title: this.i18n.tr('haetut-avustukset-organisaatioittain'),
-          subtitle: {
-            text: this.i18n.tr(this.viranomainen)
-          }
-        });
         this.haetutAvustuksetOrganisaatioittain = {
+          csv: R.tail(data),
           data: data,
-          options: o
+          options: R.merge(chartOptions, {
+            groupKeys: groupKeys,
+            groupLabels: groupLabels,
+            height: 500,
+            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
+            valueIndex: R.indexOf('haettavaavustus', R.head(data)),
+            title: this.i18n.tr('haetut-avustukset-organisaatioittain'),
+            subtitle: {
+              text: this.i18n.tr(this.viranomainen)
+            }
+          })
         };
-        let o2 = R.merge(chartOptions, {
-          groupKeys: groupKeys,
-          groupLabels: groupLabels,
-          height: 500,
-          xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
-          valueIndex: R.indexOf('myonnettyavustus', R.head(data)),
-          title: this.i18n.tr('myonnetyt-avustukset-organisaatioittain'),
-          subtitle: {
-            text: this.i18n.tr(this.viranomainen)
-          }
-        });
         this.myonnetytAvustuksetOrganisaatioittain = {
+          csv: R.tail(data),
           data: data,
-          options: o2
+          options: R.merge(chartOptions, {
+            groupKeys: groupKeys,
+            groupLabels: groupLabels,
+            height: 500,
+            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
+            valueIndex: R.indexOf('myonnettyavustus', R.head(data)),
+            title: this.i18n.tr('myonnetyt-avustukset-organisaatioittain'),
+            subtitle: {
+              text: this.i18n.tr(this.viranomainen)
+            }
+          })
         };
       });
       this.api.getAvustusPerAsukas(this.viranomainen).then(data => {
@@ -105,6 +106,7 @@ export class Valtionavustukset {
         let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
         let groupLabels = t.getOrganisaatioNames(groupKeys, this.organisaatiot);
         this.avustusPerAsukas = {
+          csv: R.tail(data),
           data: data,
           options: R.merge(chartOptions, {
             groupKeys: groupKeys,

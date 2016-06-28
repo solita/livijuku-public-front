@@ -70,6 +70,7 @@ export class Perustunnusluvut {
         let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
         let groupLabels = t.getOrganisaatioNames(groupKeys, this.organisaatiot);
         this.tyytyvaisyysJoukkoliikenteeseen = {
+          csv: R.tail(data),
           data: data,
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
@@ -90,6 +91,7 @@ export class Perustunnusluvut {
         let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
         let groupLabels = t.getOrganisaatioNames(groupKeys, this.organisaatiot);
         this.nousut = {
+          csv: R.tail(data),
           data: data,
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
@@ -110,6 +112,7 @@ export class Perustunnusluvut {
         let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
         let groupLabels = t.getOrganisaatioNames(groupKeys, this.organisaatiot);
         this.lahdot = {
+          csv: R.tail(data),
           data: data,
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
@@ -130,6 +133,7 @@ export class Perustunnusluvut {
         let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
         let groupLabels = t.getOrganisaatioNames(groupKeys, this.organisaatiot);
         this.linjakilometrit = {
+          csv: R.tail(data),
           data: data,
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
@@ -150,6 +154,7 @@ export class Perustunnusluvut {
         let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
         let groupLabels = t.getOrganisaatioNames(groupKeys, this.organisaatiot);
         this.valtionAvustusPerAsukas = {
+          csv: R.tail(data),
           data: data,
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
@@ -170,6 +175,7 @@ export class Perustunnusluvut {
         let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
         let groupLabels = t.getOrganisaatioNames(groupKeys, this.organisaatiot);
         this.omarahoitusPerAsukas = {
+          csv: R.tail(data),
           data: data,
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
@@ -190,6 +196,7 @@ export class Perustunnusluvut {
         let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
         let groupLabels = t.getOrganisaatioNames(groupKeys, this.organisaatiot);
         this.psaNettokustannukset = {
+          csv: R.tail(data),
           data: data,
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
