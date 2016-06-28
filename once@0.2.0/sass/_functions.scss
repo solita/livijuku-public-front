@@ -1,0 +1,231 @@
+/*
+# Strip units from a number with units.
+
+```scss
+$number: strip-units(3px);
+```
+
+Output:
+
+```scss
+$number => 3
+```
+
+ */
+@function strip-units($number) {
+    @return $number / ($number * 0 + 1);
+}
+
+/*
+# Replace a string with another string
+
+```scss
+$output: str-replace('something here {might} change', '{might}', 'will');
+$output => 'something here will change'
+```
+
+Output:
+
+```scss
+$output => 'something here will change'
+```
+
+ */
+@function str-replace($string, $search, $replace) {
+    $searchLength: str-length($search);
+    $length: str-length($replace);
+    $index: str-index($string, $search);
+    $slice: $string;
+    @while $index != 0 and type-of($index) == number {
+        $slice: str-slice($slice, 0, $index - 1);
+        $slice: $slice + $replace;
+        $slice: $slice + str-slice($string, $index + $searchLength);
+        $index: str-index($slice, $search);
+    }
+    @return $slice;
+}
+
+/*
+# CSS class generator with a specific name and properties
+
+```scss
+@include createSelector('Px-xs', ('padding-left': 1em, 'padding-right': 1em));
+```
+
+Output:
+
+```scss
+.Px-xs {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+```
+
+ */
+
+@mixin createSelector($selectorName, $properties) {
+    .#{$selectorName} {
+        @each $property, $value in $properties {
+            #{$property}: #{$value};
+        }
+    }
+}
+
+
+/*
+# Generate multiple css classes according to values
+
+```scss
+@include createMultipleSelectors('f-{key}', ('white': #fff, 'black': #000), 'color');
+```
+
+Output:
+
+```scss
+.f-white {
+    color: #fff;
+}
+```
+
+ */
+@mixin createMultipleSelectors($selectorName, $values, $property) {
+    @each $name, $val in $values {
+        $newSelector: str-replace($selectorName, '{key}', $name);
+        @include createSelector(#{$newSelector}, ($property: $val));
+    }
+}
+
+/*
+# Generate multiple selectors (TBD)
+
+```scss
+$output: generateMultipleSelectors('Px', (xs, sm, md));
+```
+
+Output
+
+```scss
+$output => (xs: 'Px-xs', sm: 'Px-sm', md: 'Px-md');
+```
+ */
+@function generateMultipleSelectors($selectorNamePrefix, $selectorGeneratorIds) {
+    $selectors: ();
+    @each $id in $selectorGeneratorIds {
+        $selectors: map-merge($selectors, $selectorNamePrefix + '-' + $id);
+    }
+
+    @return $selectors; // $selectors: ('xs': 'Px-xs', 'sm': 'Px-sm'...)
+}
+
+/*
+# Create multiple sized classes
+
+```scss
+@include createMultipleSizeClasses('Px', (sm: 1em, md: 2em), ('padding-left', 'padding-right'));
+```
+
+Output:
+
+```scss
+.Px-sm {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.Px-md {
+    padding-left: 2em;
+    padding-right: 2em;
+}
+```
+
+ */
+@mixin createMultipleSizeClasses($selectorPrefix, $sizes, $properties) {
+    @each $sizeName, $size in $sizes {
+        $values: ();
+        @each $property in $properties {
+            $values: map-merge($values, ($property: $size));
+        }
+
+        @include createSelector(#{$selectorPrefix + '-' + $sizeName}, $values);
+    }
+}
+
+/*
+# Create multiple sized box classes
+
+Create CSS classes (multiple sizes) of elements that have top, right, bottom & left values
+
+```scss
+@include createMultipleSizeBoxClasses('P{dirKey}', (xs: 1em, sm: 2em), 'padding-{dir}');
+```
+
+Will generate for example following classes
+
+```scss
+.Pt-xs {
+    padding-top: 1em;
+}
+
+.Pt-sm {
+    padding-top: 2em;
+}
+
+.Py-xs {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+...
+```
+ */
+@mixin createMultipleSizeBoxClasses($selectorName, $sizes, $cssProperty) {
+    @each $dirKey, $dirProperties in $dirs {
+        $newSelector: str-replace($selectorName, '{dirKey}', $dirKey);
+        $properties: ();
+
+        @each $property in $dirProperties {
+            $newProperty: str-replace($cssProperty, '{dir}', $property);
+            $properties: append($properties, #{$newProperty});
+        }
+        @include createMultipleSizeClasses(#{$newSelector}, $sizes, $properties);
+    }
+}
+
+/*
+# Create multiple box classes
+
+```scss
+@include createMultipleBoxClasses('B{dirKey}-solid', ('border-{dir}-style': 'solid'));
+```
+
+Will generate for example following classes:
+
+```scss
+.Br-solid {
+    border-right-style: solid;
+}
+
+.Bx-solid {
+    border-right-style: solid;
+    border-left-style: solid;
+}
+
+...
+```
+
+ */
+@mixin createMultipleBoxClasses($selectorName, $cssProperties) {
+    @each $dirKey, $dirSelection in $dirs {
+        $newSelector: str-replace($selectorName, '{dirKey}', $dirKey);
+        $properties: ();
+
+        @each $dir in $dirSelection {
+            @each $prop, $value in $cssProperties {
+                $newProperty: str-replace($prop, '{dir}', $dir);
+                $properties: map-merge($properties, ($newProperty: $value));
+            }
+        }
+
+        @include createSelector(#{$newSelector}, $properties);
+    }
+}
