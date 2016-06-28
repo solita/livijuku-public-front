@@ -1,6 +1,16 @@
+import environment from './environment';
 import {EventManager} from 'aurelia-framework';
+import {I18N} from 'aurelia-i18n';
+import {RelativeTime} from 'aurelia-i18n';
 import XHR from 'i18next-xhr-backend';
 
+//Configure Bluebird Promises.
+//Note: You may want to use environment-specific configuration.
+Promise.config({
+  warnings: {
+    wForgottenReturn: false
+  }
+});
 
 export function configure(aurelia) {
   let eventManager = aurelia.container.get(EventManager);
@@ -9,11 +19,19 @@ export function configure(aurelia) {
     properties: {
       checked: ['change']
     }
-  });
+  })
 
   aurelia.use
-    .standardConfiguration();
-    // .developmentLogging();
+    .standardConfiguration()
+    .feature('resources');
+
+  if (environment.debug) {
+    aurelia.use.developmentLogging();
+  }
+
+  if (environment.testing) {
+    aurelia.use.plugin('aurelia-testing');
+  }
 
   aurelia.use.plugin('aurelia-i18n', (instance) => {
     // register backend plugin
@@ -22,7 +40,7 @@ export function configure(aurelia) {
     // adapt options to your needs (see http://i18next.com/docs/options/)
     return instance.setup({
       backend: {
-        loadPath: 'locale/{{lng}}/{{ns}}.json'
+        loadPath: 'locales/{{lng}}/{{ns}}.json'
       },
       lng: 'fi',
       attributes: ['t', 'i18n'],
@@ -31,13 +49,5 @@ export function configure(aurelia) {
     });
   });
 
-  //Uncomment the line below to enable animation.
-  aurelia.use.plugin('aurelia-animator-css');
-  //if the css animator is enabled, add swap-order="after" to all router-view elements
-
-  aurelia.use.plugin('aurelia-polymer');
-  //Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
-  aurelia.use.plugin('aurelia-html-import-template-loader');
-
-  aurelia.start().then(a => a.setRoot());
+  aurelia.start().then(() => aurelia.setRoot());
 }

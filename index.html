@@ -2,11 +2,11 @@
 <html>
   <head>
     <title>JUKU</title>
-    <link rel="stylesheet" href="dist/index.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
-    <link rel="import" href="dist/elements.html">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.js"></script>
+    <!-- <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script> -->
+    <link rel="import" href="src/vulcanized-elements.html">
     <link rel="shortcut icon" href="favicon.ico">
     <!-- Override globally -->
     <style is="custom-style">
@@ -21,22 +21,7 @@
       }
     </style>
   </head>
-
   <body aurelia-app="main" class="fullbleed layout vertical">
-
-    <div class="w-100vw h-100vh flex flex-d-c r-sm-flex-d-r flex-ai-c flex-jc-c bg-c-b">
-      <img src="images/juku_logo_white.svg" class="block h-70 r-sm-Me-xl" />
-      <div>
-        <paper-spinner-lite alt="Ladataan JUKU-palvelua..." active></paper-spinner-lite>
-      </div>
-    </div>
-
-    <script src="jspm_packages/system.js"></script>
-    <script src="config.js"></script>
-    <script>
-      document.addEventListener('WebComponentsReady', function() {
-        System.import('aurelia-bootstrapper');
-      });
-    </script>
+    <script src="scripts/vendor-bundle.js" data-main="aurelia-bootstrapper"></script>
   </body>
 </html>

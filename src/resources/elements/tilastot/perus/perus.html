@@ -1,0 +1,15 @@
+<template>
+
+  <require from="resources/components/chart/chart"></require>
+
+  <div class="h-min-100vh clearfix">
+    <chart if.bind="tyytyvaisyysJoukkoliikenteeseen" setup.bind="tyytyvaisyysJoukkoliikenteeseen"></chart>
+    <chart if.bind="nousut" setup.bind="nousut"></chart>
+    <chart if.bind="lahdot" setup.bind="lahdot"></chart>
+    <chart if.bind="linjakilometrit" setup.bind="linjakilometrit"></chart>
+    <chart if.bind="valtionAvustusPerAsukas" setup.bind="valtionAvustusPerAsukas"></chart>
+    <chart if.bind="omarahoitusPerAsukas" setup.bind="omarahoitusPerAsukas"></chart>
+    <chart if.bind="psaNettokustannukset" setup.bind="psaNettokustannukset"></chart>
+  </div>
+
+</template>

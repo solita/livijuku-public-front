@@ -1,17 +1,17 @@
-import $ from 'jquery';
+// import $ from 'jquery';
 
 export class App {
 
   configureRouter(config, router) {
     config.title = 'JUKU';
-    config.addPipelineStep('postcomplete', PostCompleteStep);
+    // config.addPipelineStep('postcomplete', PostCompleteStep);
     config.map([
-      { route: ['', 'etusivu'], moduleId: 'modules/etusivu/etusivu', name: 'etusivu', nav: false, title: 'etusivu' },
-      { route: 'tilastot/valtionavustukset', moduleId: 'modules/tilastot/tilastot', name: 'valtionavustukset', nav: true, title: 'valtionavustukset' },
-      { route: 'tilastot/perus', moduleId: 'modules/tilastot/tilastot', name: 'perus', nav: true, title: 'perustunnusluvut' },
-      { route: 'tilastot/kaikki', moduleId: 'modules/tilastot/tilastot', name: 'kaikki', nav: true, title: 'kaikki-tunnusluvut' },
-      { route: 'kilpailutukset', moduleId: 'modules/kilpailutukset/kilpailutukset', name: 'kilpailutukset', nav: true, title: 'kilpailutukset' },
-      { route: 'kilpailutus/:id', moduleId: 'modules/kilpailutus/kilpailutus', name: 'kilpailutus', nav: false, title: 'kilpailutus' }
+      { route: ['', 'etusivu'], moduleId: 'resources/elements/etusivu/etusivu', name: 'etusivu', nav: false, title: 'etusivu' },
+      { route: 'tilastot/valtionavustukset', moduleId: 'resources/elements/tilastot/tilastot', name: 'valtionavustukset', nav: true, title: 'valtionavustukset' },
+      { route: 'tilastot/perus', moduleId: 'resources/elements/tilastot/tilastot', name: 'perus', nav: true, title: 'perustunnusluvut' },
+      { route: 'tilastot/kaikki', moduleId: 'resources/elements/tilastot/tilastot', name: 'kaikki', nav: true, title: 'kaikki-tunnusluvut' },
+      { route: 'kilpailutukset', moduleId: 'resources/elements/kilpailutukset/kilpailutukset', name: 'kilpailutukset', nav: true, title: 'kilpailutukset' },
+      { route: 'kilpailutus/:id', moduleId: 'resources/elements/kilpailutus/kilpailutus', name: 'kilpailutus', nav: false, title: 'kilpailutus' }
     ]);
     this.router = router;
   }
@@ -41,9 +41,9 @@ export class App {
   }
 }
 
-class PostCompleteStep {
-  run(routingContext, next) {
-    $('body').scrollTop(0);
-    return next();
-  }
-}
+// class PostCompleteStep {
+//   run(routingContext, next) {
+//     $('body').scrollTop(0);
+//     return next();
+//   }
+// }
