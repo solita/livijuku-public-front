@@ -1,11 +1,16 @@
+import gulp from 'gulp';
+import rename from 'gulp-rename';
+import vulcanize from 'gulp-vulcanize';
+
 // This is for concatenating Polymer components
-gulp.task('vulcanize', () => {
-  return gulp.src('elements.html')
+export default function vulcanizeElements() {
+  return gulp.src('src/elements.html')
     .pipe(vulcanize(
       {
         inlineScripts: true,
         stripComments: true
       }
     ))
-    .pipe('/vulcanized-elements.html');
-});
+    .pipe(rename('vulcanized-polymer-elements.html'))
+    .pipe(gulp.dest('scripts'));
+};
