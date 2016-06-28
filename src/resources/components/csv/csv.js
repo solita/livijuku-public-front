@@ -1,9 +1,9 @@
 import {bindable} from 'aurelia-framework';
 import R from 'ramda';
-import save from 'file-saver';
+import saveAs from 'file-saver';
 import * as c from 'resources/utils/core';
 
-const quote = (columnDelimeter, quoteChar, value) => 
+const quote = (columnDelimeter, quoteChar, value) =>
   R.contains(columnDelimeter, value) ?
     quoteChar + R.replace(new RegExp(quoteChar, 'g'), quoteChar + quoteChar, value.toString()) + quoteChar :
     value;
@@ -26,12 +26,12 @@ export class CsvCustomElement {
     const csv = convertToCSV(this.data,
       c.coalesce(this.lineDelimiter, '\n'),
       c.coalesce(this.columnDelimiter, ';'),
-      '"');
+    '"');
 
     if (csv === null) return;
 
     const blob = new Blob([csv], {type: "text/csv;charset=utf-8"});
-    save.saveAs(blob, filename);
+    saveAs(blob, filename);
   };
 
 }
