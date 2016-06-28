@@ -44,6 +44,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^2.0.0-alpha",
+    "gulp-vulcanize": "^6.1.0",
     "i18next-xhr-backend": "^0.6.0",
     "jasmine-core": "^2.4.1",
     "jquery": "^3.0.0",
