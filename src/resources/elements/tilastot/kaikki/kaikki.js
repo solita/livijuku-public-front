@@ -1,20 +1,18 @@
 import {Api} from 'resources/services/api';
 import {inject} from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
-import {HttpClient} from 'aurelia-fetch-client';
 import {Router} from 'aurelia-router';
 import {Tunnusluvut} from 'resources/services/tunnusluvut';
 import R from 'ramda';
 import * as t from 'resources/utils/tunnusluvut';
 import * as c from 'resources/utils/core';
 
-@inject(Api, EventAggregator, HttpClient, Router, Tunnusluvut)
+@inject(Api, EventAggregator, Router, Tunnusluvut)
 export class Kaikki {
 
-  constructor(api, eventAggregator, http, router, tunnusluvut) {
+  constructor(api, eventAggregator, router, tunnusluvut) {
     this.api = api;
     this.ea = eventAggregator;
-    this.http = http;
     this.api.organisaatiot.then(data => this.organisaatiot = data);
     this.router = router;
     this.chartConfigs = {};
