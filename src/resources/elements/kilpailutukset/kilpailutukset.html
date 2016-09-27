@@ -23,7 +23,7 @@
             <paper-tooltip for="organisaatio-tip" class="Px-xl w-315" fit-to-visible-bounds>
               <p class="c-w">${ 'organisaatio-tip' & t }</p>
               <ul class="c-w">
-                <li repeat.for="organisaatio of inactiveOrganisaatiot">${ organisaatio.nimi }<li>
+                <li repeat.for="organisaatio of inactiveOrganisaatiot">${ organisaatio.nimi }</li>
               </ul>
             </paper-tooltip>
             <select select2.bind="organisaatioSelectOptions" value.bind="filter.organisaatiot" multiple="multiple" class="full-width My-md" change.trigger="onOrganisaatioListChange()">
@@ -89,7 +89,7 @@
 
     <div class="clearfix">
       <div class="Pb-xl left full-width">
-        <csv if.bind="timeline.data.kilpailutukset.length" filename.bind="title" column-delimiter=";" data.bind="timeline.data.kilpailutukset"></csv>
+        <!-- TODO: add here a CSV download link -->
       </div>
     </div>
 
