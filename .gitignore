@@ -12,6 +12,4 @@ test/e2e/dist
 export.zip
 config.js
 *.iml
-scripts/app-bundle.js
-scripts/app-bundle.js.map
-scripts/vendor-bundle.js
+/scripts
