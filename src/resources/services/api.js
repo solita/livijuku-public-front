@@ -1,6 +1,6 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
-import 'fetch';
+import 'whatwg-fetch'; // This is a polyfill for IE
 
 @inject(HttpClient)
 export class Api {
@@ -8,7 +8,6 @@ export class Api {
   constructor(http) {
     let self = this;
     this.http = http;
-    console.info(this.http);
     this.http.configure(config => {
       config
         .withBaseUrl('api/')
