@@ -1,16 +1,14 @@
 import {Api} from 'resources/services/api';
-import {HttpClient} from 'aurelia-fetch-client';
 import {inject} from 'aurelia-framework';
 import R from 'ramda';
 import moment from 'moment';
 // require('moment/locale/fi');
 
-@inject(Api, HttpClient)
+@inject(Api)
 export class Kilpailutus {
 
-  constructor(api, http) {
+  constructor(api) {
     this.api = api;
-    this.http = http;
   }
 
   activate(params) {
