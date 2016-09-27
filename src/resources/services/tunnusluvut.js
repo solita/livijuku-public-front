@@ -396,7 +396,7 @@ export class Tunnusluvut {
           createFilter('Vyöhykemäärä', vyohykemaarat, '1')],
         options: createMultiBarChart('lippuhinnat', 'Vuosi')
       }, {
-        title: 'Vuoden lippuhinnat vyöhykeittäin',
+        title: 'Vuoden lippuhinnat vyöhykkeittäin',
         yTitle: filter => 'Lippuhinta' + filterInfoText(filter) + ' €',
         groupBy: ['organisaatioid', 'vyohykemaara'],
         filters: [
