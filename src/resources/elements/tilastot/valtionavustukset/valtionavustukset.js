@@ -2,7 +2,6 @@ import {Api} from 'resources/services/api';
 import {I18N} from 'aurelia-i18n';
 import {inject} from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
-import {HttpClient} from 'aurelia-fetch-client';
 import {Router} from 'aurelia-router';
 import R from 'ramda';
 import * as t from 'resources/utils/tunnusluvut';
@@ -29,14 +28,13 @@ const chartOptions = {
   }
 };
 
-@inject(Api, EventAggregator, HttpClient, I18N, Router)
+@inject(Api, EventAggregator, I18N, Router)
 export class Valtionavustukset {
 
-  constructor(api, eventAggregator, http, i18n, router) {
+  constructor(api, eventAggregator, i18n, router) {
     this.api = api;
     this.chartOptions = {};
     this.ea = eventAggregator;
-    this.http = http;
     this.i18n = i18n;
     this.viranomainen = null;
     this.router = router;
