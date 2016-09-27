@@ -12,7 +12,6 @@ import * as c from 'resources/utils/core';
 import * as t from 'resources/utils/time';
 import * as tl from 'resources/utils/tunnusluvut';
 import R from 'ramda';
-import 'wnumb';
 
 @inject(Api, EventAggregator, HttpClient, I18N, Router)
 export class Kilpailutukset {
