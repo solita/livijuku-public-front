@@ -3,15 +3,15 @@ import R from 'ramda';
 import saveAs from 'file-saver';
 import * as c from 'resources/utils/core';
 
-const quote = (columnDelimeter, quoteChar, value) =>
+export const quote = (columnDelimeter, quoteChar, value) =>
   R.contains(columnDelimeter, value) ?
     quoteChar + R.replace(new RegExp(quoteChar, 'g'), quoteChar + quoteChar, value.toString()) + quoteChar :
     value;
 
-const quoteLine = (line, columnDelimeter, quoteChar) =>
+export const quoteLine = (line, columnDelimeter, quoteChar) =>
   R.map(cell => quote(columnDelimeter, quoteChar, c.coalesce(cell, '')), line);
 
-const convertToCSV = (data, lineDelimeter, columnDelimeter, quoteChar) =>
+export const convertToCSV = (data, lineDelimeter, columnDelimeter, quoteChar) =>
   R.join(lineDelimeter, R.map(line => R.join(columnDelimeter, quoteLine(line, columnDelimeter, quoteChar)), data));
 
 export class CsvCustomElement {
