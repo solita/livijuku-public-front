@@ -8,15 +8,16 @@
   },
   "license": "MIT",
   "dependencies": {
+    "aurelia-animator-css": "^1.0.0-rc.1.0.0",
     "aurelia-bootstrapper": "^1.0.0-rc.1.0.0",
     "aurelia-fetch-client": "^1.0.0-rc.1.0.0",
-    "aurelia-animator-css": "^1.0.0-rc.1.0.0",
-    "bluebird": "^3.4.1"
+    "bluebird": "^3.4.1",
+    "whatwg-fetch": "^1.0.0"
   },
   "peerDependencies": {},
   "devDependencies": {
     "Once": "github:niant/once",
-    "aurelia-cli": "^0.13.0",
+    "aurelia-cli": "^0.20.0",
     "aurelia-i18n": "^1.0.0-rc.1.0.0",
     "aurelia-testing": "^1.0.0-beta.1.0.0",
     "aurelia-tools": "^0.2.2",
@@ -35,6 +36,7 @@
     "d3": "^3.5.17",
     "file-saver": "^1.3.2",
     "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-autoprefixer": "^3.1.1",
     "gulp-babel": "^6.1.2",
     "gulp-changed-in-place": "^2.0.3",
     "gulp-eslint": "^2.0.0",
@@ -44,6 +46,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^2.0.0-alpha",
+    "gulp-styledocco": "0.0.3",
     "gulp-vulcanize": "^6.1.0",
     "i18next-xhr-backend": "^0.6.0",
     "jasmine-core": "^2.4.1",
