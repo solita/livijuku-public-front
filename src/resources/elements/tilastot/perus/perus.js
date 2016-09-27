@@ -2,7 +2,6 @@ import {Api} from 'resources/services/api';
 import {I18N} from 'aurelia-i18n';
 import {inject} from 'aurelia-framework';
 import {EventAggregator} from 'aurelia-event-aggregator';
-import {HttpClient} from 'aurelia-fetch-client';
 import {Router} from 'aurelia-router';
 import {Tunnusluvut} from 'resources/services/tunnusluvut';
 import * as t from 'resources/utils/tunnusluvut';
@@ -46,13 +45,12 @@ const createGraph = (title, ytitle) => ({
   }
 });
 
-@inject(Api, EventAggregator, HttpClient, I18N, Router, Tunnusluvut)
+@inject(Api, EventAggregator, I18N, Router, Tunnusluvut)
 export class Perustunnusluvut {
 
-  constructor(api, eventAggregator, http, i18n, router, tunnusluvut) {
+  constructor(api, eventAggregator, i18n, router, tunnusluvut) {
     this.api = api;
     this.ea = eventAggregator;
-    this.http = http;
     this.api.organisaatiot.then(data => this.organisaatiot = data);
     this.i18n = i18n;
     this.router = router;
