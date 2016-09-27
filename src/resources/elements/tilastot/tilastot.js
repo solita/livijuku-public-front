@@ -45,7 +45,9 @@ export class Tilastot {
   }
 
   selectToimivaltaalue() {
-    this.router.navigate(this.router.navigation[this.childRouteIndex].href);
+    if (this.router.navigation[this.childRouteIndex]) {
+        this.router.navigate(this.router.navigation[this.childRouteIndex].href);
+    }
   }
 
 }
