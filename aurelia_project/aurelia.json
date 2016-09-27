@@ -55,7 +55,8 @@
       {
         "id": "default",
         "displayName": "Default",
-        "output": "scripts"
+        "output": "scripts",
+        "index": "index.html"
       }
     ],
     "loader": {
@@ -75,7 +76,8 @@
     },
     "options": {
       "minify": "stage & prod",
-      "sourcemaps": "dev & stage"
+      "sourcemaps": "dev & stage",
+      "rev": true
     },
     "bundles": [
       {
@@ -149,6 +151,11 @@
             "path": "../node_modules/i18next-xhr-backend/dist/commonjs",
             "main": "index"
           },
+          {
+            "name": "fetch",
+            "path": "../node_modules/whatwg-fetch",
+            "main": "fetch"
+          },
           "d3",
           "file-saver",
           "jquery",
@@ -157,8 +164,7 @@
           "nouislider",
           "nvd3",
           "ramda",
-          "select2",
-          "wnumb"
+          "select2"
         ]
       }
     ]
