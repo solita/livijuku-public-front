@@ -2,7 +2,6 @@ import {Api} from 'resources/services/api';
 import {EventAggregator} from 'aurelia-event-aggregator';
 import {I18N} from 'aurelia-i18n';
 import {inject} from 'aurelia-framework';
-import {HttpClient} from 'aurelia-fetch-client';
 import {Router} from 'aurelia-router';
 import moment from 'moment';
 // require('moment/locale/fi');
@@ -12,13 +11,14 @@ import * as c from 'resources/utils/core';
 import * as t from 'resources/utils/time';
 import * as tl from 'resources/utils/tunnusluvut';
 import R from 'ramda';
+import wNumb from 'wnumb';
 
-@inject(Api, EventAggregator, HttpClient, I18N, Router)
+@inject(Api, EventAggregator, I18N, Router)
 export class Kilpailutukset {
 
   // Life-cycle methods
 
-  constructor(api, eventAggregator, http, i18n, router) {
+  constructor(api, eventAggregator, i18n, router) {
     this.api = api;
     this.ea = eventAggregator;
     this.i18n = i18n;
@@ -90,7 +90,6 @@ export class Kilpailutukset {
       }
     };
 
-    this.http = http;
     this.subscriptions = [
       this.ea.subscribe('kalustokoko-slider-update', params => {
         return this.updateView('kal', params.start.join(','));
