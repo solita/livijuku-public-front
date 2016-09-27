@@ -1,5 +1,6 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
+import 'fetch';
 
 @inject(HttpClient)
 export class Api {
@@ -7,6 +8,7 @@ export class Api {
   constructor(http) {
     let self = this;
     this.http = http;
+    console.info(this.http);
     this.http.configure(config => {
       config
         .withBaseUrl('api/')
