@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+  <html>
   <head>
     <title>JUKU</title>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
@@ -8,7 +8,6 @@
     <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
     <link rel="import" href="scripts/vulcanized-polymer-elements.html">
     <link rel="shortcut icon" href="favicon.ico">
-    <!-- Override globally -->
     <style is="custom-style">
       :root {
         --paper-menu-outline: none;
@@ -22,6 +21,33 @@
     </style>
   </head>
   <body aurelia-app="main" class="fullbleed layout vertical">
-    <script src="scripts/vendor-bundle-0d2d0b2005.js" data-main="aurelia-bootstrapper"></script>
+    <!--[if IE]>
+      <div class="bg-c-b c-w P-md" style="font-family: 'Open Sans'; margin: 100px;">
+        <img src="images/livi-logo.png" alt="Liikennevirasto" />
+        <h1>JUKU</h1>
+        <p>Käyttääksesi palvelua ole hyvä, ja päivitä selaimesi, joka on vanhentunut ja ei näin ollen täytä tietoturvavaatimuksia. Alla muutamia hyviä vaihtoehtoja, joista Google Chrome on paras.</p>
+        <ul style="list-style: none;">
+          <li>
+            <a href="https://www.google.com/chrome/">
+              <img src="images/chrome_16x16.png" alt="Chrome icon" />
+              Google Chrome (suositeltava)
+            </a>
+          </li>
+          <li>
+            <a href="https://www.microsoft.com/en-us/download/details.aspx?id=48126">
+              <img src="images/edge_16x16.png" alt="Edge icon" />
+              Microsoft Edge - Windows 10
+            </a>
+          </li>
+          <li>
+            <a href="https://www.microsoft.com/fi-fi/download/internet-explorer-11-for-windows-7-details.aspx">
+              <img src="images/edge_16x16.png" alt="IE11 icon" />
+              Microsoft IE11 - Windows 7
+            </a>
+          </li>
+        </ul>
+      </div>
+    <![endif]-->
+    <script src="scripts/vendor-bundle-3804bf953a.js" data-main="aurelia-bootstrapper"></script>
   </body>
 </html>
