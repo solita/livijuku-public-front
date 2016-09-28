@@ -156,6 +156,11 @@
             "path": "../node_modules/whatwg-fetch",
             "main": "fetch"
           },
+          {
+            "name": "intl",
+            "path": "../node_modules/intl/dist",
+            "main": "Intl.min"
+          },
           "d3",
           "file-saver",
           "jquery",
