@@ -1,47 +1,104 @@
 .flex {
   display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
 }
+
 .flex-jc-c {
 	-webkit-justify-content: center;
+  -ms-flex-pack: center;
 	justify-content: center;
 }
+
 .flex-column {
-  display: -webkit-flex;
-  display: flex;
   -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
+
 .flex-wrap {
   -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
 .flex-1 {
   -webkit-flex: 1;
+  -ms-flex: 1;
   flex: 1;
 }
 
 .flex-2 {
   -webkit-flex: 2;
+  -ms-flex: 2;
   flex: 2;
 }
 
 .flex-4 {
   -webkit-flex: 4;
+  -ms-flex: 4;
   flex: 4;
 }
-.flex-jc-fe { justify-content: flex-end; }
-.flex-jc-fs { justify-content: flex-start; }
-.flex-jc-sa { justify-content: space-around; }
-.flex-jc-sb { justify-content: space-between; }
-.flex-ai-b { align-items: baseline; }
+
+.flex-jc-fe {
+  justify-content: flex-end;
+  -ms-flex-pack: end;
+}
+
+.flex-jc-fs {
+  justify-content: flex-start;
+  -ms-flex-pack: start;
+}
+
+.flex-jc-sa {
+  justify-content: space-around;
+  -ms-flex-pack: around;
+}
+
+.flex-jc-sb {
+  justify-content: space-between;
+  -ms-flex-pack: between;
+}
+
+.flex-ai-b {
+  align-items: baseline;
+  -ms-flex-line-pack: baseline;
+}
+
 .flex-ai-c {
   -webkit-align-items: center;
+  -ms-flex-line-pack: center;
   align-items: center;
 }
-.flex-ai-fe { align-items: flex-end; }
-.flex-ai-fs { align-items: flex-start; }
-.flex-ai-s { align-items: stretch; }
-.flex-d-c { flex-direction: column; }
-.flex-d-r { flex-direction: row; }
-.flex-d-rr { flex-direction: row-reverse; }
+.flex-ai-fe {
+  align-items: flex-end;
+  -ms-flex-line-pack: end;
+}
+
+.flex-ai-fs {
+  align-items: flex-start;
+  -ms-flex-line-pack: start;
+}
+
+.flex-ai-s {
+  align-items: stretch;
+  -ms-flex-line-pack: stretch;
+}
+
+.flex-d-c {
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.flex-d-r {
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.flex-d-rr {
+  -webkit-flex-direction: row-reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
