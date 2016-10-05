@@ -4,7 +4,7 @@ Sivusto joukkoliikenteen valtionrahoituksesta ja tunnusluvuista
 
 ## Kehitysympäristön käynnistys
 
-Projekti käyttää [Aurelia](http://www.aurelia.io)-sovelluskehystä sekä Googlen [Polymer](https://www.polymer-project.org/1.0/)-kirjaston käyttöliittymäkomponentteja. Projektin build- ja bundle-prosessit ajetaan `aurelia-cli` pakettia käyttäen.
+Projekti käyttää [Aurelia](http://www.aurelia.io)-sovelluskehystä sekä Googlen [Polymer](https://www.polymer-project.org/1.0/)-kirjaston käyttöliittymäkomponentteja. Projektin build- ja bundle-prosessit ajetaan `aurelia-cli` pakettia käyttäen. Tyylit on kirjoitettu atomisesti hyödyntäen Solitalla tehtyä [Once-kirjasto](https://github.com/niant/once)a.
 
 * Asenna npm ja node.
 * Asenna Aurelia Cli komennolla `npm install -g aurelia-cli`
