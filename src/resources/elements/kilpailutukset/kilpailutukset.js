@@ -3,8 +3,8 @@ import {EventAggregator} from 'aurelia-event-aggregator';
 import {I18N} from 'aurelia-i18n';
 import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
-import moment from 'moment';
-// require('moment/locale/fi');
+window.moment = require('moment');
+import 'moment-fi';
 import _ from 'lodash';
 import $ from 'jquery';
 import * as c from 'resources/utils/core';
@@ -62,10 +62,6 @@ export class Kilpailutukset {
       color: '#cfeff2',
       border: '1px dashed #66CCD6'
     }];
-
-    // moment.locale("fi", locale_fi);
-
-    window.moment = moment;
 
     this.timeline.options = {
       locale: 'fi',
@@ -192,7 +188,8 @@ export class Kilpailutukset {
           return R.indexOf(kilpailutus.organisaatioid, R.map(R.prop('id'), organisaatiot)) !== -1;
         }, kilpailutukset);
 
-        this.timeline.data = { organisaatiot, kilpailutukset };
+        this.timeline.kilpailutukset = kilpailutukset;
+        this.timeline.organisaatiot = organisaatiot;
       });
     }
     this.latestParams = R.clone(params);
