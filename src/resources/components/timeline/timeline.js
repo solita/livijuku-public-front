@@ -2,11 +2,14 @@ import {bindable, inject} from 'aurelia-framework';
 import $ from 'jquery';
 import _ from 'lodash';
 import * as c from 'resources/utils/core';
+import 'vis';
+
 @inject(Element)
 export class TimelineCustomElement {
 
   @bindable events;
-  @bindable data;
+  @bindable kilpailutukset;
+  @bindable organisaatiot;
   @bindable options;
 
   constructor(element) {
@@ -22,17 +25,23 @@ export class TimelineCustomElement {
   }
 
   bind() {
-    this.timeline = new vis.Timeline($(this.element).find('div')[0]);
+   this.timeline = new vis.Timeline($(this.element).find('div')[0], null, this.options);
+   this.refresh();
+  }
+
+  unbind() {
+    this.timeline.destroy();
+  }
+
+  kilpailutuksetChanged() {
     this.refresh();
   }
 
-  dataChanged() {
+  organisaatiotChanged() {
     this.refresh();
   }
 
   refresh() {
-    this.kilpailutukset = this.data.kilpailutukset;
-    this.organisaatiot = this.data.organisaatiot;
     const groups = _.map(this.organisaatiot, organisaatio => ({
       id: organisaatio.id,
       content: organisaatio.nimi

@@ -75,11 +75,12 @@
       </div>
     </div>
 
-    <div show.bind="filter.organisaatiot.length || filter.organisaatiolajit.length" class="Mb-5md">
+    <div if.bind="filter.organisaatiot.length || filter.organisaatiolajit.length" class="Mb-5md">
       <p class="f-10 M-0">${ 'ohjeet-aikajanan-zoomaamiseksi' & t }</p>
       <timeline
         events.bind="timeline.events"
-        data.bind="timeline.data"
+        kilpailutukset.bind="timeline.kilpailutukset"
+        organisaatiot.bind="timeline.organisaatiot"
         options.bind="timeline.options">
       </timeline>
     </div>

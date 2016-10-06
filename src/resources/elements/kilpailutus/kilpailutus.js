@@ -2,7 +2,6 @@ import {Api} from 'resources/services/api';
 import {inject} from 'aurelia-framework';
 import R from 'ramda';
 import moment from 'moment';
-// require('moment/locale/fi');
 
 @inject(Api)
 export class Kilpailutus {
