@@ -77,7 +77,7 @@
     "options": {
       "minify": "stage & prod",
       "sourcemaps": "dev & stage",
-      "rev": true
+      "rev": false
     },
     "bundles": [
       {
@@ -161,6 +161,11 @@
             "path": "../node_modules/intl/dist",
             "main": "Intl.min"
           },
+          {
+            "name": "moment-fi",
+            "path": "../node_modules/moment/locale",
+            "main": "fi"
+          },
           "d3",
           "file-saver",
           "jquery",
@@ -170,6 +175,7 @@
           "nvd3",
           "ramda",
           "select2",
+          "vis",
           "whatwg-fetch",
           "wnumb"
         ]
