@@ -19,8 +19,8 @@
       <form is="iron-form" class="clearfix Mb-xl bg-c-h P-xl">
       	<div class="clearfix">
           <div class="xs-12 sm-6 Ps-0 Pe-0 r-sm-Pe-1rem">
-            <label class="block f-14">${ 'toimivaltainen-viranomainen' & t } <paper-icon-button icon="help" id="organisaatio-tip" class="c-g" style="width: 32px;"></paper-icon-button></label>
-            <paper-tooltip for="organisaatio-tip" class="Px-xl w-315" fit-to-visible-bounds>
+            <label class="block f-14">${ 'toimivaltainen-viranomainen' & t } <iron-icon icon="help" id="organisaatio-tip" class="c-g" style="width: 18px;"></iron-icon></label>
+            <paper-tooltip for="organisaatio-tip" class="Px-xl w-315" fit-to-visible-bounds animation-delay="0">
               <p class="c-w">${ 'organisaatio-tip' & t }</p>
               <ul class="c-w">
                 <li repeat.for="organisaatio of inactiveOrganisaatiot">${ organisaatio.nimi }</li>
@@ -31,8 +31,8 @@
             </select>
           </div>
           <div class="xs-12 sm-6 Pe-0 Ps-0 r-sm-Ps-1rem Mt-md r-sm-Mt-0">
-            <label class="block f-14">${ 'toimivaltaryhma' & t } <paper-icon-button icon="help" id="organisaatiolaji-tip" class="c-g" style="width: 32px;"></paper-icon-button></label>
-            <paper-tooltip for="organisaatiolaji-tip" class="Px-xl w-315" fit-to-visible-bounds>
+            <label class="block f-14">${ 'toimivaltaryhma' & t } <iron-icon icon="help" id="organisaatiolaji-tip" class="c-g" style="width: 18px;"></iron-icon></label>
+            <paper-tooltip for="organisaatiolaji-tip" class="Px-xl w-315" fit-to-visible-bounds animation-delay="0">
               <p class="c-w">${ 'organisaatiolaji-tip' & t }</p>
             </paper-tooltip>
             <select select2.bind="organisaatiolajiSelectOptions" value.bind="filter.organisaatiolajit" multiple="multiple" class="full-width My-md" change.trigger="onOrganisaatiolajiListChange()">
