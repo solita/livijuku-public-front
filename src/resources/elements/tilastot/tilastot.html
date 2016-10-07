@@ -3,9 +3,11 @@
     <h1>${ pageTitle & t }</h1>
     <nav class="Mb-md">
       <paper-dropdown-menu label="Toimivalta-alue" class="r-sm-hidden">
-        <paper-listbox class="dropdown-content" selected.two-way="childRouteIndex" iron-select.delegate="selectToimivaltaalue()">
-          <template is="dom-repeat" items.two-way="toimivaltaalueet">
-            <paper-item model="{{item}}">{{ item }}</paper-item>
+        <paper-listbox class="dropdown-content" selected.two-way="childRouteIndex">
+          <template is="dom-repeat" items.two-way="router.navigation">
+            <a href="{{item.href}}" class="paper-item-link block c-e f-no-decoration">
+              <paper-item model="{{item}}">{{ item.title }}</paper-item>
+            </a>
           </template>
         </paper-listbox>
       </paper-dropdown-menu>
