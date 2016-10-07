@@ -44,7 +44,7 @@ export class TimelineCustomElement {
   refresh() {
     const groups = _.map(this.organisaatiot, organisaatio => ({
       id: organisaatio.id,
-      content: organisaatio.nimi
+      content: organisaatio.nimi === "Helsingin seudun liikenne" ? "HSL" : organisaatio.nimi
     }));
     const items = _.flatMap(this.kilpailutukset, kilpailutus => {
       const allIntervals = _.map(_.initial(kilpailutus.dates), (startDate, index) => ({
