@@ -528,7 +528,6 @@ input.vis-configuration.vis-config-range:focus::-ms-fill-upper {
   height: 100%;
   padding: 0;
   margin: 0;
-  overflow: hidden;
 }
 
 .vis-item.vis-range .vis-item-content {
@@ -553,6 +552,7 @@ input.vis-configuration.vis-config-range:focus::-ms-fill-upper {
   white-space: nowrap;
   box-sizing: border-box;
   padding: 5px;
+  text-shadow: 1px 1px 0 map-get($baseColors, m);
 }
 
 .vis-item .vis-delete {
