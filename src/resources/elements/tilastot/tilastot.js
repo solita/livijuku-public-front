@@ -15,17 +15,17 @@ export class Tilastot {
   configureRouter(config, router) {
     config.title = 'Tilastot';
     let routeifs = this.isMobile ? [
-      { route: ['', 'KS1'], moduleId: 'resources/elements/tilastot/viranomainen/viranomainen', name: 'KS1', nav: true, title: 'suuret-kaupunkiseudut', settings: { viranomainen: 'KS1'} }
+      { route: ['', 'KS1'], moduleId: 'resources/elements/tilastot/viranomainen/viranomainen', name: 'KS1', nav: true, title: this.i18n.tr('suuret-kaupunkiseudut'), settings: { viranomainen: 'KS1'} }
     ] : [
-      { route: ['', 'ALL'], moduleId: 'resources/elements/tilastot/viranomainen/viranomainen', name: 'ALL', nav: true, title: 'kaikki', settings: { viranomainen: 'ALL'} },
-      { route: 'KS1', moduleId: 'resources/elements/tilastot/viranomainen/viranomainen', name: 'KS1', nav: true, title: 'suuret-kaupunkiseudut', settings: { viranomainen: 'KS1'} }
+      { route: ['', 'ALL'], moduleId: 'resources/elements/tilastot/viranomainen/viranomainen', name: 'ALL', nav: true, title: this.i18n.tr('kaikki'), settings: { viranomainen: 'ALL'} },
+      { route: 'KS1', moduleId: 'resources/elements/tilastot/viranomainen/viranomainen', name: 'KS1', nav: true, title: this.i18n.tr('suuret-kaupunkiseudut'), settings: { viranomainen: 'KS1'} }
     ];
     let routes = R.concat(routeifs, [{
-      route: 'KS2', moduleId: 'resources/elements/tilastot/viranomainen/viranomainen', name: 'KS2', nav: true, title: 'keskisuuret-kaupunkiseudut', settings: { viranomainen: 'KS2'}
+      route: 'KS2', moduleId: 'resources/elements/tilastot/viranomainen/viranomainen', name: 'KS2', nav: true, title: this.i18n.tr('keskisuuret-kaupunkiseudut'), settings: { viranomainen: 'KS2'}
     }, {
-      route: 'KS3', moduleId: 'resources/elements/tilastot/viranomainen/viranomainen', name: 'KS3', nav: true, title: 'pienet-kaupunkiseudut', settings: { viranomainen: 'KS3'}
+      route: 'KS3', moduleId: 'resources/elements/tilastot/viranomainen/viranomainen', name: 'KS3', nav: true, title: this.i18n.tr('pienet-kaupunkiseudut'), settings: { viranomainen: 'KS3'}
     }, {
-      route: ['ELY'], moduleId: 'resources/elements/tilastot/viranomainen/viranomainen', name: 'ELY', nav: true, title: 'ELY-keskukset', settings: { viranomainen: 'ELY'}
+      route: ['ELY'], moduleId: 'resources/elements/tilastot/viranomainen/viranomainen', name: 'ELY', nav: true, title: this.i18n.tr('ELY'), settings: { viranomainen: 'ELY'}
     }]);
     config.map(routes);
     this.router = router;
@@ -33,21 +33,9 @@ export class Tilastot {
 
   activate() {
     this.subscription = this.ea.subscribe('router:navigation:success', router => {
-      this.initialize();
+      this.pageTitle = this.router.parent.currentInstruction.config.title;
+      this.fragment = this.router.currentInstruction.fragment || (this.isMobile ? 'KS1' : 'ALL');
+      this.childRouteIndex = R.findIndex(R.propEq('relativeHref', this.router.currentInstruction.fragment))(this.router.navigation) || 0;
     });
   }
-
-  initialize() {
-    this.pageTitle = this.router.parent.currentInstruction.config.title;
-    this.toimivaltaalueet = R.map(alue => { return this.i18n.tr(alue.title); }, this.router.navigation);
-    this.fragment = this.router.currentInstruction.fragment || (this.isMobile ? 'KS1' : 'ALL');
-    this.childRouteIndex = R.findIndex(R.propEq('relativeHref', this.router.currentInstruction.fragment))(this.router.navigation) || 0;
-  }
-
-  selectToimivaltaalue() {
-    if (this.router.navigation[this.childRouteIndex]) {
-        this.router.navigate(this.router.navigation[this.childRouteIndex].href);
-    }
-  }
-
 }
