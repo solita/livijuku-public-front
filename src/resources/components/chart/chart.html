@@ -4,11 +4,16 @@
 
   <div if.bind="setup" class="chart left full-width bg-c-w Mb-md">
     <h4 class="f-center f-uppercase">${ title }</h4>
-    <p class="f-center">${ subtitle }</p>
+    <p class="f-center f-w-600 f-uppercase">${ subtitle }</p>
     <!-- hard coded because of IE 11 -->
     <svg height.bind="height" css.bind="{ height: height }" show.bind="setup.data" style="height: 500px;"></svg>
-    <p if.bind="setup.data[1]" class="Pe-md">
-      <csv filename.bind="title" column-delimiter=";" data.bind="setup.csv"></csv>
-    </p>
+    <div class="flex flex-d-c r-sm-flex-d-r flex-jc-sb Px-md">
+      <div class="f-center r-sm-f-left">
+        <p show.bind="groupsWithoutValues">${ 'ei-dataa-toimivalta-alueilla' & t } <span class="f-w-600">${ groupsWithoutValues }</span></p>
+      </div>
+      <div class="flex flex-jc-c">
+        <csv if.bind="setup.data[1]" class="block left w-min-100" filename.bind="title" column-delimiter=";" data.bind="setup.csv"></csv>
+      </div>
+    </div>
   </div>
 </template>
