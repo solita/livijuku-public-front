@@ -53,6 +53,7 @@ export class Kaikki {
         return row;
       });
     }
+
     let xLabelIndex = R.indexOf('vuosi', R.head(data));
     let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
     let groupLabels = t.getOrganisaatioNames(groupKeys, this.organisaatiot);
@@ -62,7 +63,7 @@ export class Kaikki {
     let options = R.merge(chart.options, {
       groupKeys: groupKeys,
       groupLabels: groupLabels,
-      xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
+      xLabels: xLabelIndex !== -1 ? R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))) : [],
       valueIndex: R.indexOf('tunnusluku', R.head(data)),
       title: chart.options.title ? chart.options.title.text : '[otsikko tähän]',
       subtitle: {
