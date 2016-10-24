@@ -8,6 +8,7 @@ import R from 'ramda';
 export class ChartCustomElement {
 
   @bindable setup;
+  @bindable ignoreMissingData;
 
   constructor(Element, i18n) {
     this.element = Element;
@@ -20,16 +21,17 @@ export class ChartCustomElement {
     if (this.element.getElementsByTagName('svg')[0]) {
       d3.selectAll(this.element.getElementsByTagName('svg')[0].childNodes).remove();
     }
+    let dataTail = R.tail(setup.data);
     this.csv = setup.csv;
-    this.draw(R.tail(setup.data), setup.options);
+    this.draw(dataTail, setup.options);
+    if (dataTail.length && !(this.ignoreMissingData === "true" || this.ignoreMissingData === true)) {
+      this.groupsWithoutValues = this.findOrganisationsWithMissingData(dataTail, setup.options);
+    }
     this.title = setup.options.title;
   }
 
   draw(data, options) {
-    this.height = options.height || 500;
-    if (R.isNil(data[1])) {
-      this.height = 100;
-    }
+    this.height = data.length ? (options.height || 500) : 100;
     let parseData = () => {
       let graphData = [];
       options.groupKeys.forEach((key, index) => {
@@ -94,9 +96,7 @@ export class ChartCustomElement {
         chart.options(chartOptions);
 
         chart.noData(this.i18n.tr('ei-dataa-saatavilla'));
-        if (chartOptions.height) {
-          chart.height(chartOptions.height);
-        }
+        chart.height = this.height;
 
         d3.select(this.element.getElementsByTagName('svg')[0])
           .datum(parseData())
@@ -144,10 +144,7 @@ export class ChartCustomElement {
           stacked: this.i18n.tr('pinottu')
         });
 
-        if (chartOptions.height) {
-          this.height = chartOptions.height;
-          chart.height(chartOptions.height);
-        }
+        chart.height(this.height);
 
         d3.select(this.element.getElementsByTagName('svg')[0])
           .datum(parseData())
@@ -158,5 +155,30 @@ export class ChartCustomElement {
         return chart;
       });
     }
+  }
+
+  findOrganisationsWithMissingData(data, options) {
+    let valuesByGroup = {},
+      groupsWithoutValues = "";
+    this.groupsWithoutValues = null;
+    R.forEach(obj => {
+      if (R.not(R.isNil(obj[2]))) {
+        if (!valuesByGroup[obj[0]]) {
+          valuesByGroup[obj[0]] = [];
+        }
+        valuesByGroup[obj[0]].push(obj[2]);
+      }
+    }, data);
+    let groupKeysWithoutValues = R.without(
+      R.map(key => {
+        return parseInt(key, 10);
+      }, Object.keys(valuesByGroup)), options.groupKeys);
+    if (groupKeysWithoutValues.length) {
+      groupsWithoutValues = R.map(groupKey => {
+        let index = R.indexOf(groupKey, options.groupKeys);
+        return options.groupLabels[index];
+      }, groupKeysWithoutValues).join(', ');
+    }
+    return groupsWithoutValues;
   }
 }

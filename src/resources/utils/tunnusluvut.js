@@ -37,7 +37,7 @@ export function numberFormat(arvo) {
 
 export function numberFormatTooltip(arvo) {
   let result = '';
-  if (c.isNullOrUndefined(arvo)) {
+  if (R.isNil(arvo)) {
     result = 'Tietoa ei määritetty';
   } else {
     if ((arvo % 1) === 0) {

@@ -19,7 +19,7 @@
     "Once": "github:niant/once",
     "aurelia-cli": "^0.20.0",
     "aurelia-i18n": "^1.0.0-rc.1.0.0",
-    "aurelia-testing": "^1.0.0-beta.1.0.0",
+    "aurelia-testing": "^1.0.0-beta.2.0.0",
     "aurelia-tools": "^0.2.2",
     "babel-eslint": "^6.0.4",
     "babel-plugin-syntax-flow": "^6.8.0",
