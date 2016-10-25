@@ -2,11 +2,9 @@ import {bindable, inject} from 'aurelia-framework';
 import $ from 'jquery';
 import _ from 'lodash';
 import * as c from 'resources/utils/core';
-import 'vis';
 
 @inject(Element)
 export class TimelineCustomElement {
-
   @bindable events;
   @bindable kilpailutukset;
   @bindable organisaatiot;
