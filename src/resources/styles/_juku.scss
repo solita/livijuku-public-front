@@ -6,10 +6,6 @@
   transition: all 0.3s ease;
 }
 
-.w-092 {
-  width: 92%;
-}
-
 .w-20 {
   width: 20px;
 }
@@ -203,6 +199,10 @@
   z-index: 100;
 }
 
+.z-1100 {
+  z-index: 1100;
+}
+
 .juku-info-short {
   margin: 0;
   color: map-get($baseColors, w);
@@ -246,6 +246,9 @@
 }
 
 @media screen and (min-width: map-get($breakpoints, sm)) {
+  .r-sm-Mt-lg {
+    margin-top: map-get($spacerSizes, lg);
+  }
   .r-sm-Mt--63 {
     margin-top: -63px;
   }
@@ -254,6 +257,9 @@
   }
   .r-sm-Pt-63 {
     padding-top: 63px;
+  }
+  .r-sm-P-xl {
+    padding: map-get($spacerSizes, xl);
   }
   .r-sm-My-0 {
     margin-top: 0;
@@ -264,6 +270,10 @@
   }
   .r-sm-Ps-1rem {
     padding-left: 1rem;
+  }
+  .r-sm-Px-md {
+    padding-left: map-get($spacerSizes, md);
+    padding-right: map-get($spacerSizes, md);
   }
   .r-sm-Pe-1rem {
     padding-right: 1rem;
