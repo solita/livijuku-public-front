@@ -125,7 +125,7 @@ export class Kilpailutukset {
       this.kohdearvo = {
         start: params.arvo ? params.arvo.split(',') : [0, 5],
         connect: true,
-        margin: 1,
+        margin: 0.1,
         range: {
           min: 0,
           max: 10
@@ -135,7 +135,7 @@ export class Kilpailutukset {
       this.kalustokoko = {
         start: params.kal ? params.kal.split(',') : [0, 100],
         connect: true,
-        margin: 10,
+        margin: 1,
         range: {
           min: 0,
           max: 100
