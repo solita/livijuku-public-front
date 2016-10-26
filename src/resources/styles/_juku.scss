@@ -50,6 +50,10 @@
   min-height: 100vh;
 }
 
+.outline-0 {
+  outline: 0;
+}
+
 .f-shadow-1-1-f {
   text-shadow: 1px 1px map-get($baseColors, f);
 }
@@ -201,6 +205,10 @@
 
 .z-1100 {
   z-index: 1100;
+}
+
+.c-a__hover:hover {
+  color: map-get($baseColors, a);
 }
 
 .juku-info-short {

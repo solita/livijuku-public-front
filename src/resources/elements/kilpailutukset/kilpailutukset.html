@@ -24,8 +24,12 @@
                 <label class="block f-14">${ 'toimivaltainen-viranomainen' & t }</label>
               </div>
               <div class="Ps-xxs">
-                <button click.delegate="showOrganisaatioTooltip()">
-                  <iron-icon icon="help" class="c-g" style="width: 18px;"></iron-icon>
+                <button
+                  click.delegate="toggleOrShowOrganisaatioTooltip()"
+                  mouseenter.trigger="showOrganisaatioTooltip()"
+                  mouseleave.trigger="hideOrganisaatioTooltip()"
+                  class="My-xxs P-0 bg-c-t B-xs B-solid B-c-i outline-0 cursor-pointer">
+                  <iron-icon icon="help" class="c-g c-a__hover" style="width: 36px; padding: 2px;"></iron-icon>
                 </button>
                 <paper-tooltip id="organisaatio-tip" class="Px-xl w-315 z-1100" fit-to-visible-bounds animation-delay="0" manual-mode="true">
                   <p class="c-w">${ 'organisaatio-tip' & t }</p>
@@ -47,8 +51,12 @@
                 <label class="block f-14">${ 'toimivaltaryhma' & t }</label>
               </div>
               <div class="Ps-xxs">
-                <button click.delegate="showOrganisaatiolajiTooltip()">
-                  <iron-icon icon="help" class="c-g" style="width: 18px;"></iron-icon>
+                <button
+                  click.delegate="toggleOrShowOrganisaatiolajiTooltip()"
+                  mouseenter.trigger="showOrganisaatiolajiTooltip()"
+                  mouseleave.trigger="hideOrganisaatiolajiTooltip()"
+                  class="My-xxs P-0 bg-c-t B-xs B-solid B-c-i outline-0 cursor-pointer c-a__hover">
+                  <iron-icon icon="help" class="c-g c-a__hover" style="width: 36px; padding: 2px;"></iron-icon>
                 </button>
                 <paper-tooltip id="organisaatiolaji-tip" class="Px-xl w-315 z-1100" fit-to-visible-bounds animation-delay="0" manual-mode="true">
                   <p class="c-w">${ 'organisaatiolaji-tip' & t }</p>
