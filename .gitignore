@@ -13,3 +13,4 @@ export.zip
 config.js
 *.iml
 /scripts
+/production
