@@ -24,7 +24,15 @@
                 <label class="block f-14">${ 'toimivaltainen-viranomainen' & t }</label>
               </div>
               <div class="Ps-xxs">
-                <iron-icon icon="help" id="organisaatio-tip" class="c-g" style="width: 18px;"></iron-icon>
+                <button click.delegate="showOrganisaatioTooltip()">
+                  <iron-icon icon="help" class="c-g" style="width: 18px;"></iron-icon>
+                </button>
+                <paper-tooltip id="organisaatio-tip" class="Px-xl w-315 z-1100" fit-to-visible-bounds animation-delay="0" manual-mode="true">
+                  <p class="c-w">${ 'organisaatio-tip' & t }</p>
+                  <ul class="c-w">
+                    <li repeat.for="organisaatio of inactiveOrganisaatiot">${ organisaatio.nimi }</li>
+                  </ul>
+                </paper-tooltip>
               </div>
             </div>
             <div class="P-0 r-sm-Pe-1rem">
@@ -32,12 +40,6 @@
                 <option repeat.for="organisaatio of activeOrganisaatiot" value.bind="organisaatio.id">${organisaatio.nimi}</option>
               </select>
             </div>
-            <paper-tooltip for="organisaatio-tip" class="Px-xl w-315 z-1100" fit-to-visible-bounds animation-delay="0">
-              <p class="c-w">${ 'organisaatio-tip' & t }</p>
-              <ul class="c-w">
-                <li repeat.for="organisaatio of inactiveOrganisaatiot">${ organisaatio.nimi }</li>
-              </ul>
-            </paper-tooltip>
           </div>
           <div class="flex-1 Mt-md r-sm-Mt-0">
             <div class="flex flex-ai-c">
@@ -45,7 +47,12 @@
                 <label class="block f-14">${ 'toimivaltaryhma' & t }</label>
               </div>
               <div class="Ps-xxs">
-                <iron-icon icon="help" id="organisaatiolaji-tip" class="c-g" style="width: 18px;"></iron-icon>
+                <button click.delegate="showOrganisaatiolajiTooltip()">
+                  <iron-icon icon="help" class="c-g" style="width: 18px;"></iron-icon>
+                </button>
+                <paper-tooltip id="organisaatiolaji-tip" class="Px-xl w-315 z-1100" fit-to-visible-bounds animation-delay="0" manual-mode="true">
+                  <p class="c-w">${ 'organisaatiolaji-tip' & t }</p>
+                </paper-tooltip>
               </div>
             </div>
             <div>
@@ -53,9 +60,6 @@
                 <option repeat.for="organisaatiolaji of organisaatiolajit" value.bind="organisaatiolaji.id">${organisaatiolaji.nimi}</option>
               </select>
             </div>
-            <paper-tooltip for="organisaatiolaji-tip" class="Px-xl w-315 z-1100" fit-to-visible-bounds animation-delay="0">
-              <p class="c-w">${ 'organisaatiolaji-tip' & t }</p>
-            </paper-tooltip>
           </div>
         </div>
 
