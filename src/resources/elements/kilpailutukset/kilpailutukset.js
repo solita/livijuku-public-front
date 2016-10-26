@@ -102,6 +102,11 @@ export class Kilpailutukset {
     return this.fetchAndParse(params);
   }
 
+  attached() {
+    this.organisaatioTip = $('#organisaatio-tip')[0];
+    this.organisaatiolajiTip = $('#organisaatiolaji-tip')[0];
+  }
+
   detached() {
     R.forEach(subscription => {
       subscription.dispose();
@@ -235,6 +240,18 @@ export class Kilpailutukset {
       return kilpailutus;
     }, filterKilpailutuksetForKilpailutuskausi(data));
   };
+
+  showOrganisaatioTooltip() {
+    if (this.organisaatioTip) {
+      this.organisaatioTip.show();
+    }
+  }
+
+  showOrganisaatiolajiTooltip() {
+    if (this.organisaatiolajiTip) {
+      this.organisaatiolajiTip.show();
+    }
+  }
 
   toggleKilpailukausi() {
     return this.updateView('kil', this.isKilpailutuskausiChecked);
