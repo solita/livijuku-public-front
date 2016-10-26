@@ -2,20 +2,12 @@
   <section class="Px-md Py-xl w-max-1200 h-center">
     <h1>${ pageTitle & t }</h1>
     <nav class="Mb-md">
-      <paper-dropdown-menu label="Toimivalta-alue" class="r-sm-hidden">
-        <paper-listbox class="dropdown-content" selected.two-way="childRouteIndex">
-          <template is="dom-repeat" items.two-way="router.navigation">
-            <a href="{{item.href}}" class="paper-item-link block c-e f-no-decoration">
-              <paper-item model="{{item}}">{{ item.title }}</paper-item>
-            </a>
-          </template>
-        </paper-listbox>
-      </paper-dropdown-menu>
-      <div class="clearfix hidden r-sm-block">
+      <div class="clearfix">
         <ul class="list-no-style left h-center P-0 full-width">
           <li repeat.for="route of router.navigation" class="left">
-            <a class="block ${ route.isActive ? 'bg-c-a c-w' : 'bg-c-a012 c-a' } ${ !$last ? 'Be-xs Be-solid B-c-a' : '' } f-no-decoration Px-md Py-sm r-sm-f-14 r-md-f-16 Px-sm2 r-md-Px-md" href="${ route.href }">
-              ${ route.title & t }
+            <a href.bind="route.href" class="block ${ route.isActive ? 'bg-c-a c-w' : 'bg-c-a012 c-a' } ${ !$last ? 'Be-xs Be-solid B-c-a' : '' } f-no-decoration Px-md Py-sm f-13 r-sm-f-14 r-md-f-16 Px-sm2 r-md-Px-md">
+              <span show.bind="isMobile">${ route.settings.mobileTitle }</span>
+              <span show.bind="!isMobile">${ route.title }</span>
             </a>
           </li>
         </ul>
