@@ -56,7 +56,9 @@ export class Kaikki {
 
     let xLabelIndex = R.indexOf('vuosi', R.head(data));
     let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
-    let groupLabels = t.getOrganisaatioNames(groupKeys, this.organisaatiot);
+    let groupLabels = R.map(organisaatio => {
+      return organisaatio.replace(" ELY", "");
+    }, t.getOrganisaatioNames(groupKeys, this.organisaatiot));
     let defaultFilter = _.map(_.filter(chart.filters, f => c.isDefinedNotNull(f.defaultValue)), f => [f.id, f.defaultValue]);
     let yTitle = chart.yTitle(c.coalesce(_.fromPairs(defaultFilter), {}));
 

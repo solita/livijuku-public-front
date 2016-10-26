@@ -54,7 +54,7 @@ export class Valtionavustukset {
           options: R.merge(chartOptions, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
-            height: document.body.clientWidth < 768 ? 200 : 500,
+            height: document.body.clientWidth < 768 ? 300 : 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('sum(rahamaara)', R.head(data)),
             title: this.i18n.tr('joukkoliikenteen-haetut-ja-myonnetut-avustukset'),
@@ -67,14 +67,16 @@ export class Valtionavustukset {
       this.api.getAvustuksetOrganisaatioittain(this.viranomainen).then(data => {
         let xLabelIndex = R.indexOf('vuosi', R.head(data));
         let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
-        let groupLabels = t.getOrganisaatioNames(groupKeys, this.organisaatiot);
+        let groupLabels = R.map(organisaatio => {
+          return organisaatio.replace(" ELY", "");
+        }, t.getOrganisaatioNames(groupKeys, this.organisaatiot));
         this.haetutAvustuksetOrganisaatioittain = {
           csv: R.tail(data),
           data: data,
           options: R.merge(chartOptions, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
-            height: 500,
+            height: document.body.clientWidth < 768 ? 300 : 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('haettavaavustus', R.head(data)),
             title: this.i18n.tr('haetut-avustukset-organisaatioittain'),
@@ -89,7 +91,7 @@ export class Valtionavustukset {
           options: R.merge(chartOptions, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
-            height: 500,
+            height: document.body.clientWidth < 768 ? 300 : 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('myonnettyavustus', R.head(data)),
             title: this.i18n.tr('myonnetyt-avustukset-organisaatioittain'),
@@ -102,14 +104,16 @@ export class Valtionavustukset {
       this.api.getAvustusPerAsukas(this.viranomainen).then(data => {
         let xLabelIndex = R.indexOf('vuosi', R.head(data));
         let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
-        let groupLabels = t.getOrganisaatioNames(groupKeys, this.organisaatiot);
+        let groupLabels = R.map(organisaatio => {
+          return organisaatio.replace(" ELY", "");
+        }, t.getOrganisaatioNames(groupKeys, this.organisaatiot));
         this.avustusPerAsukas = {
           csv: R.tail(data),
           data: data,
           options: R.merge(chartOptions, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
-            height: 500,
+            height: document.body.clientWidth < 768 ? 300 : 500,
             xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
             valueIndex: R.indexOf('myonnettyavustus_asukastakohti', R.head(data)),
             title: this.i18n.tr('myonnetty-avustus-per-asukas'),

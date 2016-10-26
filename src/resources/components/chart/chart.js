@@ -31,7 +31,7 @@ export class ChartCustomElement {
   }
 
   draw(data, options) {
-    this.height = data.length ? (options.height || 500) : 100;
+    this.height = data.length ? (options.height || (document.body.clientWidth < 768 ? 300 : 500)) : 100;
     let parseData = () => {
       let graphData = [];
       options.groupKeys.forEach((key, index) => {
