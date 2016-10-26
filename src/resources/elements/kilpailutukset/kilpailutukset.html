@@ -4,7 +4,7 @@
   <require from="resources/components/noUiSlider/noUiSlider"></require>
   <require from="resources/components/timeline/timeline"></require>
 
-  <section class="w-max-1200 h-center clearfix h-min-100vh Px-md Pt-xl">
+  <section class="w-max-1200 h-center clearfix h-min-100vh Px-xs r-sm-Px-md Pt-xl">
 
     <h1>${ 'kilpailutukset' & t }</h1>
 
@@ -16,48 +16,67 @@
         </div>
       </div>
 
-      <form is="iron-form" class="clearfix Mb-xl bg-c-h P-xl">
-      	<div class="clearfix">
-          <div class="xs-12 sm-6 Ps-0 Pe-0 r-sm-Pe-1rem">
-            <label class="block f-14">${ 'toimivaltainen-viranomainen' & t } <iron-icon icon="help" id="organisaatio-tip" class="c-g" style="width: 18px;"></iron-icon></label>
-            <paper-tooltip for="organisaatio-tip" class="Px-xl w-315" fit-to-visible-bounds animation-delay="0">
+      <form is="iron-form" class="clearfix Mb-xl bg-c-h P-xs r-sm-P-xl">
+      	<div class="flex flex-d-c r-sm-flex-d-r">
+          <div class="flex-1">
+            <div class="flex flex-ai-c">
+              <div>
+                <label class="block f-14">${ 'toimivaltainen-viranomainen' & t }</label>
+              </div>
+              <div class="Ps-xxs">
+                <iron-icon icon="help" id="organisaatio-tip" class="c-g" style="width: 18px;"></iron-icon>
+              </div>
+            </div>
+            <div class="P-0 r-sm-Pe-1rem">
+              <select select2.bind="organisaatioSelectOptions" value.bind="filter.organisaatiot" multiple="multiple" class="full-width My-md" change.trigger="onOrganisaatioListChange()">
+                <option repeat.for="organisaatio of activeOrganisaatiot" value.bind="organisaatio.id">${organisaatio.nimi}</option>
+              </select>
+            </div>
+            <paper-tooltip for="organisaatio-tip" class="Px-xl w-315 z-1100" fit-to-visible-bounds animation-delay="0">
               <p class="c-w">${ 'organisaatio-tip' & t }</p>
               <ul class="c-w">
                 <li repeat.for="organisaatio of inactiveOrganisaatiot">${ organisaatio.nimi }</li>
               </ul>
             </paper-tooltip>
-            <select select2.bind="organisaatioSelectOptions" value.bind="filter.organisaatiot" multiple="multiple" class="full-width My-md" change.trigger="onOrganisaatioListChange()">
-              <option repeat.for="organisaatio of activeOrganisaatiot" value.bind="organisaatio.id">${organisaatio.nimi}</option>
-            </select>
           </div>
-          <div class="xs-12 sm-6 Pe-0 Ps-0 r-sm-Ps-1rem Mt-md r-sm-Mt-0">
-            <label class="block f-14">${ 'toimivaltaryhma' & t } <iron-icon icon="help" id="organisaatiolaji-tip" class="c-g" style="width: 18px;"></iron-icon></label>
-            <paper-tooltip for="organisaatiolaji-tip" class="Px-xl w-315" fit-to-visible-bounds animation-delay="0">
+          <div class="flex-1 Mt-md r-sm-Mt-0">
+            <div class="flex flex-ai-c">
+              <div>
+                <label class="block f-14">${ 'toimivaltaryhma' & t }</label>
+              </div>
+              <div class="Ps-xxs">
+                <iron-icon icon="help" id="organisaatiolaji-tip" class="c-g" style="width: 18px;"></iron-icon>
+              </div>
+            </div>
+            <div>
+              <select select2.bind="organisaatiolajiSelectOptions" value.bind="filter.organisaatiolajit" multiple="multiple" class="full-width My-md" change.trigger="onOrganisaatiolajiListChange()">
+                <option repeat.for="organisaatiolaji of organisaatiolajit" value.bind="organisaatiolaji.id">${organisaatiolaji.nimi}</option>
+              </select>
+            </div>
+            <paper-tooltip for="organisaatiolaji-tip" class="Px-xl w-315 z-1100" fit-to-visible-bounds animation-delay="0">
               <p class="c-w">${ 'organisaatiolaji-tip' & t }</p>
             </paper-tooltip>
-            <select select2.bind="organisaatiolajiSelectOptions" value.bind="filter.organisaatiolajit" multiple="multiple" class="full-width My-md" change.trigger="onOrganisaatiolajiListChange()">
-              <option repeat.for="organisaatiolaji of organisaatiolajit" value.bind="organisaatiolaji.id">${organisaatiolaji.nimi}</option>
-            </select>
           </div>
         </div>
+
         <div class="clearfix">
-          <div class="xs-12 sm-6 md-4 Ps-0 Mt-lg Pe-0 r-sm-Pe-1rem">
+          <div class="xs-12 sm-6 md-4 Ps-0 Mt-md r-sm-Mt-lg Pe-0 r-sm-Pe-1rem">
             <label for="kohdearvo" class="f-14">${ 'kohteen-arvioitu-arvo' & t }</label>
-            <div class="clearfix">
-              <no-ui-slider id="kohdearvo" options.bind="kohdearvo" class="left Mx-md My-xs w-092"></no-ui-slider>
+            <div class="flex flex-jc-c">
+              <no-ui-slider id="kohdearvo" options.bind="kohdearvo" class="block full-width Mx-md My-xs"></no-ui-slider>
             </div>
           </div>
-          <div class="xs-12 sm-6 md-4 Ps-0 r-sm-Ps-1rem Mt-lg Pe-0 r-sm-Pe-1rem">
+          <div class="xs-12 sm-6 md-4 Ps-0 r-sm-Mt-lg Pe-0">
             <label for="kalustokoko" class="f-14">${ 'kaluston-maara' & t }</label>
-            <div class="clearfix">
-              <no-ui-slider id="kalustokoko" options.bind="kalustokoko" class="left full-width Mx-md My-xs w-092"></no-ui-slider>
+            <div class="flex flex-jc-c">
+              <no-ui-slider id="kalustokoko" options.bind="kalustokoko" class="block full-width Mx-md My-xs"></no-ui-slider>
             </div>
           </div>
-          <div class="xs-12 sm-6 md-4 Mt-lg Ps-0 r-md-Ps-1-rem">
+          <div class="xs-12 sm-6 md-4 r-sm-Mt-lg Ps-0 r-md-Ps-1-rem">
             <label class="f-14">${ 'aikajanalla-naytettava-ajanjakso' & t }</label>
             <div class="My-xs f-14">
               <paper-toggle-button class="r-sm-left Me-md" change.delegate="toggleKilpailukausi()" checked.two-way="isKilpailutuskausiChecked">${ 'kilpailutuskausi' & t }</paper-toggle-button>
-              <paper-toggle-button change.delegate="toggleLiikennointikausi()" checked.two-way="isLiikennointikausiChecked">${ 'liikennointikausi' & t }</paper-toggle-button>
+              <paper-toggle-button class="Mt-xs r-sm-Mt-0" change.delegate="toggleLiikennointikausi()" checked.two-way="isLiikennointikausiChecked">${ 'liikennointikausi' & t }</paper-toggle-button>
             </div>
           </div>
         </div>
