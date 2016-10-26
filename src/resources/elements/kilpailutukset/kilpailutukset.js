@@ -22,6 +22,9 @@ export class Kilpailutukset {
     this.api = api;
     this.ea = eventAggregator;
     this.i18n = i18n;
+    this.isTouchDevice = ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
+    this.isOrganisaatioTipVisible = false;
+    this.isOrganisaatiolajiTipVisible = false;
     this.router = router;
     this.lastFetch = null;
     this.timeline = {};
@@ -241,15 +244,63 @@ export class Kilpailutukset {
     }, filterKilpailutuksetForKilpailutuskausi(data));
   };
 
+  hideOrganisaatioTooltip() {
+    if (this.organisaatioTip) {
+      if (!this.isTouchDevice) {
+        this.organisaatioTip.hide();
+      }
+    }
+  }
+
   showOrganisaatioTooltip() {
     if (this.organisaatioTip) {
-      this.organisaatioTip.show();
+      if (!this.isTouchDevice) {
+        this.organisaatioTip.show();
+      }
+    }
+  }
+
+  hideOrganisaatiolajiTooltip() {
+    if (this.organisaatiolajiTip) {
+      if (!this.isTouchDevice) {
+        this.organisaatiolajiTip.hide();
+      }
     }
   }
 
   showOrganisaatiolajiTooltip() {
     if (this.organisaatiolajiTip) {
-      this.organisaatiolajiTip.show();
+      if (!this.isTouchDevice) {
+        this.organisaatiolajiTip.show();
+      }
+    }
+  }
+
+  toggleOrShowOrganisaatioTooltip() {
+    if (this.organisaatioTip) {
+      if (this.isTouchDevice) {
+        if (this.isOrganisaatioTipVisible) {
+          this.organisaatioTip.hide();
+        } else {
+          this.organisaatioTip.show();
+        }
+        this.isOrganisaatioTipVisible = !this.isOrganisaatioTipVisible;
+      } else {
+        this.organisaatioTip.show();
+      }
+    }
+  }
+
+  toggleOrShowOrganisaatiolajiTooltip() {
+    if (this.organisaatiolajiTip) {
+      if (this.isTouchDevice) {
+        if (this.isOrganisaatioLajiTipVisible) {
+          this.organisaatiolajiTip.hide();
+        } else {
+          this.organisaatiolajiTip.show();
+        }
+        this.isOrganisaatioLajiTipVisible = !this.isOrganisaatioLajiTipVisible;
+      }
     }
   }
 
