@@ -12,6 +12,7 @@
   "avustukset-organisaatioittain": "avustukset organisaatioittain",
 
   "ELY": "ELY-keskukset",
+  "ELYt": "ELYt",
   "ELY-2014-avustus-puuttuu": "Vuodelta 2014 puuttuu ELY-keskusten haettu avustussumma",
   "ELY-keskukset": "ELY-keskukset",
   "etusivu": "Etusivu",
@@ -40,6 +41,7 @@
   "kaikki-tunnusluvut": "Kaikki tunnusluvut",
   "kalusto": "Kalusto",
   "kaluston-maara": "Kaluston määrä (kpl)",
+  "keskisuuret": "Keskisuuret",
   "keskisuuret-kaupunkiseudut": "Keskisuuret kaupunkiseudut",
   "kilpailutukset": "Kilpailutukset",
   "kilpailutus": "Kilpailutus",
@@ -91,6 +93,7 @@
   "pendeloivienosuus": "Pendelöivien osuus",
   "pendeloivienosuus-gen": "pendelöivien osuus (oman kunnan ulkopuolella työssäkäynti)",
   "perustunnusluvut": "Perustunnusluvut",
+  "pienet": "Pienet",
   "pienet-kaupunkiseudut": "Pienet kaupunkiseudut",
   "pienet-kaupunkiseudut-selitys": "Pienet kaupunkiseudut saavat joukkoliikennetukensa ELY-keskusten kautta. ELY välittää osan saamastaan valtion avustuksesta pienille kaupunkiseuduille ja muille toimivalta-alueensa kunnille. Pienten kaupunkiseutujen tuki näytetään eriteltynä vain tällä välilehdellä ja tuesta näytetään vain myönnetty avustus. Kaikki-välilehdellä ja ELY-välilehdellä tämä tuki sisältyy ELY:jen saamaan tukeen.",
   "pinottu": "Pinottu",
@@ -107,6 +110,7 @@
 
   "suodata-aikajanaa-valitsemalla-toimivaltaryhmia": "Suodata aikajanaa valitsemalla toimivaltaryhmiä",
   "suodata-aikajanaa-valitsemalla-viranomaisia": "Suodata aikajanaa valitsemalla viranomaisia",
+  "suuret": "Suuret",
   "suuret-kaupunkiseudut": "Suuret kaupunkiseudut",
 
   "tarkasteltava-tunnusluku": "Tarkasteltava tunnusluku",
