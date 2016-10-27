@@ -5,6 +5,7 @@
 #Version 1.0
 
 #START
+set -e
 TARGETDIR=production
 DESTINATIONDIR=production
 VERSION=$(grep version package.json | cut -d'"' -f4)
@@ -36,39 +37,7 @@ createTargetDir() {
 
 au build --env prod
 
-if [ ! -d $TARGETDIR ]
-then
-  echo "Directory 'production' doesn't exist. Creating now..."
-  createTargetDir
-  if [ ! -d $TARGETDIR ]
-  then
-    echo "Unable to create the target directory!"
-  else
-    echo "Target directory '$TARGETDIR' created!"
-  fi
-  createTARGZ
-else
-  if [ -f $DESTINATIONDIR/$FILENAME ]
-  then
-    read -p "File $FILENAME already exists. Do you want to replace it with the new one (n/Y)? " override
-    override=${override:-Y}
-    if [ $override == "Y" ] || [ $override == "y" ]
-    then
-      rm -rf $TARGETDIR
-      if [ ! -d $TARGETDIR ]
-      then
-        echo "Target directory cleaned!"
-        createTargetDir
-        createTARGZ
-      else
-        echo "Unable to remove the target directory!"
-      fi
-    else
-      echo "Operation cancelled!"
-    fi
-  else
-    echo "Creating $FILENAME.tar.gz file..."
-    createTARGZ
-  fi
-fi
+rm -rf $TARGETDIR
+createTargetDir
+createTARGZ
 #END
