@@ -6,8 +6,16 @@
 
 #START
 TARGETDIR=production
-FILENAME=juku.tar.gz
 DESTINATIONDIR=production
+VERSION=$(grep version package.json | cut -d'"' -f4)
+
+now=$(/bin/date +%FT%T%z|sed -e 's/:/-/g')
+
+if [[ $VERSION == *"SNAPSHOT"* ]]; then
+    FILENAME=public-juku-dist-$VERSION-$now-$(hostname).tar.gz
+else
+    FILENAME=public-juku-dist-$VERSION-$(hostname).tar.gz
+fi
 
 # Location of scripts directory (source of tar file).
 SRC1=scripts/
@@ -18,15 +26,26 @@ SRC5=index.html
 
 createTARGZ() {
   echo "Creating the package..."
-  tar -cpzf $DESTINATIONDIR/$FILENAME $SRC1 $SRC2 $SRC3 $SRC4 $SRC5
+  gtar -czf $DESTINATIONDIR/$FILENAME $SRC1 $SRC2 $SRC3 $SRC4 $SRC5
   echo "Package $FILENAME created to directory '$TARGETDIR'!"
 }
+
+createTargetDir() {
+  mkdir -p "$TARGETDIR"
+}
+
+au build --env prod
 
 if [ ! -d $TARGETDIR ]
 then
   echo "Directory 'production' doesn't exist. Creating now..."
-  mkdir -p "$TARGETDIR"
-  echo "Directory created!"
+  createTargetDir
+  if [ ! -d $TARGETDIR ]
+  then
+    echo "Unable to create the target directory!"
+  else
+    echo "Target directory '$TARGETDIR' created!"
+  fi
   createTARGZ
 else
   if [ -f $DESTINATIONDIR/$FILENAME ]
@@ -35,9 +54,17 @@ else
     override=${override:-Y}
     if [ $override == "Y" ] || [ $override == "y" ]
     then
-      createTARGZ
+      rm -rf $TARGETDIR
+      if [ ! -d $TARGETDIR ]
+      then
+        echo "Target directory cleaned!"
+        createTargetDir
+        createTARGZ
+      else
+        echo "Unable to remove the target directory!"
+      fi
     else
-      echo "Operation cancelled"
+      echo "Operation cancelled!"
     fi
   else
     echo "Creating $FILENAME.tar.gz file..."
