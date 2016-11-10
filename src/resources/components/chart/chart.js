@@ -51,14 +51,16 @@ export class ChartCustomElement {
             });
           }
         });
-        xLabelsMissing.forEach(label => {
-          item.values.push({
-            key: item.label,
-            series: key,
-            x: label,
-            y: null
+        if (!(options.chart && options.chart.type === 'lineWithFocusChart')) {
+          xLabelsMissing.forEach(label => {
+            item.values.push({
+              key: item.label,
+              series: key,
+              x: label,
+              y: null
+            });
           });
-        });
+        }
         graphData.push(item);
       });
       return graphData;
