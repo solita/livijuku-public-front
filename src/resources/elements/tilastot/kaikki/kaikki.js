@@ -20,6 +20,7 @@ export class Kaikki {
     this.filterIndex = false;
     this.tunnuslukuIndex = 0;
     this.viranomainen = null;
+    this.kuukaudet = ["Tammikuu", "Helmikuu", "Maaliskuu", "Huhtikuu", "Toukokuu", "Kesäkuu","Heinäkuu", "Elokuu", "Syyskuu", "Lokakuu", "Marraskuu", "Joulukuu"];
   }
 
   activate(model) {
@@ -48,12 +49,22 @@ export class Kaikki {
     let chart = this.selectedTunnusluku.charts[chartIndex];
     let data = R.clone(data_);
     if (chart.groupBy[1] === 'kuukausi') {
-      data = _.map(data_, row => {
-        row[1] = kuukausiToUTC(row[1]);
+      data = _.map(data_, (row, index) => {
+        if (index === 0) {
+          row.push('kuukausi');
+          row.push('kuukausi_nimi');
+          row.push('vuosi');
+        } else {
+          let timestamp = R.clone(row[1]);
+          let kuukausi = parseInt(timestamp.substring(4), 10);
+          row.push(kuukausi);
+          row.push(this.kuukaudet[kuukausi - 1]);
+          row.push(parseInt(timestamp.substring(0, 4), 10));
+          row[1] = kuukausiToUTC(row[1]);
+        }
         return row;
       });
     }
-
     let xLabelIndex = R.indexOf('vuosi', R.head(data));
     let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
     let groupLabels = R.map(organisaatio => {
