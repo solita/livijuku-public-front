@@ -62,22 +62,23 @@ export class Perustunnusluvut {
     this.api.organisaatiot.then(organisaatiot => {
       this.organisaatiot = organisaatiot;
       this.viranomainen = model;
-      this.api.getTyytyvaisyysJoukkoliikenteeseen(this.viranomainen).then(data => {
+      this.api.getTyytyvaisyysJoukkoliikenteeseen(this.viranomainen).then(data_ => {
+        let data = R.head(data_);
         let chartOpts = createGraph('Tyytyväisyys joukkoliikenteeseen', '%');
-        let xLabelIndex = R.indexOf('vuosi', R.head(data));
-        let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
+        let xLabelIndex = R.indexOf('vuosi', data);
+        let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', data), data_);
         let groupLabels = R.map(organisaatio => {
           return organisaatio.replace(" ELY", "");
         }, t.getOrganisaatioNames(groupKeys, this.organisaatiot));
         this.tyytyvaisyysJoukkoliikenteeseen = {
-          csv: R.tail(data),
-          data: data,
+          csv: t.addOrganisaationimiColumn(data_, this.organisaatiot),
+          data: data_,
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
             height: document.body.clientWidth < 768 ? 300 : 500,
-            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
-            valueIndex: R.indexOf('tunnusluku', R.head(data)),
+            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data_))),
+            valueIndex: R.indexOf('tunnusluku', data),
             title: this.i18n.tr('tyytyvaisyys-joukkoliikenteeseen'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
@@ -85,22 +86,23 @@ export class Perustunnusluvut {
           })
         };
       });
-      this.api.getMatkustajamaarat(this.viranomainen).then(data => {
+      this.api.getMatkustajamaarat(this.viranomainen).then(data_ => {
+        let data = R.head(data_);
         let chartOpts = createGraph('Matkustajamäärät', 'henkilöä');
-        let xLabelIndex = R.indexOf('vuosi', R.head(data));
-        let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
+        let xLabelIndex = R.indexOf('vuosi', data);
+        let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', data), data_);
         let groupLabels = R.map(organisaatio => {
           return organisaatio.replace(" ELY", "");
         }, t.getOrganisaatioNames(groupKeys, this.organisaatiot));
         this.nousut = {
-          csv: R.tail(data),
-          data: data,
+          csv: t.addOrganisaationimiColumn(data_, this.organisaatiot),
+          data: data_,
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
             height: document.body.clientWidth < 768 ? 300 : 500,
-            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
-            valueIndex: R.indexOf('tunnusluku', R.head(data)),
+            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data_))),
+            valueIndex: R.indexOf('tunnusluku', data),
             title: this.i18n.tr('matkustajamaarat'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
@@ -108,22 +110,23 @@ export class Perustunnusluvut {
           })
         };
       });
-      this.api.getLahtojenMaara(this.viranomainen).then(data => {
+      this.api.getLahtojenMaara(this.viranomainen).then(data_ => {
+        let data = R.head(data_);
         let chartOpts = createGraph('Lähtöjen määrä', 'kpl');
-        let xLabelIndex = R.indexOf('vuosi', R.head(data));
-        let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
+        let xLabelIndex = R.indexOf('vuosi', data);
+        let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', data), data_);
         let groupLabels = R.map(organisaatio => {
           return organisaatio.replace(" ELY", "");
         }, t.getOrganisaatioNames(groupKeys, this.organisaatiot));
         this.lahdot = {
-          csv: R.tail(data),
-          data: data,
+          csv: t.addOrganisaationimiColumn(data_, this.organisaatiot),
+          data: data_,
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
             height: document.body.clientWidth < 768 ? 300 : 500,
-            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
-            valueIndex: R.indexOf('tunnusluku', R.head(data)),
+            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data_))),
+            valueIndex: R.indexOf('tunnusluku', data),
             title: this.i18n.tr('lahtojen-maara'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
@@ -131,22 +134,23 @@ export class Perustunnusluvut {
           })
         };
       });
-      this.api.getLinjakilometrit(this.viranomainen).then(data => {
+      this.api.getLinjakilometrit(this.viranomainen).then(data_ => {
+        let data = R.head(data_);
         let chartOpts = createGraph('Linjakilometrit', 'km');
-        let xLabelIndex = R.indexOf('vuosi', R.head(data));
-        let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
+        let xLabelIndex = R.indexOf('vuosi', data);
+        let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', data), data_);
         let groupLabels = R.map(organisaatio => {
           return organisaatio.replace(" ELY", "");
         }, t.getOrganisaatioNames(groupKeys, this.organisaatiot));
         this.linjakilometrit = {
-          csv: R.tail(data),
-          data: data,
+          csv: t.addOrganisaationimiColumn(data_, this.organisaatiot),
+          data: data_,
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
             height: document.body.clientWidth < 768 ? 300 : 500,
-            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
-            valueIndex: R.indexOf('tunnusluku', R.head(data)),
+            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data_))),
+            valueIndex: R.indexOf('tunnusluku', data),
             title: this.i18n.tr('linjakilometrit'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
@@ -154,22 +158,23 @@ export class Perustunnusluvut {
           })
         };
       });
-      this.api.getValtionRahoitusAsukastaKohden(this.viranomainen).then(data => {
+      this.api.getValtionRahoitusAsukastaKohden(this.viranomainen).then(data_ => {
+        let data = R.head(data_);
         let chartOpts = createGraph('Valtion rahoitus asukasta kohden', '€');
-        let xLabelIndex = R.indexOf('vuosi', R.head(data));
-        let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
+        let xLabelIndex = R.indexOf('vuosi', data);
+        let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', data), data_);
         let groupLabels = R.map(organisaatio => {
           return organisaatio.replace(" ELY", "");
         }, t.getOrganisaatioNames(groupKeys, this.organisaatiot));
         this.valtionAvustusPerAsukas = {
-          csv: R.tail(data),
-          data: data,
+          csv: t.addOrganisaationimiColumn(data_, this.organisaatiot),
+          data: data_,
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
             height: document.body.clientWidth < 768 ? 300 : 500,
-            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
-            valueIndex: R.indexOf('myonnettyavustus_asukastakohti', R.head(data)),
+            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data_))),
+            valueIndex: R.indexOf('myonnettyavustus_asukastakohti', data),
             title: this.i18n.tr('valtion-rahoitus-asukasta-kohden'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
@@ -177,22 +182,23 @@ export class Perustunnusluvut {
           })
         };
       });
-      this.api.getToimivaltaisenViranomaisenOmarahoitusAsukastaKohden(this.viranomainen).then(data => {
+      this.api.getToimivaltaisenViranomaisenOmarahoitusAsukastaKohden(this.viranomainen).then(data_ => {
+        let data = R.head(data_);
         let chartOpts = createGraph('Toimivaltaisen viranomaisen omarahoitus asukasta kohden', '€');
-        let xLabelIndex = R.indexOf('vuosi', R.head(data));
-        let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
+        let xLabelIndex = R.indexOf('vuosi', data);
+        let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', data), data_);
         let groupLabels = R.map(organisaatio => {
           return organisaatio.replace(" ELY", "");
         }, t.getOrganisaatioNames(groupKeys, this.organisaatiot));
         this.omarahoitusPerAsukas = {
-          csv: R.tail(data),
-          data: data,
+          csv: t.addOrganisaationimiColumn(data_, this.organisaatiot),
+          data: data_,
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
             height: document.body.clientWidth < 768 ? 300 : 500,
-            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
-            valueIndex: R.indexOf('myonnettyavustus_asukastakohti', R.head(data)),
+            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data_))),
+            valueIndex: R.indexOf('myonnettyavustus_asukastakohti', data),
             title: this.i18n.tr('toimivaltaisen-viranomaisen-omarahoitus-asukasta-kohden'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
@@ -200,22 +206,23 @@ export class Perustunnusluvut {
           })
         };
       });
-      this.api.getPsaLiikenteenNettokustannukset(this.viranomainen).then(data => {
+      this.api.getPsaLiikenteenNettokustannukset(this.viranomainen).then(data_ => {
+        let data = R.head(data_);
         let chartOpts = createGraph('PSA-liikenteen nettokustannukset (kunnan ja valtion maksama subventio)', '€');
-        let xLabelIndex = R.indexOf('vuosi', R.head(data));
-        let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', R.head(data)), data);
+        let xLabelIndex = R.indexOf('vuosi', data);
+        let groupKeys = t.getGroupKeys(R.indexOf('organisaatioid', data), data_);
         let groupLabels = R.map(organisaatio => {
           return organisaatio.replace(" ELY", "");
         }, t.getOrganisaatioNames(groupKeys, this.organisaatiot));
         this.psaNettokustannukset = {
-          csv: R.tail(data),
-          data: data,
+          csv: t.addOrganisaationimiColumn(data_, this.organisaatiot),
+          data: data_,
           options: R.merge(chartOpts.options, {
             groupKeys: groupKeys,
             groupLabels: groupLabels,
             height: document.body.clientWidth < 768 ? 300 : 500,
-            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data))),
-            valueIndex: R.indexOf('liikennointikorvaus.korvaus-lipputulo.total', R.head(data)),
+            xLabels: R.uniq(R.map(item => { return item[xLabelIndex]; }, R.tail(data_))),
+            valueIndex: R.indexOf('liikennointikorvaus.korvaus-lipputulo.total', data),
             title: this.i18n.tr('psa-liikenteen-nettokustannukset'),
             subtitle: {
               text: this.i18n.tr(this.viranomainen)
