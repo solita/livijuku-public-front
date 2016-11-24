@@ -3,8 +3,6 @@ import {EventAggregator} from 'aurelia-event-aggregator';
 import {I18N} from 'aurelia-i18n';
 import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
-window.moment = require('moment');
-import 'moment-fi';
 import _ from 'lodash';
 import $ from 'jquery';
 import * as c from 'resources/utils/core';
