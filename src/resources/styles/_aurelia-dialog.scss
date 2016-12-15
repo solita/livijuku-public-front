@@ -1,0 +1,13 @@
+ai-dialog-overlay.active {
+  background-color: black;
+  opacity: .5;
+}
+
+ai-dialog {
+    border-radius: 0;
+}
+
+ai-dialog > ai-dialog-footer button.ok:hover:enabled {
+    background-color: map-get($baseColors, cd005);
+    color: map-get($baseColors, w);
+}

@@ -34,6 +34,14 @@
   min-width: 100px;
 }
 
+.w-min-300 {
+  min-width: 300px;
+}
+
+.w-05 {
+  width: 50%;
+}
+
 .w-min-100vw {
   min-width: 100vw;
 }
@@ -209,6 +217,10 @@
 
 .c-a__hover:hover {
   color: map-get($baseColors, a);
+}
+
+.bg-c-cd005__hover:hover {
+  background-color: map-get($baseColors, cd005);
 }
 
 .juku-info-short {

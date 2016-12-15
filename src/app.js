@@ -1,7 +1,9 @@
 import {inject} from 'aurelia-framework';
 import {I18N} from 'aurelia-i18n';
+import {DialogService} from 'aurelia-dialog';
+import {NotificationOfIncompleteInformation} from 'resources/elements/notification-of-incomplete-information';
 
-@inject(I18N)
+@inject(DialogService, I18N)
 export class App {
 
   configureRouter(config, router) {
@@ -17,7 +19,8 @@ export class App {
     this.router = router;
   }
 
-  constructor(i18n) {
+  constructor(dialogService, i18n) {
+    this.dialogService = dialogService;
     this.i18n = i18n;
     this.isMenuOpen = false;
     this.isScrollingUp = false;
@@ -31,6 +34,10 @@ export class App {
       self.isScrollingUp = scrollTop < self.lastScrollTop;
       self.lastScrollTop = scrollTop;
     });
+    this.dialogService.open({
+      viewModel: NotificationOfIncompleteInformation,
+      model: {}
+    }).then(response => {});
   }
 
   closeMenu() {
