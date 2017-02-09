@@ -288,9 +288,9 @@ aurelia-bootstrapper@^1.0.0-rc.1.0.0:
     aurelia-templating-resources "^1.0.0"
     aurelia-templating-router "^1.0.0"
 
-aurelia-cli@^0.20.0:
-  version "0.20.2"
-  resolved "https://registry.yarnpkg.com/aurelia-cli/-/aurelia-cli-0.20.2.tgz#a501abedc587ae2a81d17f6e36e51c0ae473cf10"
+aurelia-cli@^0.24.0:
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/aurelia-cli/-/aurelia-cli-0.24.0.tgz#c5be520ba4a2549ebd938bd48c9d753eef91dbee"
   dependencies:
     aurelia-dependency-injection "^1.0.0"
     aurelia-polyfills "^1.0.0"
@@ -4991,7 +4991,7 @@ replace-ext@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/replace-ext/-/replace-ext-0.0.1.tgz#29bbd92078a739f0bcce2b4ee41e837953522924"
 
-request@2, request@2.78.0, request@^2.61.0, request@^2.74.0:
+request@2, request@2.78.0, request@^2.61.0:
   version "2.78.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.78.0.tgz#e1c8dec346e1c81923b24acdb337f11decabe9cc"
   dependencies:
@@ -5016,7 +5016,7 @@ request@2, request@2.78.0, request@^2.61.0, request@^2.74.0:
     tough-cookie "~2.3.0"
     tunnel-agent "~0.4.1"
 
-request@^2.79.0:
+request@^2.74.0, request@^2.79.0:
   version "2.79.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.79.0.tgz#4dfe5bf6be8b8cdc37fcf93e04b65577722710de"
   dependencies:
