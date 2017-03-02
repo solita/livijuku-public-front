@@ -7,7 +7,7 @@ import {NotificationOfIncompleteInformation} from 'resources/elements/notificati
 export class App {
 
   configureRouter(config, router) {
-    config.title = 'JUKU';
+    config.title = 'JUKU - Joukkoliikenteen valtionrahoitus ja tunnusluvut';
     config.map([
       { route: ['', 'etusivu'], moduleId: 'resources/elements/etusivu/etusivu', name: 'etusivu', nav: false, title: 'etusivu' },
       { route: 'tilastot/valtionavustukset', moduleId: 'resources/elements/tilastot/tilastot', name: 'valtionavustukset', nav: true, title: this.i18n.tr('valtionavustukset') },
