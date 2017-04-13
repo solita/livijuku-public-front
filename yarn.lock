@@ -288,9 +288,9 @@ aurelia-bootstrapper@^1.0.0-rc.1.0.0:
     aurelia-templating-resources "^1.0.0"
     aurelia-templating-router "^1.0.0"
 
-aurelia-cli@^0.27.0:
-  version "0.27.0"
-  resolved "https://registry.yarnpkg.com/aurelia-cli/-/aurelia-cli-0.27.0.tgz#7b06edeeb642ad479406e69963d0dadac30954cf"
+aurelia-cli@^0.28.0:
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/aurelia-cli/-/aurelia-cli-0.28.0.tgz#0dc8554c9bed09634796861543f0343a522d6103"
   dependencies:
     aurelia-dependency-injection "^1.0.0"
     aurelia-logging "^1.2.0"
