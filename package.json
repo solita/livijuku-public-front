@@ -37,6 +37,7 @@
     "babel-preset-es2015-loose": "^7.0.0",
     "babel-preset-stage-1": "^6.5.0",
     "babel-register": "^6.9.0",
+    "bower": "^1.8.0",
     "browser-sync": "^2.13.0",
     "d3": "^3.5.17",
     "gulp": "github:gulpjs/gulp#4.0",
