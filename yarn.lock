@@ -269,9 +269,9 @@ aurelia-binding@^1.0.0, aurelia-binding@^1.0.9, aurelia-binding@^1.1.0:
     aurelia-pal "^1.0.0"
     aurelia-task-queue "^1.0.0"
 
-aurelia-bootstrapper@^1.0.0-rc.1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/aurelia-bootstrapper/-/aurelia-bootstrapper-1.0.1.tgz#a59a71349f0f632c408468a7f59cc163fc3a817e"
+aurelia-bootstrapper@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/aurelia-bootstrapper/-/aurelia-bootstrapper-2.1.1.tgz#4757ac17611b6096704961b55148f77b042b6ac5"
   dependencies:
     aurelia-event-aggregator "^1.0.0"
     aurelia-framework "^1.0.0"
@@ -279,7 +279,7 @@ aurelia-bootstrapper@^1.0.0-rc.1.0.0:
     aurelia-history-browser "^1.0.0"
     aurelia-loader-default "^1.0.0"
     aurelia-logging-console "^1.0.0"
-    aurelia-pal "^1.0.0"
+    aurelia-pal "^1.3.0"
     aurelia-pal-browser "^1.0.0"
     aurelia-polyfills "^1.0.0"
     aurelia-router "^1.0.1"
@@ -288,9 +288,9 @@ aurelia-bootstrapper@^1.0.0-rc.1.0.0:
     aurelia-templating-resources "^1.0.0"
     aurelia-templating-router "^1.0.0"
 
-aurelia-cli@^0.28.0:
-  version "0.28.0"
-  resolved "https://registry.yarnpkg.com/aurelia-cli/-/aurelia-cli-0.28.0.tgz#0dc8554c9bed09634796861543f0343a522d6103"
+aurelia-cli@^0.30.0:
+  version "0.30.0"
+  resolved "https://registry.yarnpkg.com/aurelia-cli/-/aurelia-cli-0.30.0.tgz#1660e30f4b28a851d4d99178f60f2728efb8e665"
   dependencies:
     aurelia-dependency-injection "^1.0.0"
     aurelia-logging "^1.2.0"
@@ -300,6 +300,13 @@ aurelia-cli@^0.28.0:
     npm "^3.10.8"
     rfc6902 "^1.2.2"
     semver "^5.3.0"
+
+aurelia-dependency-injection@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/aurelia-dependency-injection/-/aurelia-dependency-injection-1.2.0.tgz#b82a6619236a2e971e5974fa3466a812eec3925f"
+  dependencies:
+    aurelia-metadata "^1.0.0"
+    aurelia-pal "^1.0.0"
 
 aurelia-dependency-injection@^1.0.0:
   version "1.2.1"
@@ -399,15 +406,19 @@ aurelia-metadata@^1.0.0:
   dependencies:
     aurelia-pal "^1.0.0"
 
-aurelia-pal-browser@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/aurelia-pal-browser/-/aurelia-pal-browser-1.1.0.tgz#a8c2c904cbed23f92be194d0bd7d3dc5e39ab30a"
+aurelia-pal-browser@^1.0.0, aurelia-pal-browser@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/aurelia-pal-browser/-/aurelia-pal-browser-1.2.1.tgz#426db535a6019940c49520f4c23a29b0789c4a75"
   dependencies:
     aurelia-pal "^1.1.0"
 
-aurelia-pal@^1.0.0, aurelia-pal@^1.1.0:
+aurelia-pal@^1.0.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/aurelia-pal/-/aurelia-pal-1.2.0.tgz#ebf0138b3ff2961a2afdd33d5a9841961940247c"
+
+aurelia-pal@^1.1.0, aurelia-pal@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/aurelia-pal/-/aurelia-pal-1.3.0.tgz#95d2b8da8fb318adb6019d320d1d2f9028f37f17"
 
 aurelia-path@^1.0.0:
   version "1.1.1"
@@ -500,9 +511,9 @@ aurelia-testing@^1.0.0-beta.2.0.0:
     aurelia-pal "^1.0.0"
     aurelia-templating "^1.0.0"
 
-aurelia-tools@^0.2.2:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/aurelia-tools/-/aurelia-tools-0.2.4.tgz#15c992f3049e95d98848043bc8b583b3db1fba54"
+aurelia-tools@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/aurelia-tools/-/aurelia-tools-1.0.0.tgz#c7d82c939ee4c46026ac2a05a99fc446732a31bc"
   dependencies:
     breeze-dag "^0.1.0"
     through2 "^2.0.0"
@@ -5000,7 +5011,7 @@ replace-ext@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/replace-ext/-/replace-ext-0.0.1.tgz#29bbd92078a739f0bcce2b4ee41e837953522924"
 
-request@2, request@2.78.0, request@^2.61.0:
+request@2, request@2.78.0, request@^2.61.0, request@^2.74.0:
   version "2.78.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.78.0.tgz#e1c8dec346e1c81923b24acdb337f11decabe9cc"
   dependencies:
@@ -5025,7 +5036,7 @@ request@2, request@2.78.0, request@^2.61.0:
     tough-cookie "~2.3.0"
     tunnel-agent "~0.4.1"
 
-request@^2.74.0, request@^2.79.0:
+request@^2.79.0:
   version "2.79.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.79.0.tgz#4dfe5bf6be8b8cdc37fcf93e04b65577722710de"
   dependencies:
@@ -5918,9 +5929,9 @@ weinre@^2.0.0-pre-I0Z7U9OV:
     nopt "3.0.x"
     underscore "1.7.x"
 
-whatwg-fetch@^1.0.0:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-1.1.1.tgz#ac3c9d39f320c6dce5339969d054ef43dd333319"
+whatwg-fetch@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.3.tgz#9c84ec2dcf68187ff00bc64e1274b442176e1c84"
 
 which-module@^1.0.0:
   version "1.0.0"
