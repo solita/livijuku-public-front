@@ -18,3 +18,4 @@ tar zxvf $1
 rm $1
 cd ..
 chgrp -R appadmin juku
+chmod -R g+w juku

@@ -27,7 +27,7 @@ SRC5=index.html
 
 createTARGZ() {
   echo "Creating the package..."
-  gtar -czf $DESTINATIONDIR/$FILENAME $SRC1 $SRC2 $SRC3 $SRC4 $SRC5
+  tar -czf $DESTINATIONDIR/$FILENAME $SRC1 $SRC2 $SRC3 $SRC4 $SRC5
   echo "Package $FILENAME created to directory '$TARGETDIR'!"
 }
 
@@ -35,7 +35,7 @@ createTargetDir() {
   mkdir -p "$TARGETDIR"
 }
 
-au build --env prod
+npm run build --env prod
 
 rm -rf $TARGETDIR
 createTargetDir

@@ -8,9 +8,10 @@
 set -e
 BASEDIR=$(cd "$(dirname "$0")"; pwd)
 cd $BASEDIR
-./build.sh
+TARGETHOST=$1
+
 FILENAME=$(ls production)
-scp production/$FILENAME liviwlst110l:/opt/livijuku/environment/.
-scp publish-remote.sh liviwlst110l:/opt/livijuku/environment/.
-ssh liviwlst110l /opt/livijuku/environment/publish-remote.sh $FILENAME
+scp production/$FILENAME $TARGETHOST:/opt/livijuku/environment/.
+scp publish-remote.sh $TARGETHOST:/opt/livijuku/environment/.
+ssh $TARGETHOST /opt/livijuku/environment/publish-remote.sh $FILENAME
 #END
