@@ -20,6 +20,10 @@
     "text": "github:requirejs/text",
     "whatwg-fetch": "^2.0.3"
   },
+  "scripts": {
+    "bower:install": "bower install",
+    "localdev": "au run --watch"
+  },
   "peerDependencies": {},
   "devDependencies": {
     "aurelia-cli": "^0.30.0",
@@ -40,7 +44,7 @@
     "bower": "^1.8.0",
     "browser-sync": "^2.13.0",
     "d3": "^3.5.17",
-    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp": "^4.0.0",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-babel": "^6.1.2",
     "gulp-changed-in-place": "^2.0.3",
