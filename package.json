@@ -23,7 +23,7 @@
   "scripts": {
     "bower:install": "bower install",
     "localdev": "au run --watch",
-    "build": "au build"
+    "build": "au build --env prod"
   },
   "peerDependencies": {},
   "devDependencies": {

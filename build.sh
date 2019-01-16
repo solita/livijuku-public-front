@@ -35,7 +35,7 @@ createTargetDir() {
   mkdir -p "$TARGETDIR"
 }
 
-npm run build --env prod
+npm run build
 
 rm -rf $TARGETDIR
 createTargetDir
