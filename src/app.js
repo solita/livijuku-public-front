@@ -34,10 +34,6 @@ export class App {
       self.isScrollingUp = scrollTop < self.lastScrollTop;
       self.lastScrollTop = scrollTop;
     });
-    this.dialogService.open({
-      viewModel: NotificationOfIncompleteInformation,
-      model: {}
-    }).then(response => {});
   }
 
   closeMenu() {
