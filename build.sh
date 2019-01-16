@@ -35,6 +35,7 @@ createTargetDir() {
   mkdir -p "$TARGETDIR"
 }
 
+rm -rf $SRC1
 npm run build
 
 rm -rf $TARGETDIR
