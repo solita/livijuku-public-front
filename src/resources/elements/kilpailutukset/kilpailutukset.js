@@ -162,7 +162,7 @@ export class Kilpailutukset {
             c.checkIfInSelectedRange(this.kalustokoko.range.min, this.kalustokoko.range.max, parseFloat(this.kalustokoko.start[0]), parseFloat(this.kalustokoko.start[1]), kalusto);
         }, kilpailutukset);
 
-        this.organisaatiot = R.filter(organisaatio => { return organisaatio.nimi !== 'Liikennevirasto'; }, values[1]);
+        this.organisaatiot = R.filter(organisaatio => { return organisaatio.lajitunnus !== 'LV'; }, values[1]);
         this.filter.organisaatiot = organisaatioIDs;
         this.filter.organisaatiolajit = organisaatiolajit;
 
