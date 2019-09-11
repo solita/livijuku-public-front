@@ -13,9 +13,9 @@ VERSION=$(grep version package.json | cut -d'"' -f4)
 now=$(/bin/date +%FT%T%z|sed -e 's/:/-/g')
 
 if [[ $VERSION == *"SNAPSHOT"* ]]; then
-    FILENAME=public-juku-dist-$VERSION-$now-$(hostname).tar.gz
+    FILENAME=public-juku-dist-$VERSION-$now.tar.gz
 else
-    FILENAME=public-juku-dist-$VERSION-$(hostname).tar.gz
+    FILENAME=public-juku-dist-$VERSION.tar.gz
 fi
 
 # Location of scripts directory (source of tar file).
