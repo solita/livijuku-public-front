@@ -20,7 +20,7 @@ let serve = gulp.series(
   done => {
     var proxy = httpProxy.createProxyServer({
       changeOrigin: true,
-      target: 'http://localhost:8082/public'
+      target: 'http://localhost:8080/public'
     });
 
     function proxyAPIRequests(req, res, next) {

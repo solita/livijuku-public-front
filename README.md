@@ -8,7 +8,7 @@ Projekti käyttää [Aurelia](http://www.aurelia.io)-sovelluskehystä sekä Goog
 
 * Asenna nvm - https://github.com/creationix/nvm.
 * Lataa [livijuku](https://github.com/solita/livijuku)-projekti ja suorita README:n mukaiset toimenpiteet.
-* Kun tietokanta ja backend ovat ajossa (`localhost:8082`), voit käynnistää tämän projektin seuraavasti:
+* Kun tietokanta ja backend ovat ajossa (`localhost:8080`), voit käynnistää tämän projektin seuraavasti:
   * Siirry projektikansioon
   * Suorita `nvm use`
   * Suorita `npm install`
