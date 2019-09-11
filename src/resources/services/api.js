@@ -1,6 +1,11 @@
 import {inject} from 'aurelia-framework';
 import {HttpClient} from 'aurelia-fetch-client';
 import 'whatwg-fetch'; // This is a polyfill for IE
+import R from 'ramda';
+
+const defaultConfiguration = {
+  authorityURL: 'http://localhost:9000/'
+}
 
 @inject(HttpClient)
 export class Api {
@@ -88,4 +93,8 @@ export class Api {
     return this.http.fetch('psa-nettokustannus/' + viranomainen);
   }
 
+  getConfig() {
+    return this.http.fetch('config')
+      .catch(R.always(defaultConfiguration));
+  }
 }
