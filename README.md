@@ -1,6 +1,8 @@
-# JUKU
 
-Sivusto joukkoliikenteen valtionrahoituksesta ja tunnusluvuista
+Juku
+===
+
+Liikenne- ja viestintäviraston julkinen sivusto joukkoliikenteen valtionrahoituksesta ja tunnusluvuista
 
 ## Kehitysympäristön käynnistys
 
