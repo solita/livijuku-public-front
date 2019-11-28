@@ -32,6 +32,16 @@ let serve = gulp.series(
       next();
     }
 
+    function addContentSecurityPolicy(req, res, next) {
+      res.setHeader('Content-Security-Policy',
+        "default-src 'self'; " +
+        " script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com/ajax/libs/moment.js/ https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/ https://cdnjs.cloudflare.com/ajax/libs/vis/ https://www.google-analytics.com/analytics.js ; " +
+        " style-src 'self' 'unsafe-inline' http://fonts.googleapis.com ; " +
+        " font-src 'self' https://fonts.gstatic.com/s/ ; " +
+        " img-src 'self' https://www.google-analytics.com/r/ ");
+      next();
+    }
+
     browserSync({
       online: false,
       open: false,
@@ -41,7 +51,7 @@ let serve = gulp.series(
         middleware: [function(req, res, next) {
           res.setHeader('Access-Control-Allow-Origin', '*');
           next();
-        }, proxyAPIRequests]
+        }, proxyAPIRequests, addContentSecurityPolicy]
       }
     }, done);
   }
