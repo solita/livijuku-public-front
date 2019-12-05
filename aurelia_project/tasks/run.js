@@ -38,7 +38,7 @@ let serve = gulp.series(
         " script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com/ajax/libs/moment.js/ https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/ https://cdnjs.cloudflare.com/ajax/libs/vis/ https://www.google-analytics.com/analytics.js ; " +
         " style-src 'self' 'unsafe-inline' http://fonts.googleapis.com ; " +
         " font-src 'self' https://fonts.gstatic.com/s/ ; " +
-        " img-src 'self' https://www.google-analytics.com/r/ ");
+        " img-src 'self' https://www.google-analytics.com/ ");
       next();
     }
 
