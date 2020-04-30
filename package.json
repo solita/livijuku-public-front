@@ -62,7 +62,7 @@
     "gulp-vulcanize": "^6.1.0",
     "i18next-xhr-backend": "^0.6.0",
     "jasmine-core": "^2.4.1",
-    "jquery": "^3.0.0",
+    "jquery": "^3.5.0",
     "jshint": "^2.9.2",
     "karma": "^4.4.1",
     "karma-babel-preprocessor": "^6.0.1",
