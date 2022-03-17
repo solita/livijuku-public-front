@@ -27,7 +27,7 @@ SRC5=index.html
 
 createTARGZ() {
   echo "Creating the package..."
-  tar -czf $DESTINATIONDIR/$FILENAME $SRC1 $SRC2 $SRC3 $SRC4 $SRC5 favicon.ico robots.txt
+  tar -czf $DESTINATIONDIR/$FILENAME --mode='a+rX' $SRC1 $SRC2 $SRC3 $SRC4 $SRC5 favicon.ico robots.txt
   echo "Package $FILENAME created to directory '$TARGETDIR'!"
 }
 
