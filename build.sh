@@ -24,11 +24,12 @@ SRC2=locales/
 SRC3=bower_components/
 SRC4=images
 SRC5=fonts
-SRC6=index.html
+SRC6=libs
+SRC7=index.html
 
 createTARGZ() {
   echo "Creating the package..."
-  tar -czf $DESTINATIONDIR/$FILENAME --mode='a+rX' $SRC1 $SRC2 $SRC3 $SRC4 $SRC5 $SRC6 favicon.ico robots.txt
+  tar -czf $DESTINATIONDIR/$FILENAME --mode='a+rX' $SRC1 $SRC2 $SRC3 $SRC4 $SRC5 $SRC6 $SRC7 favicon.ico robots.txt
   echo "Package $FILENAME created to directory '$TARGETDIR'!"
 }
 
